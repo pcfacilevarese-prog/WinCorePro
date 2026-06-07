@@ -1,59 +1,64 @@
 <!DOCTYPE html>
-<html lang="it">
+<html lang="it" id="html-root">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>WinCurePro — Prezzi</title>
+<title>WinCurePro — USB Diagnostic Tool</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=DM+Mono:ital,wght@0,400;0,500&display=swap" rel="stylesheet">
 <style>
-
-/* ─── Reset ─────────────────────────────────────────────────────── */
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 html{font-size:16px;-webkit-font-smoothing:antialiased;scroll-behavior:smooth}
 
-/* ─── Tokens ─────────────────────────────────────────────────────── */
 :root{
-  --bg:        #000000;
-  --bg2:       #0a0a0a;
-  --bg3:       #111111;
-  --bg4:       #1a1a1a;
-  --bg5:       #222222;
-  --border:    rgba(255,255,255,.08);
-  --border2:   rgba(255,255,255,.15);
-  --border3:   rgba(255,255,255,.22);
-  --text:      #f5f5f7;
-  --text2:     #a1a1a6;
-  --text3:     #6e6e73;
-  --accent:    #5E5CE6;
-  --accent2:   #7b79f0;
-  --accent3:   #9d9cf5;
-  --green:     #32d74b;
-  --amber:     #ff9f0a;
-  --red:       #ff453a;
-  --cyan:      #64d2ff;
-  --font:      'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
-  --mono:      'DM Mono', 'SF Mono', monospace;
-  --r:         16px;
-  --r2:        12px;
-  --r3:        20px;
-  --r4:        28px;
-  --shadow:    0 2px 20px rgba(0,0,0,.6);
+  --bg:        #ffffff;
+  --bg2:       #f5f5f7;
+  --bg3:       #fbfbfd;
+  --bg4:       #e8e8ed;
+  --border:    rgba(0,0,0,.08);
+  --border2:   rgba(0,0,0,.14);
+  --text:      #1d1d1f;
+  --text2:     #6e6e73;
+  --text3:     #a1a1a6;
+  --accent:    #0071e3;
+  --accent2:   #0077ed;
+  --accent3:   #147ce5;
+  --green:     #1d8348;
+  --green-lt:  #30d158;
+  --amber:     #c67c1a;
+  --red:       #d1302b;
+  --cyan:      #0891b2;
+  --purple:    #5e5ce6;
+  --font:      'Plus Jakarta Sans',system-ui,-apple-system,sans-serif;
+  --mono:      'DM Mono','SF Mono',monospace;
+  --r:         12px;
+  --r2:        18px;
+  --r3:        22px;
 }
 
-body{
-  background:var(--bg);
-  color:var(--text);
-  font-family:var(--font);
-  line-height:1.5;
-  overflow-x:hidden;
-}
+body{background:var(--bg);color:var(--text);font-family:var(--font);line-height:1.5;overflow-x:hidden;}
 
-/* ─── Nav ─────────────────────────────────────────────────────────── */
+/* ── LANG BAR ── */
+.lang-bar{
+  background:var(--bg2);border-bottom:1px solid var(--border);
+  display:flex;justify-content:flex-end;align-items:center;
+  padding:0 32px;gap:4px;height:36px;
+  position:sticky;top:0;z-index:200;
+}
+.lang-btn{
+  background:none;border:none;cursor:pointer;
+  font-size:13px;font-weight:500;color:var(--text2);
+  padding:4px 10px;border-radius:6px;font-family:var(--font);
+  transition:background .15s,color .15s;
+}
+.lang-btn:hover,.lang-btn.active{background:rgba(0,0,0,.06);color:var(--text);}
+.lang-sep{color:var(--border2);font-size:12px;}
+
+/* ── NAV ── */
 nav{
-  position:sticky;top:0;z-index:100;
-  background:rgba(0,0,0,.82);
+  position:sticky;top:36px;z-index:100;
+  background:rgba(255,255,255,.88);
   backdrop-filter:saturate(180%) blur(20px);
   -webkit-backdrop-filter:saturate(180%) blur(20px);
   border-bottom:1px solid var(--border);
@@ -63,332 +68,382 @@ nav{
   display:flex;align-items:center;justify-content:space-between;
   padding:0 24px;height:52px;
 }
-.logo{
-  display:flex;align-items:center;gap:9px;
-  text-decoration:none;
-}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;}
 .logo-icon{
-  width:28px;height:28px;border-radius:7px;
-  background:var(--accent);
+  width:30px;height:30px;border-radius:8px;
+  background:var(--text);
   display:flex;align-items:center;justify-content:center;
 }
-.logo-icon svg{width:16px;height:16px;fill:#fff;}
-.logo-name{
-  font-size:15px;font-weight:700;letter-spacing:-.02em;
-  color:var(--text);
-}
-.nav-links{
-  display:flex;gap:0;
-}
+.logo-icon svg{width:16px;height:16px;stroke:#fff;stroke-width:2;fill:none;}
+.logo-name{font-size:15px;font-weight:700;letter-spacing:-.02em;color:var(--text);}
+.nav-links{display:flex;gap:0;}
 .nav-links a{
-  color:var(--text2);text-decoration:none;
-  font-size:13px;font-weight:500;
-  padding:6px 14px;border-radius:8px;
-  transition:color .15s,background .15s;
+  color:var(--text2);text-decoration:none;font-size:13px;font-weight:500;
+  padding:6px 14px;border-radius:8px;transition:color .15s,background .15s;
 }
-.nav-links a:hover{color:var(--text);background:rgba(255,255,255,.06);}
+.nav-links a:hover{color:var(--text);background:rgba(0,0,0,.05);}
 .nav-buy{
   background:var(--accent);color:#fff;
   text-decoration:none;font-size:13px;font-weight:600;
-  padding:7px 16px;border-radius:20px;
-  letter-spacing:-.01em;
+  padding:7px 18px;border-radius:20px;
   transition:background .2s,transform .1s;
 }
 .nav-buy:hover{background:var(--accent2);transform:scale(1.02);}
 .nav-buy:active{transform:scale(.98);}
 
-/* ─── Layout ─────────────────────────────────────────────────────── */
-.page{max-width:1080px;margin:0 auto;padding:0 24px;}
-
-/* ─── Hero ───────────────────────────────────────────────────────── */
+/* ── HERO ── */
 .hero{
-  text-align:center;
-  padding:96px 24px 72px;
+  text-align:center;padding:88px 24px 64px;
+  background:linear-gradient(180deg,#fff 0%,#f5f5f7 100%);
 }
 .hero-eyebrow{
   display:inline-flex;align-items:center;gap:7px;
   font-family:var(--mono);font-size:11px;font-weight:500;
   letter-spacing:.1em;text-transform:uppercase;
-  color:var(--accent3);
-  margin-bottom:24px;
+  color:var(--accent);margin-bottom:20px;
 }
 .hero-dot{
-  width:6px;height:6px;border-radius:50%;
-  background:var(--accent);
+  width:6px;height:6px;border-radius:50%;background:var(--green-lt);
   animation:blink 2.4s ease-in-out infinite;
 }
 @keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
-
 h1{
-  font-size:clamp(40px,7vw,72px);
-  font-weight:800;
-  letter-spacing:-.04em;
-  line-height:1.02;
-  color:var(--text);
-  margin-bottom:20px;
+  font-size:clamp(36px,6vw,66px);font-weight:800;
+  letter-spacing:-.04em;line-height:1.04;
+  color:var(--text);margin-bottom:18px;
 }
-.hero-accent{color:var(--accent3);}
+.hero-accent{color:var(--accent);}
 .hero-sub{
-  font-size:clamp(16px,2.2vw,19px);
-  color:var(--text2);
-  font-weight:400;
-  max-width:520px;margin:0 auto 44px;
-  line-height:1.55;
-  letter-spacing:-.01em;
+  font-size:clamp(15px,2vw,18px);color:var(--text2);
+  max-width:500px;margin:0 auto 36px;line-height:1.6;
 }
-.hero-chips{
-  display:flex;flex-wrap:wrap;gap:10px;justify-content:center;
-}
+.hero-chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:48px;}
 .chip{
-  display:inline-flex;align-items:center;gap:6px;
-  border:1px solid var(--border2);
-  background:rgba(255,255,255,.04);
-  border-radius:100px;
-  padding:7px 14px;
-  font-size:12px;font-weight:500;
-  color:var(--text2);
-  letter-spacing:-.01em;
+  display:inline-flex;align-items:center;gap:5px;
+  border:1px solid var(--border2);background:rgba(255,255,255,.8);
+  border-radius:100px;padding:6px 14px;
+  font-size:12px;font-weight:500;color:var(--text2);
 }
-.chip-dot{
-  width:5px;height:5px;border-radius:50%;
-  background:var(--green);
-}
+.chip-dot{width:5px;height:5px;border-radius:50%;background:var(--green-lt);}
 
-/* ─── Pricing grid ───────────────────────────────────────────────── */
-.plans-wrap{
-  padding:0 24px 80px;
+/* ── PRODOTTO FOTO ── */
+.product-section{
+  max-width:1080px;margin:0 auto;
+  padding:0 24px 72px;
+  display:grid;grid-template-columns:1fr 1fr;gap:16px;
 }
+.product-img{
+  border-radius:var(--r3);overflow:hidden;
+  background:var(--bg2);
+  aspect-ratio:16/10;
+}
+.product-img img{width:100%;height:100%;object-fit:cover;}
+
+/* ── PIANI ── */
+.plans-wrap{padding:0 24px 72px;background:var(--bg2);}
+.section-head{
+  max-width:1080px;margin:0 auto;
+  text-align:center;padding:56px 0 40px;
+}
+.section-head h2{font-size:clamp(28px,4vw,44px);font-weight:800;letter-spacing:-.03em;margin-bottom:10px;}
+.section-head p{font-size:15px;color:var(--text2);}
 .plans{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:12px;
+  display:grid;grid-template-columns:repeat(4,1fr);gap:12px;
   max-width:1080px;margin:0 auto;
 }
 .plan{
-  background:var(--bg3);
-  border:1px solid var(--border);
-  border-radius:var(--r3);
-  padding:28px 22px 24px;
+  background:var(--bg);border:1px solid var(--border);
+  border-radius:var(--r2);padding:26px 20px 22px;
   display:flex;flex-direction:column;
-  transition:border-color .2s,transform .25s;
+  transition:border-color .2s,transform .2s,box-shadow .2s;
   position:relative;
 }
-.plan:hover{
-  border-color:var(--border2);
-  transform:translateY(-2px);
-}
+.plan:hover{border-color:var(--border2);transform:translateY(-3px);box-shadow:0 8px 30px rgba(0,0,0,.08);}
 .plan.featured{
-  background:var(--bg3);
-  border:1px solid var(--accent);
-  box-shadow:0 0 0 1px rgba(94,92,230,.3),
-             inset 0 0 40px rgba(94,92,230,.04);
+  border:2px solid var(--accent);
+  box-shadow:0 0 0 1px rgba(0,113,227,.15);
 }
 .featured-tag{
-  position:absolute;top:0;left:50%;
-  transform:translate(-50%,-50%);
-  background:var(--accent);
-  color:#fff;font-size:10px;font-weight:700;
-  letter-spacing:.08em;text-transform:uppercase;
-  padding:4px 14px;border-radius:100px;
-  white-space:nowrap;
+  position:absolute;top:0;left:50%;transform:translate(-50%,-50%);
+  background:var(--accent);color:#fff;
+  font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+  padding:4px 14px;border-radius:100px;white-space:nowrap;
 }
 .plan-label{
-  font-size:11px;font-weight:700;letter-spacing:.1em;
-  text-transform:uppercase;color:var(--text3);
-  margin-bottom:16px;font-family:var(--mono);
+  font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--text3);margin-bottom:14px;font-family:var(--mono);
 }
-.plan.featured .plan-label{color:var(--accent3);}
-.price-row{margin-bottom:6px;display:flex;align-items:baseline;gap:3px;}
-.price-cur{font-size:20px;font-weight:600;color:var(--text2);letter-spacing:-.01em;margin-top:4px;}
-.price-num{
-  font-size:52px;font-weight:800;
-  letter-spacing:-.04em;line-height:1;
-  color:var(--text);
-}
-.plan-usb{
-  font-size:12px;color:var(--text3);
-  margin-bottom:22px;
-  font-family:var(--mono);letter-spacing:.02em;
-}
+.plan.featured .plan-label{color:var(--accent);}
+.price-row{display:flex;align-items:baseline;gap:2px;margin-bottom:4px;}
+.price-cur{font-size:18px;font-weight:600;color:var(--text2);margin-top:3px;}
+.price-num{font-size:48px;font-weight:800;letter-spacing:-.04em;line-height:1;color:var(--text);}
+.plan-usb{font-size:11px;color:var(--text3);margin-bottom:18px;font-family:var(--mono);}
 .plan-cta{
-  display:block;text-align:center;
-  border-radius:10px;
-  font-size:13px;font-weight:600;
-  padding:11px 16px;
-  text-decoration:none;letter-spacing:-.01em;
+  display:block;text-align:center;border-radius:9px;
+  font-size:13px;font-weight:600;padding:10px;
+  text-decoration:none;margin-bottom:20px;
   transition:background .15s,transform .1s;
-  margin-bottom:24px;
 }
 .plan-cta:active{transform:scale(.98);}
-.plan-cta.default{
-  background:rgba(255,255,255,.07);
-  border:1px solid var(--border2);
-  color:var(--text);
-}
-.plan-cta.default:hover{background:rgba(255,255,255,.12);}
-.plan-cta.primary{
-  background:var(--accent);
-  color:#fff;border:none;
-}
+.plan-cta.default{background:var(--bg2);border:1px solid var(--border2);color:var(--text);}
+.plan-cta.default:hover{background:var(--bg4);}
+.plan-cta.primary{background:var(--accent);color:#fff;border:none;}
 .plan-cta.primary:hover{background:var(--accent2);}
-
 .save-pill{
-  display:flex;align-items:center;gap:6px;
-  background:rgba(255,159,10,.1);
-  border:1px solid rgba(255,159,10,.2);
-  border-radius:8px;padding:7px 10px;
-  font-size:11px;color:var(--amber);font-weight:600;
-  margin-bottom:16px;letter-spacing:-.01em;
+  display:flex;align-items:center;gap:5px;
+  background:rgba(201,122,26,.08);border:1px solid rgba(201,122,26,.2);
+  border-radius:7px;padding:6px 9px;
+  font-size:11px;color:var(--amber);font-weight:600;margin-bottom:14px;
 }
-.save-pill svg{width:12px;height:12px;stroke:var(--amber);flex-shrink:0;}
-
-.divider{
-  height:1px;background:var(--border);
-  margin-bottom:18px;
-}
+.save-pill svg{width:11px;height:11px;stroke:var(--amber);flex-shrink:0;}
+.divider{height:1px;background:var(--border);margin-bottom:14px;}
 .section-label{
-  font-size:10px;font-weight:700;letter-spacing:.1em;
-  text-transform:uppercase;color:var(--text3);
-  margin-bottom:10px;font-family:var(--mono);
+  font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--text3);margin-bottom:8px;font-family:var(--mono);
 }
-.features{display:flex;flex-direction:column;gap:0;}
+.features{display:flex;flex-direction:column;}
 .f{
-  display:flex;align-items:flex-start;gap:8px;
-  padding:5px 0;
-  border-bottom:1px solid rgba(255,255,255,.04);
-  font-size:12px;color:var(--text2);
-  line-height:1.4;letter-spacing:-.01em;
+  display:flex;align-items:flex-start;gap:7px;padding:4px 0;
+  border-bottom:1px solid rgba(0,0,0,.04);
+  font-size:12px;color:var(--text2);line-height:1.4;
 }
 .f:last-child{border-bottom:none;}
-.f-ic{
-  width:14px;height:14px;
-  flex-shrink:0;margin-top:1px;
-  stroke-width:2;
-}
+.f-ic{width:13px;height:13px;flex-shrink:0;margin-top:1px;stroke-width:2.2;}
 .f strong{color:var(--text);font-weight:600;}
-
-/* Badge */
 .b{
-  display:inline;font-size:9px;font-weight:700;
-  letter-spacing:.06em;text-transform:uppercase;
-  padding:2px 5px;border-radius:4px;margin-left:4px;
-  vertical-align:middle;font-family:var(--mono);
-  white-space:nowrap;
+  display:inline;font-size:9px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
+  padding:2px 5px;border-radius:4px;margin-left:4px;vertical-align:middle;
+  font-family:var(--mono);white-space:nowrap;
 }
-.b-new{background:rgba(50,215,75,.15);color:#30d158;}
-.b-hot{background:rgba(255,159,10,.15);color:#ff9f0a;}
-.b-uniq{background:rgba(255,69,58,.15);color:#ff6961;}
-.b-ai{background:rgba(94,92,230,.2);color:var(--accent3);}
+.b-new{background:rgba(29,131,72,.1);color:#1d8348;}
+.b-hot{background:rgba(198,124,26,.1);color:#c67c1a;}
+.b-uniq{background:rgba(209,48,43,.1);color:#d1302b;}
+.b-ai{background:rgba(94,92,230,.1);color:#5e5ce6;}
 
-/* ─── Trust bar ───────────────────────────────────────────────────── */
+/* ── PAGAMENTI ── */
+.payment-section{
+  max-width:1080px;margin:0 auto;
+  padding:56px 24px 64px;
+}
+.payment-section h2{font-size:clamp(24px,3.5vw,36px);font-weight:800;letter-spacing:-.03em;margin-bottom:8px;}
+.payment-section .sub{font-size:15px;color:var(--text2);margin-bottom:36px;}
+.payment-methods{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;
+  margin-bottom:32px;
+}
+.pm{
+  background:var(--bg);border:1px solid var(--border);
+  border-radius:var(--r);padding:18px 16px;
+  display:flex;align-items:center;gap:12px;
+  transition:border-color .2s,transform .15s;
+}
+.pm:hover{border-color:var(--border2);transform:translateY(-1px);}
+.pm-icon{
+  width:40px;height:28px;border-radius:6px;
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;font-size:18px;
+}
+.pm-name{font-size:13px;font-weight:600;color:var(--text);}
+.pm-sub{font-size:11px;color:var(--text3);}
+.payment-note{
+  background:var(--bg2);border:1px solid var(--border);
+  border-radius:var(--r);padding:16px 18px;
+  font-size:13px;color:var(--text2);line-height:1.6;
+  display:flex;gap:10px;align-items:flex-start;
+}
+.payment-note svg{width:16px;height:16px;stroke:var(--accent);flex-shrink:0;margin-top:1px;}
+
+/* ── TRUST ── */
 .trust{
+  background:var(--bg2);
+  padding:56px 24px;
+}
+.trust-inner{
   max-width:1080px;margin:0 auto;
   display:grid;grid-template-columns:repeat(3,1fr);gap:12px;
-  padding:0 24px 64px;
 }
 .t-card{
-  background:var(--bg3);border:1px solid var(--border);
-  border-radius:var(--r3);padding:22px 20px;
+  background:var(--bg);border:1px solid var(--border);
+  border-radius:var(--r2);padding:22px 18px;
   display:flex;gap:14px;align-items:flex-start;
 }
 .t-icon{
   width:38px;height:38px;border-radius:10px;
-  display:flex;align-items:center;justify-content:center;
-  flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
 }
 .t-icon svg{width:18px;height:18px;stroke-width:1.8;}
-.t-title{font-size:14px;font-weight:700;margin-bottom:4px;letter-spacing:-.02em;}
+.t-title{font-size:14px;font-weight:700;margin-bottom:3px;letter-spacing:-.02em;}
 .t-desc{font-size:12px;color:var(--text2);line-height:1.5;}
 
-/* ─── FAQ ──────────────────────────────────────────────────────────── */
-.faq-wrap{max-width:720px;margin:0 auto;padding:0 24px 96px;}
-.faq-head{
-  font-size:clamp(28px,4vw,40px);font-weight:800;
-  letter-spacing:-.03em;text-align:center;
-  margin-bottom:40px;
+/* ── FORM CONTATTO ── */
+.contact-section{
+  max-width:680px;margin:0 auto;padding:64px 24px 80px;
 }
+.contact-section h2{
+  font-size:clamp(26px,4vw,38px);font-weight:800;letter-spacing:-.03em;
+  margin-bottom:8px;text-align:center;
+}
+.contact-section .sub{
+  font-size:15px;color:var(--text2);text-align:center;margin-bottom:36px;
+}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.form-group{display:flex;flex-direction:column;gap:5px;}
+.form-group.full{grid-column:1/-1;}
+label{font-size:12px;font-weight:600;color:var(--text2);letter-spacing:.01em;}
+input,select,textarea{
+  width:100%;
+  background:var(--bg2);border:1px solid var(--border2);
+  border-radius:9px;padding:11px 14px;
+  font-size:14px;font-family:var(--font);color:var(--text);
+  outline:none;transition:border-color .2s,box-shadow .2s;
+  -webkit-appearance:none;
+}
+input:focus,select:focus,textarea:focus{
+  border-color:var(--accent);
+  box-shadow:0 0 0 3px rgba(0,113,227,.12);
+}
+textarea{resize:vertical;min-height:100px;}
+select{cursor:pointer;}
+.form-plan-select{
+  display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-bottom:4px;
+}
+.plan-opt{
+  display:flex;align-items:center;gap:8px;
+  border:1px solid var(--border2);border-radius:9px;padding:10px 12px;
+  cursor:pointer;transition:border-color .15s,background .15s;
+}
+.plan-opt:hover{background:var(--bg2);}
+.plan-opt input[type=radio]{
+  width:15px;height:15px;flex-shrink:0;
+  accent-color:var(--accent);padding:0;
+  background:none;border:none;border-radius:50%;box-shadow:none;
+}
+.plan-opt input[type=radio]:focus{box-shadow:none;}
+.plan-opt-name{font-size:13px;font-weight:600;color:var(--text);}
+.plan-opt-price{font-size:11px;color:var(--text3);}
+.btn-submit{
+  width:100%;background:var(--accent);color:#fff;
+  border:none;border-radius:11px;padding:14px;
+  font-size:15px;font-weight:700;font-family:var(--font);
+  cursor:pointer;margin-top:8px;
+  transition:background .2s,transform .1s;
+}
+.btn-submit:hover{background:var(--accent2);}
+.btn-submit:active{transform:scale(.99);}
+.form-success{
+  display:none;text-align:center;padding:28px;
+  background:rgba(29,131,72,.08);border:1px solid rgba(29,131,72,.2);
+  border-radius:var(--r2);margin-top:16px;
+}
+.form-success svg{width:36px;height:36px;stroke:var(--green);stroke-width:1.5;margin-bottom:10px;}
+.form-success h3{font-size:18px;font-weight:700;margin-bottom:6px;}
+.form-success p{font-size:13px;color:var(--text2);}
+
+/* ── CONTATTI DIRETTI ── */
+.direct-contact{
+  max-width:1080px;margin:0 auto;
+  display:grid;grid-template-columns:repeat(3,1fr);gap:12px;
+  padding:0 24px 72px;
+}
+.dc-card{
+  background:var(--bg);border:1px solid var(--border);
+  border-radius:var(--r2);padding:22px 20px;
+  display:flex;align-items:flex-start;gap:14px;
+  text-decoration:none;
+  transition:border-color .2s,transform .15s,box-shadow .15s;
+}
+.dc-card:hover{border-color:var(--accent);transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,.06);}
+.dc-icon{
+  width:42px;height:42px;border-radius:11px;
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+}
+.dc-icon svg{width:20px;height:20px;stroke-width:1.7;}
+.dc-label{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--text3);margin-bottom:3px;}
+.dc-value{font-size:14px;font-weight:700;color:var(--text);}
+.dc-desc{font-size:12px;color:var(--text2);margin-top:2px;}
+
+/* ── FAQ ── */
+.faq-wrap{max-width:720px;margin:0 auto;padding:0 24px 80px;}
+.faq-head{font-size:clamp(26px,4vw,38px);font-weight:800;letter-spacing:-.03em;text-align:center;margin-bottom:36px;}
 .faq-list{display:flex;flex-direction:column;gap:2px;}
-.faq{
-  border-radius:12px;overflow:hidden;
-  border:1px solid var(--border);
-  background:var(--bg3);
-}
+.faq{border-radius:11px;overflow:hidden;border:1px solid var(--border);background:var(--bg);}
 .faq-q{
   display:flex;align-items:center;justify-content:space-between;
-  padding:16px 18px;cursor:pointer;
-  font-size:14px;font-weight:600;letter-spacing:-.01em;
-  color:var(--text);
-  user-select:none;
+  padding:15px 17px;cursor:pointer;
+  font-size:14px;font-weight:600;letter-spacing:-.01em;color:var(--text);user-select:none;
 }
-.faq-q:hover{background:rgba(255,255,255,.03);}
-.faq-chevron{
-  width:16px;height:16px;flex-shrink:0;
-  stroke:var(--text3);stroke-width:2;fill:none;
-  transition:transform .2s;
-}
+.faq-q:hover{background:var(--bg2);}
+.faq-chevron{width:15px;height:15px;flex-shrink:0;stroke:var(--text3);stroke-width:2;fill:none;transition:transform .2s;}
 .faq.open .faq-chevron{transform:rotate(180deg);}
-.faq-a{
-  max-height:0;overflow:hidden;
-  transition:max-height .25s ease,padding .25s ease;
-  font-size:13px;color:var(--text2);line-height:1.6;
-  padding:0 18px;
-}
-.faq.open .faq-a{max-height:200px;padding:0 18px 16px;}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .25s ease,padding .25s ease;font-size:13px;color:var(--text2);line-height:1.65;padding:0 17px;}
+.faq.open .faq-a{max-height:220px;padding:0 17px 16px;}
 
-/* ─── Footer ───────────────────────────────────────────────────────── */
-footer{
-  border-top:1px solid var(--border);
-  padding:28px 24px;
-}
-.footer-inner{
-  max-width:1080px;margin:0 auto;
-  display:flex;align-items:center;justify-content:space-between;
-  flex-wrap:wrap;gap:12px;
-}
+/* ── FOOTER ── */
+footer{border-top:1px solid var(--border);padding:28px 24px;background:var(--bg2);}
+.footer-inner{max-width:1080px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;}
 .footer-copy{font-size:12px;color:var(--text3);}
 .footer-links{display:flex;gap:20px;}
 .footer-links a{font-size:12px;color:var(--text3);text-decoration:none;}
 .footer-links a:hover{color:var(--text2);}
 
-/* ─── Animazioni ───────────────────────────────────────────────────── */
-@keyframes up{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
-.hero{animation:up .55s ease both;}
-.plan:nth-child(1){animation:up .4s .05s ease both;}
-.plan:nth-child(2){animation:up .4s .12s ease both;}
-.plan:nth-child(3){animation:up .4s .19s ease both;}
-.plan:nth-child(4){animation:up .4s .26s ease both;}
+/* ── ANIMAZIONI ── */
+@keyframes up{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+.hero{animation:up .5s ease both;}
+.plan:nth-child(1){animation:up .35s .05s ease both;}
+.plan:nth-child(2){animation:up .35s .12s ease both;}
+.plan:nth-child(3){animation:up .35s .19s ease both;}
+.plan:nth-child(4){animation:up .35s .26s ease both;}
 
-/* ─── Responsive ───────────────────────────────────────────────────── */
+/* ── RESPONSIVE ── */
 @media(max-width:860px){
   .plans{grid-template-columns:repeat(2,1fr);}
-  .trust{grid-template-columns:repeat(2,1fr);}
+  .trust-inner{grid-template-columns:repeat(2,1fr);}
+  .direct-contact{grid-template-columns:repeat(2,1fr);}
+  .product-section{grid-template-columns:1fr;}
 }
-@media(max-width:540px){
+@media(max-width:600px){
   .plans{grid-template-columns:1fr;}
-  .trust{grid-template-columns:1fr;}
+  .trust-inner{grid-template-columns:1fr;}
+  .direct-contact{grid-template-columns:1fr;}
   .nav-links{display:none;}
-  h1{font-size:36px;}
-  .price-num{font-size:44px;}
+  .form-grid{grid-template-columns:1fr;}
+  .form-plan-select{grid-template-columns:1fr;}
+  h1{font-size:34px;}
+  .price-num{font-size:42px;}
 }
 </style>
 </head>
 <body>
+
+<!-- LANG BAR -->
+<div class="lang-bar">
+  <button class="lang-btn active" onclick="setLang('it')">🇮🇹 IT</button>
+  <span class="lang-sep">|</span>
+  <button class="lang-btn" onclick="setLang('en')">🇬🇧 EN</button>
+  <span class="lang-sep">|</span>
+  <button class="lang-btn" onclick="setLang('de')">🇩🇪 DE</button>
+  <span class="lang-sep">|</span>
+  <button class="lang-btn" onclick="setLang('fr')">🇫🇷 FR</button>
+  <span class="lang-sep">|</span>
+  <button class="lang-btn" onclick="setLang('es')">🇪🇸 ES</button>
+</div>
 
 <!-- NAV -->
 <nav>
   <div class="nav-inner">
     <a href="#" class="logo">
       <div class="logo-icon">
-        <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+        <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
       </div>
       <span class="logo-name">WinCurePro</span>
     </a>
     <div class="nav-links">
-      <a href="#piani">Piani</a>
+      <a href="#piani" data-it="Piani" data-en="Plans" data-de="Pläne" data-fr="Plans" data-es="Planes">Piani</a>
+      <a href="#pagamenti" data-it="Pagamento" data-en="Payment" data-de="Zahlung" data-fr="Paiement" data-es="Pago">Pagamento</a>
+      <a href="#contatti" data-it="Contatti" data-en="Contact" data-de="Kontakt" data-fr="Contact" data-es="Contacto">Contatti</a>
       <a href="#faq">FAQ</a>
-      <a href="mailto:pcfacilevarese@gmail.com">Contatti</a>
     </div>
-    <a href="mailto:pcfacilevarese@gmail.com?subject=Info WinCurePro" class="nav-buy">Acquista</a>
+    <a href="#contatti" class="nav-buy" data-it="Acquista" data-en="Buy now" data-de="Kaufen" data-fr="Acheter" data-es="Comprar">Acquista</a>
   </div>
 </nav>
 
@@ -396,231 +451,359 @@ footer{
 <div class="hero">
   <div class="hero-eyebrow">
     <span class="hero-dot"></span>
-    Versione 14.0 · licenza una tantum
+    <span data-it="Versione 14.0 · licenza una tantum" data-en="Version 14.0 · one-time license" data-de="Version 14.0 · Einmallizenz" data-fr="Version 14.0 · licence unique" data-es="Versión 14.0 · licencia única">Versione 14.0 · licenza una tantum</span>
   </div>
-  <h1>Il tuo studio di<br>diagnostica.<br><span class="hero-accent">Sulla chiavetta.</span></h1>
-  <p class="hero-sub">Diagnostica professionale, CRM, ticketing, magazzino parti e AI. Zero abbonamenti. Gira offline ovunque.</p>
+  <h1 data-it="Il tool professionale<br>del tecnico PC.<br><span class='hero-accent'>Sulla chiavetta.</span>" data-en="The professional tool<br>for PC technicians.<br><span class='hero-accent'>On a USB stick.</span>" data-de="Das Profi-Tool<br>für PC-Techniker.<br><span class='hero-accent'>Auf dem USB-Stick.</span>" data-fr="L'outil pro<br>du technicien PC.<br><span class='hero-accent'>Sur clé USB.</span>" data-es="La herramienta pro<br>del técnico PC.<br><span class='hero-accent'>En un pendrive.</span>">
+    Il tool professionale<br>del tecnico PC.<br><span class="hero-accent">Sulla chiavetta.</span>
+  </h1>
+  <p class="hero-sub" data-it="Diagnostica, CRM, ticketing, magazzino parti e AI. Zero abbonamenti. 100% offline." data-en="Diagnostics, CRM, ticketing, parts inventory and AI. Zero subscriptions. 100% offline." data-de="Diagnose, CRM, Ticketing, Teilelagerverwaltung und KI. Keine Abonnements. 100% offline." data-fr="Diagnostics, CRM, ticketing, stock de pièces et IA. Zéro abonnement. 100% hors ligne." data-es="Diagnóstico, CRM, ticketing, inventario de piezas e IA. Sin suscripciones. 100% sin conexión.">
+    Diagnostica, CRM, ticketing, magazzino parti e AI. Zero abbonamenti. 100% offline.
+  </p>
   <div class="hero-chips">
-    <span class="chip"><span class="chip-dot"></span>Nessun abbonamento</span>
-    <span class="chip"><span class="chip-dot"></span>100% offline</span>
-    <span class="chip"><span class="chip-dot"></span>Aggiornamenti inclusi</span>
-    <span class="chip"><span class="chip-dot"></span>Gira da USB su qualsiasi PC Windows</span>
+    <span class="chip"><span class="chip-dot"></span><span data-it="Nessun abbonamento" data-en="No subscription" data-de="Kein Abo" data-fr="Sans abonnement" data-es="Sin suscripción">Nessun abbonamento</span></span>
+    <span class="chip"><span class="chip-dot"></span><span data-it="100% offline" data-en="100% offline" data-de="100% offline" data-fr="100% hors ligne" data-es="100% sin conexión">100% offline</span></span>
+    <span class="chip"><span class="chip-dot"></span><span data-it="Aggiornamenti inclusi" data-en="Updates included" data-de="Updates inklusive" data-fr="Mises à jour incluses" data-es="Actualizaciones incluidas">Aggiornamenti inclusi</span></span>
+    <span class="chip"><span class="chip-dot"></span><span data-it="Gira su qualsiasi PC Windows" data-en="Runs on any Windows PC" data-de="Läuft auf jedem Windows-PC" data-fr="Fonctionne sur tout PC Windows" data-es="Funciona en cualquier PC Windows">Gira su qualsiasi PC Windows</span></span>
+  </div>
+</div>
+
+<!-- FOTO PRODOTTO -->
+<div class="product-section">
+  <div class="product-img">
+    <img src="box.jfif" alt="WinCurePro box packaging">
+  </div>
+  <div class="product-img">
+    <img src="download.jfif" alt="WinCurePro USB stick">
   </div>
 </div>
 
 <!-- PIANI -->
 <div class="plans-wrap" id="piani">
-<div class="plans">
-
-  <!-- STARTER -->
-  <div class="plan">
-    <div class="plan-label">Starter</div>
-    <div class="price-row">
-      <span class="price-cur">€</span>
-      <span class="price-num">99</span>
-    </div>
-    <div class="plan-usb">1 chiavetta USB</div>
-    <a href="mailto:pcfacilevarese@gmail.com?subject=Acquisto WinCurePro Starter €99" class="plan-cta default">Acquista Starter</a>
-    <div class="divider"></div>
-    <div class="section-label">Diagnostica & Test</div>
-    <div class="features">
-      <div class="f"><svg class="f-ic" viewBox="0 0 24 24" fill="none" stroke="var(--green)"><polyline points="20 6 9 17 4 12"/></svg><span>Diagnostica hardware completa</span></div>
-      <div class="f"><svg class="f-ic" viewBox="0 0 24 24" fill="none" stroke="var(--green)"><polyline points="20 6 9 17 4 12"/></svg><span><strong>S.M.A.R.T. + NVMe</strong><span class="b b-hot">pop</span></span></div>
-      <div class="f"><svg class="f-ic" viewBox="0 0 24 24" fill="none" stroke="var(--green)"><polyline points="20 6 9 17 4 12"/></svg><span>Driver + GPU + BIOS check</span></div>
-      <div class="f"><svg class="f-ic" viewBox="0 0 24 24" fill="none" stroke="var(--green)"><polyline points="20 6 9 17 4 12"/></svg><span>Stress test CPU / RAM / GPU</span></div>
-      <div class="f"><svg class="f-ic" viewBox="0 0 24 24" fill="none" stroke="var(--cyan)"><polyline points="20 6 9 17 4 12"/></svg><span><strong>Benchmark</strong> CPU, RAM, Disco<span class="b b-new">new</span></span></div>
-      <div class="f"><svg class="f-ic" viewBox="0 0 24 24" fill="none" stroke="var(--cyan)"><polyline points="20 6 9 17 4 12"/></svg><span><strong>Sensor HUD</strong> overlay<span class="b b-new">new</span></span></div>
-      <div class="f"><svg class="f-ic" viewBox="0 0 24 24" fill="none" stroke="var(--green)"><polyline points="20 6 9 17 4 12"/></svg><span>Monitor live + storico sensori</span></div>
-    </div>
-    <div class="divider" style="margin-top:12px"></div>
-    <div class="section-label">Strumenti</div>
-    <div class="features">
-      <div class="f"><svg class="f-ic" viewBox="0 0 24 24" fill="none" stroke="var(--green)"><polyline points="20 6 9 17 4 12"/></svg><span>Installa software via Winget</span></div>
-      <div class="f"><svg class="f-ic" viewBox="0 0 24 24" fill="none" stroke="var(--green)"><polyline points="20 6 9 17 4 12"/></svg><span>Speed test · WiFi · Bluetooth</span></div>
-      <div class="f"><svg class="f-ic" viewBox="0 0 24 24" fill="none" stroke="var(--cyan)"><polyline points="20 6 9 17 4 12"/></svg><span><strong>Remote RDP/AnyDesk/SSH/WoL</strong><span class="b b-new">new</span></span></div>
-      <div class="f"><svg class="f-ic" viewBox="0 0 24 24" fill="none" stroke="var(--cyan)"><polyline points="20 6 9 17 4 12"/></svg><span><strong>DB PCI/USB</strong> 250k device ID<span class="b b-new">new</span></span></div>
-      <div class="f"><svg class="f-ic" viewBox="0 0 24 24" fill="none" stroke="var(--green)"><polyline points="20 6 9 17 4 12"/></svg><span>Security scanner + Ghost check</span></div>
-    </div>
+  <div class="section-head">
+    <h2 data-it="Scegli il tuo piano" data-en="Choose your plan" data-de="Wähle deinen Plan" data-fr="Choisissez votre plan" data-es="Elige tu plan">Scegli il tuo piano</h2>
+    <p data-it="Licenza una tantum · nessun rinnovo · aggiornamenti a vita" data-en="One-time license · no renewal · lifetime updates" data-de="Einmallizenz · keine Verlängerung · lebenslange Updates" data-fr="Licence unique · sans renouvellement · mises à jour à vie" data-es="Licencia única · sin renovación · actualizaciones de por vida">Licenza una tantum · nessun rinnovo · aggiornamenti a vita</p>
   </div>
+  <div class="plans">
 
-  <!-- PRO -->
-  <div class="plan featured">
-    <div class="featured-tag">Più scelto</div>
-    <div class="plan-label">Pro</div>
-    <div class="price-row">
-      <span class="price-cur">€</span>
-      <span class="price-num">199</span>
+    <!-- STARTER -->
+    <div class="plan">
+      <div class="plan-label">Starter</div>
+      <div class="price-row"><span class="price-cur">€</span><span class="price-num">99</span></div>
+      <div class="plan-usb" data-it="1 chiavetta USB" data-en="1 USB stick" data-de="1 USB-Stick" data-fr="1 clé USB" data-es="1 pendrive USB">1 chiavetta USB</div>
+      <a href="#contatti" class="plan-cta default" data-plan="Starter €99" data-it="Acquista Starter" data-en="Buy Starter" data-de="Starter kaufen" data-fr="Acheter Starter" data-es="Comprar Starter">Acquista Starter</a>
+      <div class="divider"></div>
+      <div class="section-label">Diagnostica & Test</div>
+      <div class="features">
+        <div class="f"><svg class="f-ic" viewBox="0 0 24 24" fill="none" stroke="var(--green)"><polyline points="20 6 9 17 4 12"/></svg><span>Diagnostica hardware completa</span></div>
+        <div class="f"><svg class="f-ic" viewBox="0 0 24 24" fill="none" stroke="var(--green)"><polyline points="20 6 9 17 4 12"/></svg><span><strong>S.M.A.R.T. + NVMe</strong><span class="b b-hot">pop</span></span></div>
+        <div class="f"><svg class="f-ic" viewBox="0 0 24 24" fill="none" stroke="var(--green)"><polyline points="20 6 9 17 4 12"/></svg><span>Driver + GPU + BIOS check</span></div>
+        <div class="f"><svg class="f-ic" viewBox="0 0 24 24" fill="none" stroke="var(--green)"><polyline points="20 6 9 17 4 12"/></svg><span>Stress test CPU / RAM / GPU</span></div>
+        <div class="f"><svg class="f-ic" viewBox="0 0 24 24" fill="none" stroke="var(--cyan)"><polyline points="20 6 9 17 4 12"/></svg><span><strong>Benchmark</strong> CPU, RAM, Disco<span class="b b-new">new</span></span></div>
+        <div class="f"><svg class="f-ic" viewBox="0 0 24 24" fill="none" stroke="var(--cyan)"><polyline points="20 6 9 17 4 12"/></svg><span><strong>Sensor HUD</strong> overlay<span class="b b-new">new</span></span></div>
+        <div class="f"><svg class="f-ic" viewBox="0 0 24 24" fill="none" stroke="var(--green)"><polyline points="20 6 9 17 4 12"/></svg><span>Monitor live + storico sensori</span></div>
+      </div>
+      <div class="divider" style="margin-top:10px"></div>
+      <div class="section-label">Strumenti</div>
+      <div class="features">
+        <div class="f"><svg class="f-ic" viewBox="0 0 24 24" fill="none" stroke="var(--green)"><polyline points="20 6 9 17 4 12"/></svg><span>Installa software via Winget</span></div>
+        <div class="f"><svg class="f-ic" viewBox="0 0 24 24" fill="none" stroke="var(--green)"><polyline points="20 6 9 17 4 12"/></svg><span>Speed test · WiFi · Bluetooth</span></div>
+        <div class="f"><svg class="f-ic" viewBox="0 0 24 24" fill="none" stroke="var(--cyan)"><polyline points="20 6 9 17 4 12"/></svg><span><strong>Remote RDP/AnyDesk/SSH/WoL</strong><span class="b b-new">new</span></span></div>
+        <div class="f"><svg class="f-ic" viewBox="0 0 24 24" fill="none" stroke="var(--cyan)"><polyline points="20 6 9 17 4 12"/></svg><span><strong>DB PCI/USB</strong> 250k device ID<span class="b b-new">new</span></span></div>
+        <div class="f"><svg class="f-ic" viewBox="0 0 24 24" fill="none" stroke="var(--green)"><polyline points="20 6 9 17 4 12"/></svg><span>Security scanner + Ghost check</span></div>
+      </div>
     </div>
-    <div class="plan-usb">1 chiavetta USB</div>
-    <a href="mailto:pcfacilevarese@gmail.com?subject=Acquisto WinCurePro Pro €199" class="plan-cta primary">Acquista Pro</a>
-    <div class="divider"></div>
-    <div class="section-label">Tutto Starter, più:</div>
-    <div class="features">
-      <div class="f"><svg class="f-ic" viewBox="0 0 24 24" fill="none" stroke="var(--accent3)"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><span><strong>Assistente AI Groq</strong><span class="b b-ai">AI</span><span class="b b-hot">top</span></span></div>
-      <div class="f"><svg class="f-ic" viewBox="0 0 24 24" fill="none" stroke="var(--accent3)"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><span>Analisi AI del report diagnostico</span></div>
-      <div class="f"><svg class="f-ic" viewBox="0 0 24 24" fill="none" stroke="var(--cyan)"><polyline points="20 6 9 17 4 12"/></svg><span><strong>CRM clienti completo</strong><span class="b b-hot">top</span></span></div>
-      <div class="f"><svg class="f-ic" viewBox="0 0 24 24" fill="none" stroke="var(--cyan)"><polyline points="20 6 9 17 4 12"/></svg><span>Ticketing + workflow intervento</span></div>
-      <div class="f"><svg class="f-ic" viewBox="0 0 24 24" fill="none" stroke="var(--green)"><polyline points="20 6 9 17 4 12"/></svg><span><strong>Magazzino parti</strong> + alert scorte<span class="b b-new">new</span></span></div>
-      <div class="f"><svg class="f-ic" viewBox="0 0 24 24" fill="none" stroke="var(--green)"><polyline points="20 6 9 17 4 12"/></svg><span>Preventivi + fatture PDF</span></div>
-      <div class="f"><svg class="f-ic" viewBox="0 0 24 24" fill="none" stroke="var(--green)"><polyline points="20 6 9 17 4 12"/></svg><span>PDF certificato intervento</span></div>
-      <div class="f"><svg class="f-ic" viewBox="0 0 24 24" fill="none" stroke="var(--green)"><polyline points="20 6 9 17 4 12"/></svg><span>Notifiche WhatsApp/SMS cliente</span></div>
-      <div class="f"><svg class="f-ic" viewBox="0 0 24 24" fill="none" stroke="var(--amber)"><polyline points="20 6 9 17 4 12"/></svg><span>Storico salute PC + grafici</span></div>
-      <div class="f"><svg class="f-ic" viewBox="0 0 24 24" fill="none" stroke="var(--green)"><polyline points="20 6 9 17 4 12"/></svg><span>Multi-tecnico + ruoli + 2FA</span></div>
-      <div class="f"><svg class="f-ic" viewBox="0 0 24 24" fill="none" stroke="var(--green)"><polyline points="20 6 9 17 4 12"/></svg><span>Inventario software & licenze</span></div>
+
+    <!-- PRO -->
+    <div class="plan featured">
+      <div class="featured-tag" data-it="Più scelto" data-en="Most popular" data-de="Beliebteste" data-fr="Plus choisi" data-es="Más elegido">Più scelto</div>
+      <div class="plan-label">Pro</div>
+      <div class="price-row"><span class="price-cur">€</span><span class="price-num">199</span></div>
+      <div class="plan-usb" data-it="1 chiavetta USB" data-en="1 USB stick" data-de="1 USB-Stick" data-fr="1 clé USB" data-es="1 pendrive USB">1 chiavetta USB</div>
+      <a href="#contatti" class="plan-cta primary" data-plan="Pro €199" data-it="Acquista Pro" data-en="Buy Pro" data-de="Pro kaufen" data-fr="Acheter Pro" data-es="Comprar Pro">Acquista Pro</a>
+      <div class="divider"></div>
+      <div class="section-label" data-it="Tutto Starter, più:" data-en="All Starter, plus:" data-de="Alles Starter, plus:" data-fr="Tout Starter, plus :" data-es="Todo Starter, más:">Tutto Starter, più:</div>
+      <div class="features">
+        <div class="f"><svg class="f-ic" viewBox="0 0 24 24" fill="none" stroke="var(--purple)"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><span><strong>Assistente AI Groq</strong><span class="b b-ai">AI</span><span class="b b-hot">top</span></span></div>
+        <div class="f"><svg class="f-ic" viewBox="0 0 24 24" fill="none" stroke="var(--purple)"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><span>Analisi AI del report diagnostico</span></div>
+        <div class="f"><svg class="f-ic" viewBox="0 0 24 24" fill="none" stroke="var(--cyan)"><polyline points="20 6 9 17 4 12"/></svg><span><strong>CRM clienti completo</strong><span class="b b-hot">top</span></span></div>
+        <div class="f"><svg class="f-ic" viewBox="0 0 24 24" fill="none" stroke="var(--cyan)"><polyline points="20 6 9 17 4 12"/></svg><span>Ticketing + workflow intervento</span></div>
+        <div class="f"><svg class="f-ic" viewBox="0 0 24 24" fill="none" stroke="var(--green)"><polyline points="20 6 9 17 4 12"/></svg><span><strong>Magazzino parti</strong> + alert scorte<span class="b b-new">new</span></span></div>
+        <div class="f"><svg class="f-ic" viewBox="0 0 24 24" fill="none" stroke="var(--green)"><polyline points="20 6 9 17 4 12"/></svg><span>Preventivi + fatture PDF</span></div>
+        <div class="f"><svg class="f-ic" viewBox="0 0 24 24" fill="none" stroke="var(--green)"><polyline points="20 6 9 17 4 12"/></svg><span>PDF certificato intervento</span></div>
+        <div class="f"><svg class="f-ic" viewBox="0 0 24 24" fill="none" stroke="var(--green)"><polyline points="20 6 9 17 4 12"/></svg><span>Notifiche WhatsApp/SMS cliente</span></div>
+        <div class="f"><svg class="f-ic" viewBox="0 0 24 24" fill="none" stroke="var(--amber)"><polyline points="20 6 9 17 4 12"/></svg><span>Storico salute PC + grafici</span></div>
+        <div class="f"><svg class="f-ic" viewBox="0 0 24 24" fill="none" stroke="var(--green)"><polyline points="20 6 9 17 4 12"/></svg><span>Multi-tecnico + ruoli + 2FA</span></div>
+      </div>
     </div>
+
+    <!-- BUSINESS TEAM -->
+    <div class="plan">
+      <div class="plan-label">Business Team</div>
+      <div class="price-row"><span class="price-cur">€</span><span class="price-num">499</span></div>
+      <div class="plan-usb" data-it="5 chiavette USB" data-en="5 USB sticks" data-de="5 USB-Sticks" data-fr="5 clés USB" data-es="5 pendrives USB">5 chiavette USB</div>
+      <a href="#contatti" class="plan-cta default" data-plan="Business Team €499" data-it="Acquista Team" data-en="Buy Team" data-de="Team kaufen" data-fr="Acheter Team" data-es="Comprar Team">Acquista Team</a>
+      <div class="divider"></div>
+      <div class="section-label" data-it="Tutto Pro, più:" data-en="All Pro, plus:" data-de="Alles Pro, plus:" data-fr="Tout Pro, plus :" data-es="Todo Pro, más:">Tutto Pro, più:</div>
+      <div class="features">
+        <div class="f"><svg class="f-ic" viewBox="0 0 24 24" fill="none" stroke="var(--purple)"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><span><strong>AI Predittiva</strong><span class="b b-ai">AI</span><span class="b b-hot">top</span></span></div>
+        <div class="f"><svg class="f-ic" viewBox="0 0 24 24" fill="none" stroke="var(--cyan)"><polyline points="20 6 9 17 4 12"/></svg><span><strong>Scansione rete aziendale</strong></span></div>
+        <div class="f"><svg class="f-ic" viewBox="0 0 24 24" fill="none" stroke="var(--red)"><polyline points="20 6 9 17 4 12"/></svg><span><strong>ARP spoofing detection</strong><span class="b b-uniq">unico</span></span></div>
+        <div class="f"><svg class="f-ic" viewBox="0 0 24 24" fill="none" stroke="var(--cyan)"><polyline points="20 6 9 17 4 12"/></svg><span><strong>LAN Scanner</strong> MAC/vendor<span class="b b-new">new</span></span></div>
+        <div class="f"><svg class="f-ic" viewBox="0 0 24 24" fill="none" stroke="var(--amber)"><polyline points="20 6 9 17 4 12"/></svg><span>Alert soglie automatici</span></div>
+        <div class="f"><svg class="f-ic" viewBox="0 0 24 24" fill="none" stroke="var(--green)"><polyline points="20 6 9 17 4 12"/></svg><span>Report comparativo PC</span></div>
+        <div class="f"><svg class="f-ic" viewBox="0 0 24 24" fill="none" stroke="var(--green)"><polyline points="20 6 9 17 4 12"/></svg><span><strong>5 licenze USB</strong> indipendenti</span></div>
+        <div class="f"><svg class="f-ic" viewBox="0 0 24 24" fill="none" stroke="var(--cyan)"><polyline points="20 6 9 17 4 12"/></svg><span>Supporto prioritario</span></div>
+      </div>
+    </div>
+
+    <!-- BUSINESS STUDIO -->
+    <div class="plan">
+      <div class="plan-label">Business Studio</div>
+      <div class="price-row"><span class="price-cur">€</span><span class="price-num">899</span></div>
+      <div class="plan-usb" data-it="10 chiavette USB" data-en="10 USB sticks" data-de="10 USB-Sticks" data-fr="10 clés USB" data-es="10 pendrives USB">10 chiavette USB</div>
+      <div class="save-pill">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+        <span data-it="Risparmi €99 vs 2× Team" data-en="Save €99 vs 2× Team" data-de="€99 Ersparnis vs 2× Team" data-fr="Économisez €99 vs 2× Team" data-es="Ahorras €99 vs 2× Team">Risparmi €99 vs 2× Team</span>
+      </div>
+      <a href="#contatti" class="plan-cta default" data-plan="Business Studio €899" data-it="Acquista Studio" data-en="Buy Studio" data-de="Studio kaufen" data-fr="Acheter Studio" data-es="Comprar Studio">Acquista Studio</a>
+      <div class="divider"></div>
+      <div class="section-label" data-it="Tutto Business Team, più:" data-en="All Business Team, plus:" data-de="Alles Business Team, plus:" data-fr="Tout Business Team, plus :" data-es="Todo Business Team, más:">Tutto Business Team, più:</div>
+      <div class="features">
+        <div class="f"><svg class="f-ic" viewBox="0 0 24 24" fill="none" stroke="var(--green)"><polyline points="20 6 9 17 4 12"/></svg><span><strong>10 chiavette USB</strong> indipendenti</span></div>
+        <div class="f"><svg class="f-ic" viewBox="0 0 24 24" fill="none" stroke="var(--purple)"><polyline points="20 6 9 17 4 12"/></svg><span>AI Predittiva su tutte le USB</span></div>
+        <div class="f"><svg class="f-ic" viewBox="0 0 24 24" fill="none" stroke="var(--green)"><polyline points="20 6 9 17 4 12"/></svg><span>Per studi e officine 5–10 tecnici</span></div>
+        <div class="f"><svg class="f-ic" viewBox="0 0 24 24" fill="none" stroke="var(--cyan)"><polyline points="20 6 9 17 4 12"/></svg><span>Supporto dedicato</span></div>
+        <div class="f"><svg class="f-ic" viewBox="0 0 24 24" fill="none" stroke="var(--amber)"><polyline points="20 6 9 17 4 12"/></svg><span>Onboarding assistito incluso</span></div>
+      </div>
+    </div>
+
   </div>
-
-  <!-- BUSINESS TEAM -->
-  <div class="plan">
-    <div class="plan-label">Business Team</div>
-    <div class="price-row">
-      <span class="price-cur">€</span>
-      <span class="price-num">499</span>
-    </div>
-    <div class="plan-usb">5 chiavette USB</div>
-    <a href="mailto:pcfacilevarese@gmail.com?subject=Acquisto WinCurePro Business Team €499" class="plan-cta default">Acquista Team</a>
-    <div class="divider"></div>
-    <div class="section-label">Tutto Pro, più:</div>
-    <div class="features">
-      <div class="f"><svg class="f-ic" viewBox="0 0 24 24" fill="none" stroke="#c084fc"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><span><strong>AI Predittiva</strong> — diagnosi preventiva<span class="b b-ai">AI</span><span class="b b-hot">top</span></span></div>
-      <div class="f"><svg class="f-ic" viewBox="0 0 24 24" fill="none" stroke="var(--cyan)"><polyline points="20 6 9 17 4 12"/></svg><span><strong>Scansione rete aziendale</strong></span></div>
-      <div class="f"><svg class="f-ic" viewBox="0 0 24 24" fill="none" stroke="var(--red)"><polyline points="20 6 9 17 4 12"/></svg><span><strong>ARP spoofing detection</strong><span class="b b-uniq">unico</span></span></div>
-      <div class="f"><svg class="f-ic" viewBox="0 0 24 24" fill="none" stroke="var(--cyan)"><polyline points="20 6 9 17 4 12"/></svg><span><strong>LAN Scanner</strong> MAC/vendor/porte<span class="b b-new">new</span></span></div>
-      <div class="f"><svg class="f-ic" viewBox="0 0 24 24" fill="none" stroke="var(--amber)"><polyline points="20 6 9 17 4 12"/></svg><span>Alert soglie automatici hardware</span></div>
-      <div class="f"><svg class="f-ic" viewBox="0 0 24 24" fill="none" stroke="var(--green)"><polyline points="20 6 9 17 4 12"/></svg><span>Report comparativo PC</span></div>
-      <div class="f"><svg class="f-ic" viewBox="0 0 24 24" fill="none" stroke="var(--green)"><polyline points="20 6 9 17 4 12"/></svg><span>Diagnosi raggruppata azienda</span></div>
-      <div class="f"><svg class="f-ic" viewBox="0 0 24 24" fill="none" stroke="var(--green)"><polyline points="20 6 9 17 4 12"/></svg><span><strong>5 licenze USB</strong> indipendenti</span></div>
-      <div class="f"><svg class="f-ic" viewBox="0 0 24 24" fill="none" stroke="var(--cyan)"><polyline points="20 6 9 17 4 12"/></svg><span>Supporto prioritario</span></div>
-    </div>
-  </div>
-
-  <!-- BUSINESS STUDIO -->
-  <div class="plan">
-    <div class="plan-label">Business Studio</div>
-    <div class="price-row">
-      <span class="price-cur">€</span>
-      <span class="price-num">899</span>
-    </div>
-    <div class="plan-usb">10 chiavette USB</div>
-    <div class="save-pill">
-      <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-      Risparmi €99 rispetto a 2× Team
-    </div>
-    <a href="mailto:pcfacilevarese@gmail.com?subject=Acquisto WinCurePro Business Studio €899" class="plan-cta default">Acquista Studio</a>
-    <div class="divider"></div>
-    <div class="section-label">Tutto Business Team, più:</div>
-    <div class="features">
-      <div class="f"><svg class="f-ic" viewBox="0 0 24 24" fill="none" stroke="var(--green)"><polyline points="20 6 9 17 4 12"/></svg><span><strong>10 chiavette USB</strong> indipendenti</span></div>
-      <div class="f"><svg class="f-ic" viewBox="0 0 24 24" fill="none" stroke="#c084fc"><polyline points="20 6 9 17 4 12"/></svg><span>AI Predittiva su tutte e 10 le USB</span></div>
-      <div class="f"><svg class="f-ic" viewBox="0 0 24 24" fill="none" stroke="var(--red)"><polyline points="20 6 9 17 4 12"/></svg><span>Security completa su ogni USB</span></div>
-      <div class="f"><svg class="f-ic" viewBox="0 0 24 24" fill="none" stroke="var(--green)"><polyline points="20 6 9 17 4 12"/></svg><span>Per studi e officine 5–10 tecnici</span></div>
-      <div class="f"><svg class="f-ic" viewBox="0 0 24 24" fill="none" stroke="var(--cyan)"><polyline points="20 6 9 17 4 12"/></svg><span>Supporto prioritario dedicato</span></div>
-      <div class="f"><svg class="f-ic" viewBox="0 0 24 24" fill="none" stroke="var(--amber)"><polyline points="20 6 9 17 4 12"/></svg><span>Onboarding assistito incluso</span></div>
-    </div>
-  </div>
-
-</div>
 </div>
 
 <!-- TRUST -->
-<div class="trust page">
-  <div class="t-card">
-    <div class="t-icon" style="background:rgba(94,92,230,.12)">
-      <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent3)" stroke-width="1.8"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+<div class="trust">
+  <div class="trust-inner">
+    <div class="t-card">
+      <div class="t-icon" style="background:rgba(0,113,227,.08)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.8"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      </div>
+      <div>
+        <div class="t-title" data-it="Licenza perpetua" data-en="Perpetual license" data-de="Dauerlizenz" data-fr="Licence perpétuelle" data-es="Licencia perpetua">Licenza perpetua</div>
+        <div class="t-desc" data-it="Acquisti una volta, usi per sempre. Nessun rinnovo, aggiornamenti a vita inclusi." data-en="Buy once, use forever. No renewal, lifetime updates included." data-de="Einmal kaufen, für immer nutzen. Keine Verlängerung, lebenslange Updates inklusive." data-fr="Achetez une fois, utilisez pour toujours. Sans renouvellement, mises à jour incluses." data-es="Compra una vez, úsalo siempre. Sin renovación, actualizaciones incluidas.">Acquisti una volta, usi per sempre. Nessun rinnovo, aggiornamenti a vita inclusi.</div>
+      </div>
     </div>
-    <div>
-      <div class="t-title">Licenza perpetua</div>
-      <div class="t-desc">Acquisti una volta, usi per sempre. Nessun rinnovo, nessuna sorpresa. Aggiornamenti a vita inclusi.</div>
+    <div class="t-card">
+      <div class="t-icon" style="background:rgba(8,145,178,.08)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="var(--cyan)" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+      </div>
+      <div>
+        <div class="t-title">100% offline</div>
+        <div class="t-desc" data-it="Nessun dato sui server. Privacy totale per i dati del cliente." data-en="No data on servers. Total privacy for customer data." data-de="Keine Daten auf Servern. Vollständige Privatsphäre für Kundendaten." data-fr="Aucune donnée sur les serveurs. Confidentialité totale." data-es="Sin datos en servidores. Privacidad total para los datos del cliente.">Nessun dato sui server. Privacy totale per i dati del cliente.</div>
+      </div>
+    </div>
+    <div class="t-card">
+      <div class="t-icon" style="background:rgba(29,131,72,.08)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="1.8"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+      </div>
+      <div>
+        <div class="t-title" data-it="Pronto in 10 secondi" data-en="Ready in 10 seconds" data-de="In 10 Sekunden bereit" data-fr="Prêt en 10 secondes" data-es="Listo en 10 segundos">Pronto in 10 secondi</div>
+        <div class="t-desc" data-it="Nessuna installazione. Inserisci la chiavetta e sei operativo sul PC del cliente." data-en="No installation. Insert the USB and you're ready on the customer's PC." data-de="Keine Installation. USB einstecken und auf dem PC des Kunden arbeiten." data-fr="Pas d'installation. Insérez la clé et vous êtes opérationnel." data-es="Sin instalación. Inserta el pendrive y estás listo en el PC del cliente.">Nessuna installazione. Inserisci la chiavetta e sei operativo sul PC del cliente.</div>
+      </div>
     </div>
   </div>
-  <div class="t-card">
-    <div class="t-icon" style="background:rgba(100,210,255,.1)">
-      <svg viewBox="0 0 24 24" fill="none" stroke="var(--cyan)" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+</div>
+
+<!-- PAGAMENTI -->
+<div class="payment-section" id="pagamenti">
+  <h2 data-it="Metodi di pagamento" data-en="Payment methods" data-de="Zahlungsmethoden" data-fr="Méthodes de paiement" data-es="Métodos de pago">Metodi di pagamento</h2>
+  <p class="sub" data-it="Accettiamo tutti i principali metodi. Pagamento sicuro, licenza attiva in 24h." data-en="We accept all major methods. Secure payment, license active within 24h." data-de="Wir akzeptieren alle gängigen Methoden. Sichere Zahlung, Lizenz in 24h aktiv." data-fr="Nous acceptons toutes les méthodes principales. Paiement sécurisé, licence active en 24h." data-es="Aceptamos todos los métodos principales. Pago seguro, licencia activa en 24h.">Accettiamo tutti i principali metodi. Pagamento sicuro, licenza attiva in 24h.</p>
+  <div class="payment-methods">
+    <div class="pm">
+      <div class="pm-icon" style="background:#000;border-radius:7px;padding:4px">
+        <img src="https://cdn.simpleicons.org/applepay/ffffff" width="38" height="20" alt="Apple Pay" style="display:block;object-fit:contain">
+      </div>
+      <div><div class="pm-name">Apple Pay</div><div class="pm-sub">Tap to pay</div></div>
     </div>
-    <div>
-      <div class="t-title">100% offline</div>
-      <div class="t-desc">Nessun dato sui server. Privacy totale per i dati del cliente. Funziona anche senza internet.</div>
+    <div class="pm">
+      <div class="pm-icon" style="background:#fff;border:1px solid #e0e0e0;border-radius:7px;padding:4px">
+        <img src="https://cdn.simpleicons.org/googlepay/000000" width="38" height="20" alt="Google Pay" style="display:block;object-fit:contain">
+      </div>
+      <div><div class="pm-name">Google Pay</div><div class="pm-sub">Tap to pay</div></div>
+    </div>
+    <div class="pm">
+      <div class="pm-icon" style="background:#fff;border:1px solid #e0e0e0;border-radius:7px;padding:3px;display:flex;gap:2px;align-items:center">
+        <img src="https://cdn.simpleicons.org/visa/1A1F71" width="22" height="14" alt="Visa" style="object-fit:contain">
+        <img src="https://cdn.simpleicons.org/mastercard/EB001B" width="22" height="14" alt="Mastercard" style="object-fit:contain">
+      </div>
+      <div><div class="pm-name">Carta di credito</div><div class="pm-sub">Visa · Mastercard · Amex</div></div>
+    </div>
+    <div class="pm">
+      <div class="pm-icon" style="background:#fff;border:1px solid #e0e0e0;border-radius:7px;padding:4px">
+        <img src="https://cdn.simpleicons.org/paypal/003087" width="38" height="20" alt="PayPal" style="display:block;object-fit:contain">
+      </div>
+      <div><div class="pm-name">PayPal</div><div class="pm-sub" data-it="Pagamento protetto" data-en="Protected payment" data-de="Geschützte Zahlung" data-fr="Paiement protégé" data-es="Pago protegido">Pagamento protetto</div></div>
+    </div>
+    <div class="pm">
+      <div class="pm-icon" style="background:#f8f8f8;border-radius:7px;font-size:18px">🏦</div>
+      <div><div class="pm-name">Bonifico bancario</div><div class="pm-sub" data-it="IT · EU · SWIFT" data-en="IT · EU · SWIFT" data-de="IT · EU · SWIFT" data-fr="IT · EU · SWIFT" data-es="IT · EU · SWIFT">IT · EU · SWIFT</div></div>
+    </div>
+    <div class="pm">
+      <div class="pm-icon" style="background:#f8f8f8;border-radius:7px;font-size:18px">🧾</div>
+      <div><div class="pm-name" data-it="Fattura aziendale" data-en="Business invoice" data-de="Unternehmensrechnung" data-fr="Facture entreprise" data-es="Factura empresarial">Fattura aziendale</div><div class="pm-sub">30/60 gg</div></div>
     </div>
   </div>
-  <div class="t-card">
-    <div class="t-icon" style="background:rgba(50,215,75,.1)">
-      <svg viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="1.8"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+  <div class="payment-note">
+    <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+    <span data-it="Tutti i pagamenti sono elaborati in modo sicuro. La licenza viene attivata entro 24 ore dall'acquisto. Per ordini aziendali con fattura, contattaci direttamente." data-en="All payments are processed securely. The license is activated within 24 hours of purchase. For business orders with invoice, contact us directly." data-de="Alle Zahlungen werden sicher verarbeitet. Die Lizenz wird innerhalb von 24 Stunden aktiviert. Für Unternehmensbestellungen kontaktieren Sie uns bitte direkt." data-fr="Tous les paiements sont traités en toute sécurité. La licence est activée dans les 24 heures suivant l'achat. Pour les commandes professionnelles, contactez-nous directement." data-es="Todos los pagos se procesan de forma segura. La licencia se activa en 24 horas. Para pedidos empresariales con factura, contáctenos directamente.">Tutti i pagamenti sono elaborati in modo sicuro. La licenza viene attivata entro 24 ore dall'acquisto. Per ordini aziendali con fattura, contattaci direttamente.</span>
+  </div>
+</div>
+
+<!-- FORM CONTATTO -->
+<div class="contact-section" id="contatti">
+  <h2 data-it="Acquista o richiedi info" data-en="Buy or request info" data-de="Kaufen oder Infos anfordern" data-fr="Acheter ou demander des infos" data-es="Comprar o solicitar información">Acquista o richiedi info</h2>
+  <p class="sub" data-it="Compila il form e ti rispondiamo entro poche ore." data-en="Fill out the form and we'll reply within a few hours." data-de="Fülle das Formular aus und wir antworten innerhalb weniger Stunden." data-fr="Remplissez le formulaire et nous vous répondrons en quelques heures." data-es="Rellena el formulario y te respondemos en pocas horas.">Compila il form e ti rispondiamo entro poche ore.</p>
+
+  <form id="contact-form" action="https://formsubmit.co/pcfacilevarese@gmail.com" method="POST">
+    <input type="hidden" name="_subject" value="Richiesta WinCurePro">
+    <input type="hidden" name="_captcha" value="false">
+    <input type="hidden" name="_next" value="">
+    <input type="hidden" name="_template" value="table">
+
+    <div class="form-grid">
+      <div class="form-group">
+        <label data-it="Nome *" data-en="Name *" data-de="Name *" data-fr="Nom *" data-es="Nombre *">Nome *</label>
+        <input type="text" name="nome" required placeholder="Mario Rossi">
+      </div>
+      <div class="form-group">
+        <label data-it="Email *" data-en="Email *" data-de="E-Mail *" data-fr="E-mail *" data-es="Correo *">Email *</label>
+        <input type="email" name="email" required placeholder="mario@esempio.it">
+      </div>
+      <div class="form-group">
+        <label data-it="Telefono / WhatsApp" data-en="Phone / WhatsApp" data-de="Telefon / WhatsApp" data-fr="Téléphone / WhatsApp" data-es="Teléfono / WhatsApp">Telefono / WhatsApp</label>
+        <input type="tel" name="telefono" placeholder="+39 333 000 0000">
+      </div>
+      <div class="form-group">
+        <label data-it="Azienda / Studio" data-en="Company / Studio" data-de="Unternehmen / Studio" data-fr="Entreprise / Studio" data-es="Empresa / Estudio">Azienda / Studio</label>
+        <input type="text" name="azienda" placeholder="PC Service Varese">
+      </div>
+
+      <div class="form-group full">
+        <label data-it="Piano di interesse" data-en="Plan of interest" data-de="Interessierter Plan" data-fr="Plan souhaité" data-es="Plan de interés">Piano di interesse</label>
+        <div class="form-plan-select">
+          <label class="plan-opt"><input type="radio" name="piano" value="Starter €99"> <div><div class="plan-opt-name">Starter</div><div class="plan-opt-price">€99 · 1 USB</div></div></label>
+          <label class="plan-opt"><input type="radio" name="piano" value="Pro €199" checked> <div><div class="plan-opt-name">Pro</div><div class="plan-opt-price">€199 · 1 USB</div></div></label>
+          <label class="plan-opt"><input type="radio" name="piano" value="Business Team €499"> <div><div class="plan-opt-name">Business Team</div><div class="plan-opt-price">€499 · 5 USB</div></div></label>
+          <label class="plan-opt"><input type="radio" name="piano" value="Business Studio €899"> <div><div class="plan-opt-name">Business Studio</div><div class="plan-opt-price">€899 · 10 USB</div></div></label>
+        </div>
+      </div>
+
+      <div class="form-group full">
+        <label data-it="Messaggio" data-en="Message" data-de="Nachricht" data-fr="Message" data-es="Mensaje">Messaggio</label>
+        <textarea name="messaggio" placeholder="Domande, richieste particolari, modalità di pagamento preferita..."></textarea>
+      </div>
+    </div>
+
+    <button type="submit" class="btn-submit" data-it="Invia richiesta →" data-en="Send request →" data-de="Anfrage senden →" data-fr="Envoyer la demande →" data-es="Enviar solicitud →">Invia richiesta →</button>
+  </form>
+</div>
+
+<!-- CONTATTI DIRETTI -->
+<div class="direct-contact">
+  <a href="mailto:pcfacilevarese@gmail.com" class="dc-card">
+    <div class="dc-icon" style="background:rgba(0,113,227,.08)">
+      <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.7"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
     </div>
     <div>
-      <div class="t-title">Pronto in 10 secondi</div>
-      <div class="t-desc">Nessuna installazione. Inserisci la chiavetta, lancia WinCurePro, sei operativo sul PC del cliente.</div>
+      <div class="dc-label">Email</div>
+      <div class="dc-value">pcfacilevarese@gmail.com</div>
+      <div class="dc-desc" data-it="Risposta entro 24h" data-en="Reply within 24h" data-de="Antwort innerhalb 24h" data-fr="Réponse en 24h" data-es="Respuesta en 24h">Risposta entro 24h</div>
     </div>
-  </div>
+  </a>
+  <a href="https://wa.me/39INSERISCINUMERO" class="dc-card">
+    <div class="dc-icon" style="background:rgba(37,211,102,.1)">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#25D366" stroke-width="1.7"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+    </div>
+    <div>
+      <div class="dc-label">WhatsApp</div>
+      <div class="dc-value">Scrivici ora</div>
+      <div class="dc-desc" data-it="Risposta rapida" data-en="Quick reply" data-de="Schnelle Antwort" data-fr="Réponse rapide" data-es="Respuesta rápida">Risposta rapida</div>
+    </div>
+  </a>
+
 </div>
 
 <!-- FAQ -->
 <div class="faq-wrap" id="faq">
-  <div class="faq-head">Domande frequenti</div>
+  <div class="faq-head" data-it="Domande frequenti" data-en="FAQ" data-de="Häufige Fragen" data-fr="Questions fréquentes" data-es="Preguntas frecuentes">Domande frequenti</div>
   <div class="faq-list">
-    <div class="faq">
-      <div class="faq-q" onclick="toggle(this)">
-        Posso usare la chiavetta su PC diversi?
-        <svg class="faq-chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
-      </div>
-      <div class="faq-a">Sì. La licenza è legata alla chiavetta USB, non al PC. Puoi usarla su qualsiasi computer Windows 10/11 senza installare niente e senza chiedere permessi.</div>
-    </div>
-    <div class="faq">
-      <div class="faq-q" onclick="toggle(this)">
-        Gli aggiornamenti sono davvero inclusi?
-        <svg class="faq-chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
-      </div>
-      <div class="faq-a">Sì, tutti gli aggiornamenti futuri sono inclusi nel prezzo di acquisto. Nessun piano premium separato, nessun extra.</div>
-    </div>
-    <div class="faq">
-      <div class="faq-q" onclick="toggle(this)">
-        Serve internet per funzionare?
-        <svg class="faq-chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
-      </div>
-      <div class="faq-a">No. Tutto funziona offline. Internet è opzionale solo per Speed Test, Assistente AI (Groq) e download aggiornamenti dei database PCI/USB.</div>
-    </div>
-    <div class="faq">
-      <div class="faq-q" onclick="toggle(this)">
-        Come avviene il pagamento?
-        <svg class="faq-chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
-      </div>
-      <div class="faq-a">Contattaci via email o WhatsApp. Accettiamo bonifico, PayPal e carta di credito. Ricevi la chiavetta attivata per posta oppure il file di licenza digitale in 24h.</div>
-    </div>
-    <div class="faq">
-      <div class="faq-q" onclick="toggle(this)">
-        Posso fare upgrade da Starter a Pro?
-        <svg class="faq-chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
-      </div>
-      <div class="faq-a">Sì. L'upgrade è disponibile pagando solo la differenza di prezzo. Contattaci e lo gestiamo subito senza perdere i tuoi dati.</div>
-    </div>
-    <div class="faq">
-      <div class="faq-q" onclick="toggle(this)">
-        Business Team e Studio — stessa cosa?
-        <svg class="faq-chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
-      </div>
-      <div class="faq-a">Stesse identiche funzionalità Business. La differenza è solo il numero di chiavette: 5 per Team (€499), 10 per Studio (€899). Studio costa €99 in meno rispetto a 2× Team.</div>
-    </div>
+    <div class="faq"><div class="faq-q" onclick="tog(this)">Posso usare la chiavetta su PC diversi?<svg class="faq-chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div><div class="faq-a">Sì. La licenza è legata alla chiavetta USB, non al PC. Puoi usarla su qualsiasi computer Windows 10/11 senza installare niente.</div></div>
+    <div class="faq"><div class="faq-q" onclick="tog(this)">Gli aggiornamenti sono davvero inclusi?<svg class="faq-chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div><div class="faq-a">Sì, tutti gli aggiornamenti futuri sono inclusi nel prezzo. Nessun piano premium separato.</div></div>
+    <div class="faq"><div class="faq-q" onclick="tog(this)">Serve internet per funzionare?<svg class="faq-chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div><div class="faq-a">No. Tutto funziona offline. Internet è opzionale solo per Speed Test, AI Groq e aggiornamenti DB PCI/USB.</div></div>
+    <div class="faq"><div class="faq-q" onclick="tog(this)">Come avviene la consegna?<svg class="faq-chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div><div class="faq-a">Puoi ricevere la chiavetta USB fisica per posta oppure il file di licenza digitale via email entro 24h dall'acquisto.</div></div>
+    <div class="faq"><div class="faq-q" onclick="tog(this)">Posso fare upgrade da Starter a Pro?<svg class="faq-chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div><div class="faq-a">Sì. Upgrade disponibile pagando solo la differenza. Contattaci e lo gestiamo subito senza perdere i dati.</div></div>
+    <div class="faq"><div class="faq-q" onclick="tog(this)">Business Team e Studio — stessa cosa?<svg class="faq-chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div><div class="faq-a">Stesse identiche funzionalità. Differenza solo nel numero di USB: 5 per Team (€499), 10 per Studio (€899). Studio costa €99 in meno di 2× Team.</div></div>
+    <div class="faq"><div class="faq-q" onclick="tog(this)">Emettete fattura?<svg class="faq-chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div><div class="faq-a">Sì. Emettiamo fattura elettronica italiana per tutti i piani. Per pagamenti con fattura a 30/60 giorni per aziende, contattaci.</div></div>
   </div>
 </div>
 
 <!-- FOOTER -->
 <footer>
   <div class="footer-inner">
-    <span class="footer-copy">© 2026 WinCurePro · pcfacilevarese@gmail.com</span>
+    <span class="footer-copy">© 2026 WinCurePro · PC Facile Varese · pcfacilevarese@gmail.com</span>
     <div class="footer-links">
-      <a href="mailto:pcfacilevarese@gmail.com">Contatti</a>
-      <a href="#">Privacy</a>
-      <a href="#">Termini</a>
+      <a href="mailto:pcfacilevarese@gmail.com" data-it="Contatti" data-en="Contact" data-de="Kontakt" data-fr="Contact" data-es="Contacto">Contatti</a>
+      <a href="#" data-it="Privacy" data-en="Privacy" data-de="Datenschutz" data-fr="Confidentialité" data-es="Privacidad">Privacy</a>
+      <a href="#" data-it="Termini" data-en="Terms" data-de="Bedingungen" data-fr="Conditions" data-es="Términos">Termini</a>
     </div>
   </div>
 </footer>
 
 <script>
-function toggle(el){
-  const faq=el.parentElement;
-  const wasOpen=faq.classList.contains('open');
-  document.querySelectorAll('.faq.open').forEach(f=>f.classList.remove('open'));
-  if(!wasOpen)faq.classList.add('open');
+// ── FAQ accordion
+function tog(el){
+  const f=el.parentElement;
+  const was=f.classList.contains('open');
+  document.querySelectorAll('.faq.open').forEach(x=>x.classList.remove('open'));
+  if(!was)f.classList.add('open');
 }
+
+// ── Piano CTA → pre-seleziona il radio nel form
+document.querySelectorAll('.plan-cta[data-plan]').forEach(btn=>{
+  btn.addEventListener('click',e=>{
+    const p=btn.getAttribute('data-plan');
+    const r=document.querySelector(`input[name="piano"][value="${p}"]`);
+    if(r)r.checked=true;
+  });
+});
+
+// ── Multilingua
+const T={
+  it:{},en:{},de:{},fr:{},es:{}
+};
+let lang='it';
+
+function setLang(l){
+  lang=l;
+  document.querySelectorAll('.lang-btn').forEach(b=>{
+    b.classList.toggle('active', b.textContent.trim().toLowerCase().includes(l));
+  });
+  document.querySelectorAll('[data-'+l+']').forEach(el=>{
+    const v=el.getAttribute('data-'+l);
+    if(v) el.innerHTML=v;
+  });
+}
+
+// ── Form success
+document.getElementById('contact-form').addEventListener('submit',function(e){
+  // FormSubmit gestisce l'invio, ma se vogliamo mostrare feedback
+  const btn=this.querySelector('.btn-submit');
+  btn.textContent='✓ Inviato!';
+  btn.style.background='var(--green)';
+  setTimeout(()=>{
+    btn.textContent='Invia richiesta →';
+    btn.style.background='';
+  },4000);
+});
 </script>
 </body>
 </html>
