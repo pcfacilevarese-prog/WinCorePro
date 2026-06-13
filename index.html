@@ -502,7 +502,7 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:24px;}
     </div>
     <div><div class="dc-label">Email</div><div class="dc-value">pcfacilevarese@gmail.com</div><div class="dc-desc" data-it="Risposta entro 24h" data-en="Reply within 24h" data-de="Antwort innerhalb 24h" data-fr="Réponse en 24h" data-es="Respuesta en 24h">Risposta entro 24h</div></div>
   </a>
-  <a href="https://wa.me/393INSERISCINUMERO" class="dc-card">
+  <a href="https://wa.me/393897804599" class="dc-card">
     <div class="dc-icon" style="background:rgba(37,211,102,.1)">
       <svg viewBox="0 0 24 24" fill="none" stroke="#25D366" stroke-width="1.7"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
     </div>
@@ -530,8 +530,8 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:24px;}
     <span class="footer-copy">© 2026 WinCurePro · PC Facile Varese · pcfacilevarese@gmail.com</span>
     <div class="footer-links">
       <a href="mailto:pcfacilevarese@gmail.com" data-it="Contatti" data-en="Contact" data-de="Kontakt" data-fr="Contact" data-es="Contacto">Contatti</a>
-      <a href="#" data-it="Privacy" data-en="Privacy" data-de="Datenschutz" data-fr="Confidentialité" data-es="Privacidad">Privacy</a>
-      <a href="#" data-it="Termini" data-en="Terms" data-de="Bedingungen" data-fr="Conditions" data-es="Términos">Termini</a>
+      <a href="/privacy.html">Privacy Policy</a>
+      <a href="/termini.html">Termini e Condizioni</a>
     </div>
   </div>
 </footer>
@@ -543,5 +543,24 @@ let lang='it';
 function setLang(l){lang=l;document.querySelectorAll('.lang-btn').forEach(b=>{b.classList.toggle('active',b.textContent.trim().toLowerCase().includes(l));});document.querySelectorAll('[data-'+l+']').forEach(el=>{const v=el.getAttribute('data-'+l);if(v)el.innerHTML=v;});}
 document.getElementById('contact-form').addEventListener('submit',function(e){const btn=this.querySelector('.btn-submit');btn.textContent='✓ Inviato!';btn.style.background='var(--green)';setTimeout(()=>{btn.textContent='Invia richiesta →';btn.style.background='';},4000);});
 </script>
+<!-- COOKIE BANNER -->
+<div id="cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:9999;background:#1d1d1f;color:#f5f5f7;padding:16px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;box-shadow:0 -4px 20px rgba(0,0,0,.3);">
+  <p style="font-size:13px;line-height:1.5;flex:1;min-width:200px;">
+    Questo sito utilizza solo <strong>cookie tecnici</strong> necessari al funzionamento. Nessun cookie di profilazione o marketing.
+    <a href="/privacy.html" style="color:#0ea5e9;margin-left:6px;">Privacy Policy</a>
+  </p>
+  <button onclick="acceptCookies()" style="background:#0071e3;color:#fff;border:none;border-radius:8px;padding:10px 20px;font-size:13px;font-weight:600;cursor:pointer;white-space:nowrap;">OK, capito</button>
+</div>
+
+<script>
+function acceptCookies(){
+  localStorage.setItem('cookie_ok','1');
+  document.getElementById('cookie-banner').style.display='none';
+}
+if(!localStorage.getItem('cookie_ok')){
+  document.getElementById('cookie-banner').style.display='flex';
+}
+</script>
+
 </body>
 </html>
