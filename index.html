@@ -527,7 +527,10 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:24px;}
 <!-- FOOTER -->
 <footer>
   <div class="footer-inner">
-    <span class="footer-copy">© 2026 WinCurePro · PC Facile Varese · pcfacilevarese@gmail.com</span>
+    <div style="display:flex;flex-direction:column;gap:4px;">
+      <span class="footer-copy">© 2026 WinCurePro · Nicola Marco Bongiovanni · P.IVA 03000980122</span>
+      <span class="footer-copy">Via Monte Generoso, 19 — 21100 Varese (VA) · <a href="mailto:pcfacilevarese@gmail.com" style="color:var(--text2);text-decoration:none;">pcfacilevarese@gmail.com</a></span>
+    </div>
     <div class="footer-links">
       <a href="mailto:pcfacilevarese@gmail.com" data-it="Contatti" data-en="Contact" data-de="Kontakt" data-fr="Contact" data-es="Contacto">Contatti</a>
       <a href="/privacy.html">Privacy Policy</a>
@@ -543,23 +546,154 @@ let lang='it';
 function setLang(l){lang=l;document.querySelectorAll('.lang-btn').forEach(b=>{b.classList.toggle('active',b.textContent.trim().toLowerCase().includes(l));});document.querySelectorAll('[data-'+l+']').forEach(el=>{const v=el.getAttribute('data-'+l);if(v)el.innerHTML=v;});}
 document.getElementById('contact-form').addEventListener('submit',function(e){const btn=this.querySelector('.btn-submit');btn.textContent='✓ Inviato!';btn.style.background='var(--green)';setTimeout(()=>{btn.textContent='Invia richiesta →';btn.style.background='';},4000);});
 </script>
-<!-- COOKIE BANNER -->
-<div id="cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:9999;background:#1d1d1f;color:#f5f5f7;padding:16px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;box-shadow:0 -4px 20px rgba(0,0,0,.3);">
-  <p style="font-size:13px;line-height:1.5;flex:1;min-width:200px;">
-    Questo sito utilizza solo <strong>cookie tecnici</strong> necessari al funzionamento. Nessun cookie di profilazione o marketing.
-    <a href="/privacy.html" style="color:#0ea5e9;margin-left:6px;">Privacy Policy</a>
-  </p>
-  <button onclick="acceptCookies()" style="background:#0071e3;color:#fff;border:none;border-radius:8px;padding:10px 20px;font-size:13px;font-weight:600;cursor:pointer;white-space:nowrap;">OK, capito</button>
-</div>
-
+<!-- ===== GOOGLE CONSENT MODE v2 + GA4 ===== -->
+<!-- Deve stare PRIMA dello script gtag -->
 <script>
-function acceptCookies(){
-  localStorage.setItem('cookie_ok','1');
-  document.getElementById('cookie-banner').style.display='none';
+// Consent Mode v2 — default tutto negato (obbligatorio per SEE/Europa)
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('consent','default',{
+  'ad_storage':          'denied',
+  'ad_user_data':        'denied',
+  'ad_personalization':  'denied',
+  'analytics_storage':   'denied',
+  'wait_for_update':     500
+});
+gtag('js', new Date());
+gtag('config','G-QBWGEL7K24', {anonymize_ip: true});
+</script>
+<!-- GA4 script — carica sempre ma rispetta consent mode -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QBWGEL7K24"></script>
+
+<!-- ===== COOKIE BANNER STYLES ===== -->
+<style>
+#ck-overlay{position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:9998;display:none;backdrop-filter:blur(2px);}
+#ck-banner{position:fixed;bottom:0;left:0;right:0;z-index:9999;background:#1d1d1f;color:#f5f5f7;display:none;flex-direction:column;gap:0;box-shadow:0 -4px 32px rgba(0,0,0,.4);border-radius:16px 16px 0 0;overflow:hidden;max-width:600px;margin:0 auto;}
+#ck-main{padding:24px 24px 16px;display:flex;flex-direction:column;gap:14px;}
+#ck-title{font-size:15px;font-weight:700;color:#f5f5f7;}
+#ck-desc{font-size:13px;color:#a1a1a6;line-height:1.6;}
+#ck-desc a{color:#0ea5e9;}
+#ck-toggles{display:flex;flex-direction:column;gap:10px;}
+.ck-row{display:flex;align-items:center;justify-content:space-between;background:rgba(255,255,255,.06);border-radius:10px;padding:12px 14px;}
+.ck-row-info{}
+.ck-row-name{font-size:13px;font-weight:600;color:#f5f5f7;}
+.ck-row-desc{font-size:12px;color:#6e6e73;margin-top:2px;}
+.ck-switch{position:relative;width:42px;height:24px;flex-shrink:0;}
+.ck-switch input{opacity:0;width:0;height:0;}
+.ck-slider{position:absolute;inset:0;background:#3a3a3c;border-radius:24px;cursor:pointer;transition:background .2s;}
+.ck-slider:before{content:'';position:absolute;width:18px;height:18px;left:3px;top:3px;background:#fff;border-radius:50%;transition:transform .2s;}
+.ck-switch input:checked+.ck-slider{background:#0071e3;}
+.ck-switch input:checked+.ck-slider:before{transform:translateX(18px);}
+.ck-switch input:disabled+.ck-slider{opacity:.5;cursor:not-allowed;}
+#ck-actions{display:flex;gap:8px;padding:0 24px 20px;flex-wrap:wrap;}
+#ck-actions button{flex:1;min-width:120px;border:none;border-radius:10px;padding:11px 16px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;transition:opacity .15s;}
+#ck-btn-all{background:#0071e3;color:#fff;}
+#ck-btn-save{background:#3a3a3c;color:#f5f5f7;}
+#ck-btn-reject{background:transparent;color:#6e6e73;border:1px solid #3a3a3c;flex:0;min-width:auto;font-size:12px;}
+#ck-actions button:hover{opacity:.85;}
+/* floating re-open button */
+#ck-reopen{position:fixed;bottom:16px;left:16px;z-index:9000;background:#1d1d1f;color:#f5f5f7;border:1px solid #3a3a3c;border-radius:20px;padding:8px 14px;font-size:12px;font-weight:500;cursor:pointer;font-family:inherit;display:none;transition:opacity .15s;}
+#ck-reopen:hover{opacity:.8;}
+</style>
+
+<!-- ===== COOKIE BANNER HTML ===== -->
+<div id="ck-overlay"></div>
+<div id="ck-banner" role="dialog" aria-modal="true" aria-label="Preferenze cookie">
+  <div id="ck-main">
+    <div id="ck-title">🍪 Preferenze Cookie</div>
+    <div id="ck-desc">
+      Utilizziamo cookie per migliorare l'esperienza sul sito. Puoi scegliere quali attivare.
+      I cookie tecnici sono sempre attivi perché necessari al funzionamento.
+      <a href="/privacy.html">Privacy Policy</a>
+    </div>
+    <div id="ck-toggles">
+      <div class="ck-row">
+        <div class="ck-row-info">
+          <div class="ck-row-name">Cookie Tecnici</div>
+          <div class="ck-row-desc">Necessari al funzionamento del sito (lingua, consenso). Sempre attivi.</div>
+        </div>
+        <label class="ck-switch">
+          <input type="checkbox" checked disabled>
+          <span class="ck-slider"></span>
+        </label>
+      </div>
+      <div class="ck-row">
+        <div class="ck-row-info">
+          <div class="ck-row-name">Cookie Analitici</div>
+          <div class="ck-row-desc">Google Analytics 4 — statistiche anonime su visitatori e pagine visitate.</div>
+        </div>
+        <label class="ck-switch">
+          <input type="checkbox" id="ck-analytics">
+          <span class="ck-slider"></span>
+        </label>
+      </div>
+    </div>
+  </div>
+  <div id="ck-actions">
+    <button id="ck-btn-all" onclick="ckAcceptAll()">Accetta tutti</button>
+    <button id="ck-btn-save" onclick="ckSavePrefs()">Salva preferenze</button>
+    <button id="ck-btn-reject" onclick="ckRejectAll()">Rifiuta tutti</button>
+  </div>
+</div>
+<button id="ck-reopen" onclick="ckOpen()" title="Gestisci preferenze cookie">🍪 Cookie</button>
+
+<!-- ===== COOKIE LOGIC ===== -->
+<script>
+const CK_KEY = 'wcp_cookie_prefs';
+
+function ckOpen(){
+  const prefs = ckLoad();
+  if(prefs) document.getElementById('ck-analytics').checked = prefs.analytics;
+  document.getElementById('ck-banner').style.display='flex';
+  document.getElementById('ck-overlay').style.display='block';
+  document.getElementById('ck-reopen').style.display='none';
 }
-if(!localStorage.getItem('cookie_ok')){
-  document.getElementById('cookie-banner').style.display='flex';
+function ckClose(){
+  document.getElementById('ck-banner').style.display='none';
+  document.getElementById('ck-overlay').style.display='none';
+  document.getElementById('ck-reopen').style.display='block';
 }
+function ckLoad(){
+  try{ return JSON.parse(localStorage.getItem(CK_KEY)); }catch(e){ return null; }
+}
+function ckApply(analytics){
+  const val = analytics ? 'granted' : 'denied';
+  gtag('consent','update',{
+    'analytics_storage': val,
+    'ad_storage': 'denied',
+    'ad_user_data': 'denied',
+    'ad_personalization': 'denied'
+  });
+}
+function ckSave(analytics){
+  localStorage.setItem(CK_KEY, JSON.stringify({analytics, saved: true}));
+  ckApply(analytics);
+  ckClose();
+}
+function ckAcceptAll(){
+  document.getElementById('ck-analytics').checked = true;
+  ckSave(true);
+}
+function ckRejectAll(){
+  document.getElementById('ck-analytics').checked = false;
+  ckSave(false);
+}
+function ckSavePrefs(){
+  const analytics = document.getElementById('ck-analytics').checked;
+  ckSave(analytics);
+}
+
+// All'avvio: ripristina preferenze o mostra banner
+(function(){
+  const prefs = ckLoad();
+  if(prefs && prefs.saved){
+    ckApply(prefs.analytics);
+    document.getElementById('ck-reopen').style.display='block';
+  } else {
+    // Prima visita — mostra banner dopo 800ms
+    setTimeout(ckOpen, 800);
+  }
+})();
 </script>
 
 </body>
