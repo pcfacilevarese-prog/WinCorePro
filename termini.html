@@ -4,111 +4,279 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Termini e Condizioni — WinCurePro</title>
-<meta name="robots" content="noindex">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=DM+Mono:ital,wght@0,400;0,500&display=swap" rel="stylesheet">
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:#fff;color:#1d1d1f;line-height:1.7;font-size:15px;}
-.wrap{max-width:720px;margin:0 auto;padding:48px 24px 80px;}
-h1{font-size:32px;font-weight:800;letter-spacing:-.03em;margin-bottom:8px;}
-.meta{font-size:13px;color:#6e6e73;margin-bottom:40px;}
-h2{font-size:18px;font-weight:700;margin:36px 0 10px;color:#1d1d1f;}
-p{margin-bottom:12px;color:#3a3a3c;}
-ul{margin:8px 0 12px 20px;color:#3a3a3c;}
-ul li{margin-bottom:6px;}
-a{color:#0071e3;text-decoration:none;}
-a:hover{text-decoration:underline;}
-.back{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:600;color:#0071e3;margin-bottom:32px;text-decoration:none;}
-.box{background:#f5f5f7;border-radius:12px;padding:16px 20px;margin:16px 0;font-size:14px;color:#3a3a3c;}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{font-size:16px;-webkit-font-smoothing:antialiased;scroll-behavior:smooth}
+:root{
+  --bg:#ffffff;--bg2:#f5f5f7;--bg3:#fbfbfd;
+  --border:rgba(0,0,0,.08);--border2:rgba(0,0,0,.14);
+  --text:#1d1d1f;--text2:#6e6e73;--text3:#a1a1a6;
+  --accent:#0071e3;--amber:#c67c1a;--red:#d1302b;
+  --font:'Plus Jakarta Sans',system-ui,-apple-system,sans-serif;
+  --mono:'DM Mono','SF Mono',monospace;
+  --r:12px;
+}
+body{background:var(--bg);color:var(--text);font-family:var(--font);line-height:1.6;overflow-x:hidden;}
+nav{background:rgba(255,255,255,.92);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;}
+.nav-inner{max-width:800px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:0 24px;height:52px;}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;}
+.logo-icon{width:30px;height:30px;border-radius:8px;background:var(--text);display:flex;align-items:center;justify-content:center;}
+.logo-icon svg{width:16px;height:16px;stroke:#fff;stroke-width:2;fill:none;}
+.logo-name{font-size:15px;font-weight:700;letter-spacing:-.02em;color:var(--text);}
+.back-link{font-size:13px;font-weight:500;color:var(--accent);text-decoration:none;}
+.back-link:hover{text-decoration:underline;}
+.page-wrap{max-width:800px;margin:0 auto;padding:56px 24px 80px;}
+.page-header{margin-bottom:48px;padding-bottom:32px;border-bottom:1px solid var(--border);}
+.page-tag{font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:12px;}
+.page-header h1{font-size:clamp(28px,4vw,42px);font-weight:800;letter-spacing:-.03em;line-height:1.1;margin-bottom:12px;}
+.page-header p{font-size:14px;color:var(--text2);}
+.toc{background:var(--bg2);border-radius:var(--r);padding:20px 24px;margin-bottom:40px;}
+.toc-title{font-size:12px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--text3);margin-bottom:10px;}
+.toc a{display:block;font-size:13px;color:var(--accent);text-decoration:none;padding:3px 0;line-height:1.5;}
+.toc a:hover{text-decoration:underline;}
+.section-label{display:inline-block;font-family:var(--mono);font-size:10px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;background:var(--bg2);border-radius:6px;padding:3px 8px;margin-bottom:10px;color:var(--text2);}
+.doc-section{margin-bottom:44px;scroll-margin-top:80px;}
+.doc-section h2{font-size:17px;font-weight:700;letter-spacing:-.02em;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid var(--border);}
+.doc-section h3{font-size:14px;font-weight:600;margin:18px 0 6px;color:var(--text);}
+.doc-section p{font-size:14px;color:var(--text2);margin-bottom:10px;line-height:1.7;}
+.doc-section ul{margin:8px 0 12px 20px;}
+.doc-section ul li{font-size:14px;color:var(--text2);margin-bottom:5px;line-height:1.6;}
+.info-box{background:var(--bg2);border-radius:var(--r);padding:20px 24px;margin-bottom:32px;}
+.info-box p{font-size:13px;color:var(--text2);margin:0;line-height:1.6;}
+.info-box strong{color:var(--text);}
+.warn-box{background:#fff8ed;border:1px solid rgba(198,124,26,.25);border-radius:var(--r);padding:16px 20px;margin:16px 0;}
+.warn-box p{font-size:13px;color:#7a4f0e;margin:0;line-height:1.6;}
+footer{background:var(--bg2);border-top:1px solid var(--border);padding:24px;}
+.footer-inner{max-width:800px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;}
+.footer-copy{font-size:12px;color:var(--text3);}
+.footer-links{display:flex;gap:16px;}
+.footer-links a{font-size:12px;color:var(--text2);text-decoration:none;}
+.footer-links a:hover{color:var(--text);}
 </style>
 </head>
 <body>
-<div class="wrap">
-  <a href="/" class="back">← Torna al sito</a>
-  <h1>Termini e Condizioni</h1>
-  <div class="meta">Ultimo aggiornamento: 13 giugno 2026 · WinCurePro — PC Facile Varese</div>
 
-  <div class="box">
-    I presenti Termini e Condizioni regolano l'acquisto e l'utilizzo del software <strong>WinCurePro</strong> distribuito da PC Facile Varese (Bongiovanni Nicola, P.IVA 03000980122). L'acquisto del software implica l'accettazione integrale di questi termini.
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="logo">
+      <div class="logo-icon"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div>
+      <span class="logo-name">WinCurePro</span>
+    </a>
+    <a href="/" class="back-link">← Torna al sito</a>
+  </div>
+</nav>
+
+<div class="page-wrap">
+  <div class="page-header">
+    <div class="page-tag">Documento legale</div>
+    <h1>Termini e Condizioni</h1>
+    <p>Ultimo aggiornamento: giugno 2026 · Versione 1.0<br>
+    Questo documento include: Condizioni di Vendita · EULA · Disclaimer</p>
   </div>
 
-  <h2>1. Il software</h2>
-  <p>WinCurePro è un software professionale per la diagnostica di PC Windows, distribuito su chiavetta USB o come file digitale. Il software è compatibile con Windows 10 e Windows 11 (64-bit).</p>
+  <div class="info-box">
+    <p><strong>Venditore / Licenziante:</strong> Nicola Marco Bongiovanni<br>
+    Via Monte Generoso, 19 — 21100 Varese (VA), Italia<br>
+    P.IVA: 03000980122 · Email: <a href="mailto:pcfacilevarese@gmail.com">pcfacilevarese@gmail.com</a></p>
+  </div>
 
-  <h2>2. Licenza d'uso</h2>
-  <p>L'acquisto di WinCurePro conferisce all'acquirente una <strong>licenza d'uso personale e non trasferibile</strong> secondo il piano acquistato:</p>
-  <ul>
-    <li><strong>Starter / Pro</strong> — 1 chiavetta USB, uso su qualsiasi PC Windows</li>
-    <li><strong>Business Team</strong> — 5 chiavette USB indipendenti</li>
-    <li><strong>Business Studio</strong> — 10 chiavette USB indipendenti</li>
-  </ul>
-  <p>La licenza è <strong>perpetua</strong> — non ha scadenza e include tutti gli aggiornamenti futuri senza costi aggiuntivi.</p>
-  <p>È vietato:</p>
-  <ul>
-    <li>Copiare, distribuire o rivendere il software a terzi</li>
-    <li>Effettuare reverse engineering o decompilare il codice</li>
-    <li>Rimuovere o alterare le protezioni di licenza</li>
-    <li>Utilizzare il software per scopi illegali</li>
-  </ul>
+  <div class="toc">
+    <div class="toc-title">Indice</div>
+    <a href="#s1">1. Definizioni</a>
+    <a href="#s2">2. Accettazione dei Termini</a>
+    <a href="#s3">3. Licenza d'Uso (EULA)</a>
+    <a href="#s4">4. Piani e Prezzi</a>
+    <a href="#s5">5. Ordine e Pagamento</a>
+    <a href="#s6">6. Consegna</a>
+    <a href="#s7">7. Diritto di Recesso e Rimborsi</a>
+    <a href="#s8">8. Garanzie e Disclaimer</a>
+    <a href="#s9">9. Limitazione di Responsabilità</a>
+    <a href="#s10">10. Proprietà Intellettuale</a>
+    <a href="#s11">11. Legge Applicabile e Foro Competente</a>
+    <a href="#s12">12. Modifiche ai Termini</a>
+  </div>
 
-  <h2>3. Prezzi e pagamento</h2>
-  <p>I prezzi sono espressi in Euro (€) IVA inclusa:</p>
-  <ul>
-    <li>Starter: €99</li>
-    <li>Pro: €199</li>
-    <li>Business Team: €499 (5 USB)</li>
-    <li>Business Studio: €899 (10 USB)</li>
-  </ul>
-  <p>Accettiamo: PayPal, carta di credito/debito (Visa, Mastercard, Amex), Apple Pay, Google Pay, bonifico bancario, fattura aziendale 30/60 giorni (su richiesta).</p>
-  <p>La licenza viene attivata entro <strong>24 ore lavorative</strong> dalla conferma del pagamento.</p>
+  <!-- 1 -->
+  <div class="doc-section" id="s1">
+    <div class="section-label">Sezione 1</div>
+    <h2>1. Definizioni</h2>
+    <ul>
+      <li><strong>"Software" / "WinCurePro"</strong>: il programma per elaboratore distribuito da Nicola Marco Bongiovanni su chiavetta USB o in forma digitale.</li>
+      <li><strong>"Licenziante"</strong>: Nicola Marco Bongiovanni, P.IVA 03000980122.</li>
+      <li><strong>"Licenziatario"</strong>: la persona fisica o giuridica che acquista una licenza di WinCurePro.</li>
+      <li><strong>"Chiavetta USB"</strong>: il supporto fisico precaricato con il Software e i file di licenza.</li>
+      <li><strong>"Licenza"</strong>: il diritto non esclusivo, non trasferibile, di utilizzare il Software secondo i termini del presente documento.</li>
+      <li><strong>"Piano"</strong>: il livello di licenza acquistato (Starter, Pro, Business Team, Business Studio).</li>
+    </ul>
+  </div>
 
-  <h2>4. Consegna</h2>
-  <p>WinCurePro viene consegnato tramite:</p>
-  <ul>
-    <li><strong>File digitale</strong> — invio via email entro 24 ore dall'acquisto</li>
-    <li><strong>Chiavetta USB fisica</strong> — spedizione tramite corriere in Italia (3-5 giorni lavorativi) o Europa (5-10 giorni)</li>
-  </ul>
-  <p>Le spese di spedizione per la chiavetta USB fisica sono a carico dell'acquirente salvo diverso accordo.</p>
+  <!-- 2 -->
+  <div class="doc-section" id="s2">
+    <div class="section-label">Sezione 2</div>
+    <h2>2. Accettazione dei Termini</h2>
+    <p>L'utilizzo del Software o l'acquisto di una Licenza implica l'accettazione integrale dei presenti Termini e Condizioni, della Privacy Policy e del Disclaimer. Se non si accettano questi termini, non è consentito utilizzare il Software.</p>
+    <p>I presenti Termini regolano i rapporti con utenti professionali (B2B). Il Software è destinato esclusivamente a <strong>tecnici qualificati di assistenza informatica</strong> e non a consumatori finali ai sensi del D.Lgs. 206/2005 (Codice del Consumo).</p>
+  </div>
 
-  <h2>5. Diritto di recesso</h2>
-  <p>Ai sensi del D.Lgs. 206/2005 (Codice del Consumo), il consumatore ha diritto di recedere dall'acquisto entro <strong>14 giorni</strong> dalla ricezione del prodotto, senza necessità di fornire motivazioni.</p>
-  <p>Per i <strong>prodotti digitali</strong> (file licenza), il diritto di recesso si esaurisce nel momento in cui il download/attivazione viene effettuata, previo esplicito consenso dell'acquirente.</p>
-  <p>Per esercitare il recesso, contattare: <a href="mailto:pcfacilevarese@gmail.com">pcfacilevarese@gmail.com</a></p>
+  <!-- 3 -->
+  <div class="doc-section" id="s3">
+    <div class="section-label">Sezione 3 · EULA</div>
+    <h2>3. Licenza d'Uso (EULA)</h2>
+    <h3>3.1 Concessione della Licenza</h3>
+    <p>A fronte del pagamento del corrispettivo, il Licenziante concede al Licenziatario una licenza <strong>perpetua, non esclusiva, non trasferibile e non sub-licenziabile</strong> per utilizzare il Software sul numero di chiavette USB corrispondente al Piano acquistato.</p>
+    <h3>3.2 Ambito di utilizzo per Piano</h3>
+    <ul>
+      <li><strong>Starter / Pro</strong>: licenza personale per 1 tecnico su 1 chiavetta USB. Non cedibile a terzi.</li>
+      <li><strong>Business Team</strong>: licenza aziendale per fino a 5 tecnici dello stesso studio/azienda su 5 chiavette USB indipendenti.</li>
+      <li><strong>Business Studio</strong>: licenza aziendale per fino a 10 tecnici dello stesso studio/azienda su 10 chiavette USB indipendenti.</li>
+    </ul>
+    <h3>3.3 Divieti</h3>
+    <p>È espressamente vietato:</p>
+    <ul>
+      <li>Effettuare il <strong>reverse engineering</strong>, decompilare, disassemblare o tentare di estrarre il codice sorgente del Software.</li>
+      <li><strong>Clonare</strong> il contenuto della chiavetta USB su altri supporti allo scopo di aggirare l'acquisto di licenze aggiuntive.</li>
+      <li>Rimuovere, alterare o oscurare avvisi di copyright o altri avvisi proprietari presenti nel Software.</li>
+      <li>Distribuire, rivendere, noleggiare, affittare o sub-licenziare il Software o la chiavetta USB a terzi.</li>
+      <li>Utilizzare il Software per creare prodotti o servizi in concorrenza con WinCurePro.</li>
+    </ul>
+    <h3>3.4 Aggiornamenti</h3>
+    <p>Gli aggiornamenti futuri del Software sono inclusi nella licenza perpetua senza costi aggiuntivi. Gli aggiornamenti avvengono tramite nuovi file forniti dal Licenziante via email o tramite la funzione di aggiornamento integrata nel Software.</p>
+  </div>
 
-  <h2>6. Garanzia e assistenza</h2>
-  <p>WinCurePro è fornito con:</p>
-  <ul>
-    <li>Garanzia di funzionamento su sistemi Windows 10/11 a 64-bit</li>
-    <li>Assistenza tecnica via email e WhatsApp</li>
-    <li>Aggiornamenti software a vita inclusi nel prezzo</li>
-  </ul>
-  <p>In caso di malfunzionamento comprovato non imputabile all'utente, provvederemo alla sostituzione della licenza o al rimborso integrale.</p>
+  <!-- 4 -->
+  <div class="doc-section" id="s4">
+    <div class="section-label">Sezione 4</div>
+    <h2>4. Piani e Prezzi</h2>
+    <ul>
+      <li><strong>Starter</strong> — €99 IVA inclusa · 1 chiavetta USB</li>
+      <li><strong>Pro</strong> — €199 IVA inclusa · 1 chiavetta USB</li>
+      <li><strong>Business Team</strong> — €499 IVA inclusa · 5 chiavette USB</li>
+      <li><strong>Business Studio</strong> — €899 IVA inclusa · 10 chiavette USB</li>
+    </ul>
+    <p>I prezzi sono espressi in Euro e si intendono comprensivi di IVA dove applicabile. Il Licenziante si riserva il diritto di modificare i prezzi in qualsiasi momento; le variazioni non hanno effetto sugli ordini già confermati.</p>
+    <p>È disponibile un upgrade da un piano inferiore a uno superiore pagando esclusivamente la differenza di prezzo, contattando il Licenziante via email.</p>
+  </div>
 
-  <h2>7. Limitazione di responsabilità</h2>
-  <p>WinCurePro è uno strumento diagnostico professionale. Il venditore non è responsabile per:</p>
-  <ul>
-    <li>Danni a sistemi derivanti da un uso improprio del software</li>
-    <li>Perdita di dati durante operazioni di diagnosi o riparazione</li>
-    <li>Incompatibilità con sistemi operativi non supportati</li>
-    <li>Decisioni tecniche prese dall'utente sulla base dei risultati diagnostici</li>
-  </ul>
-  <p>Si raccomanda sempre di effettuare un backup dei dati prima di qualsiasi intervento tecnico.</p>
+  <!-- 5 -->
+  <div class="doc-section" id="s5">
+    <div class="section-label">Sezione 5</div>
+    <h2>5. Ordine e Pagamento</h2>
+    <h3>5.1 Processo d'ordine</h3>
+    <p>L'ordine viene effettuato tramite il modulo di contatto presente su wincurepro.com. Il contratto si considera concluso quando il Licenziante invia conferma scritta (email) dell'ordine.</p>
+    <h3>5.2 Metodi di pagamento accettati</h3>
+    <ul>
+      <li>Carta di credito/debito (Visa, Mastercard, American Express)</li>
+      <li>PayPal</li>
+      <li>Apple Pay / Google Pay</li>
+      <li>Bonifico bancario (IBAN comunicato via email)</li>
+      <li>Fattura aziendale a 30/60 giorni (solo per aziende con partita IVA, previa approvazione)</li>
+    </ul>
+    <h3>5.3 Fatturazione</h3>
+    <p>Per ogni acquisto viene emessa <strong>fattura elettronica italiana</strong> ai sensi del D.P.R. 633/1972. Le aziende con sede UE possono richiedere fattura senza IVA fornendo il codice VAT comunitario valido (regime reverse charge).</p>
+  </div>
 
-  <h2>8. Proprietà intellettuale</h2>
-  <p>WinCurePro, il suo codice sorgente, il logo, il design e tutta la documentazione sono di proprietà esclusiva di Bongiovanni Nicola / PC Facile Varese e sono protetti dalle leggi sul diritto d'autore italiano ed europeo.</p>
+  <!-- 6 -->
+  <div class="doc-section" id="s6">
+    <div class="section-label">Sezione 6</div>
+    <h2>6. Consegna</h2>
+    <h3>6.1 Licenza digitale</h3>
+    <p>Il file di licenza digitale viene inviato via email entro <strong>24 ore lavorative</strong> dalla conferma del pagamento. Il Licenziatario è responsabile della corretta configurazione della chiavetta USB seguendo le istruzioni fornite.</p>
+    <h3>6.2 Chiavetta USB fisica</h3>
+    <p>Le chiavette USB fisiche vengono spedite tramite corriere espresso entro <strong>3–5 giorni lavorativi</strong> dalla conferma del pagamento. I tempi di consegna dipendono dal corriere e dalla destinazione. Il Licenziante non è responsabile per ritardi imputabili al corriere o a cause di forza maggiore.</p>
+    <p>In caso di smarrimento del pacco durante la spedizione, il Licenziante attiverà una pratica di rimborso o sostituzione con il corriere entro 15 giorni dalla segnalazione.</p>
+    <h3>6.3 Spedizioni internazionali</h3>
+    <p>Le spedizioni al di fuori dell'Unione Europea potrebbero essere soggette a dazi doganali o imposte locali a carico del destinatario. Il Licenziante non è responsabile di tali costi aggiuntivi.</p>
+  </div>
 
-  <h2>9. Legge applicabile e foro competente</h2>
-  <p>I presenti Termini sono regolati dalla legge italiana. Per qualsiasi controversia derivante dall'acquisto o dall'utilizzo di WinCurePro, il foro competente è quello di <strong>Varese</strong>, salvo diversa disposizione di legge per i consumatori.</p>
+  <!-- 7 -->
+  <div class="doc-section" id="s7">
+    <div class="section-label">Sezione 7</div>
+    <h2>7. Diritto di Recesso e Rimborsi</h2>
+    <div class="warn-box">
+      <p><strong>⚠ Importante:</strong> WinCurePro è un software professionale destinato a operatori del settore (B2B). Il diritto di recesso previsto per i consumatori dal D.Lgs. 206/2005 non si applica ai contratti B2B.</p>
+    </div>
+    <h3>7.1 Recesso per acquisti da privati consumatori</h3>
+    <p>Qualora il Licenziatario sia un consumatore privato (persona fisica che agisce al di fuori di attività commerciale), ha diritto di recedere entro <strong>14 giorni</strong> dalla ricezione della chiavetta USB fisica, senza dover fornire motivazioni, ai sensi dell'art. 52 del D.Lgs. 206/2005.</p>
+    <p>Il diritto di recesso <strong>decade</strong> nei seguenti casi:</p>
+    <ul>
+      <li>Se la chiavetta USB è stata aperta e il sigillo di garanzia è stato rimosso.</li>
+      <li>Se la licenza digitale è stata attivata (il file di licenza è stato utilizzato per sbloccare il Software).</li>
+      <li>Per i contenuti digitali forniti su supporto non materiale, se l'esecuzione è iniziata con il consenso esplicito del consumatore e con la rinuncia al diritto di recesso (ai sensi dell'art. 59 lett. o D.Lgs. 206/2005).</li>
+    </ul>
+    <h3>7.2 Procedura di recesso</h3>
+    <p>Per esercitare il diritto di recesso, inviare comunicazione scritta a <a href="mailto:pcfacilevarese@gmail.com">pcfacilevarese@gmail.com</a> entro il termine previsto. Il rimborso verrà effettuato entro 14 giorni dalla ricezione della comunicazione, con lo stesso metodo di pagamento utilizzato per l'acquisto, al netto delle spese di spedizione sostenute.</p>
+    <h3>7.3 Difetti e non conformità</h3>
+    <p>In caso di difetti del prodotto fisico o malfunzionamenti del Software imputabili al Licenziante, il Licenziatario può richiedere la sostituzione o la risoluzione del contratto entro 24 mesi dall'acquisto, contattando il supporto via email.</p>
+  </div>
 
-  <h2>10. Modifiche ai Termini</h2>
-  <p>Ci riserviamo il diritto di modificare i presenti Termini. Le modifiche saranno pubblicate su questa pagina. L'uso continuato del software dopo la pubblicazione delle modifiche implica l'accettazione dei nuovi Termini.</p>
+  <!-- 8 -->
+  <div class="doc-section" id="s8">
+    <div class="section-label">Sezione 8 · Disclaimer</div>
+    <h2>8. Garanzie e Disclaimer</h2>
+    <h3>8.1 Software fornito "così com'è" (As Is)</h3>
+    <p>WinCurePro è fornito <strong>"così com'è"</strong> (<em>as is</em>), senza garanzie implicite di funzionamento perfetto su ogni configurazione hardware o software. Il Licenziante non garantisce che il Software sia privo di errori o che funzioni senza interruzioni su qualsiasi combinazione di hardware e sistema operativo Windows.</p>
+    <h3>8.2 Uso da parte di personale qualificato</h3>
+    <p>WinCurePro è uno strumento progettato per <strong>tecnici qualificati di assistenza informatica</strong>. Il Licenziatario è l'unico responsabile delle azioni intraprese sui PC dei propri clienti. Il Licenziante declina ogni responsabilità per un utilizzo improprio o da parte di personale non qualificato.</p>
+    <h3>8.3 Stress test e analisi hardware</h3>
+    <div class="warn-box">
+      <p><strong>⚠ Avviso stress test:</strong> Le funzionalità di stress test (CPU, RAM, GPU) e le analisi SMART dei dischi sono progettate per rilevare problemi preesistenti. Su hardware già compromesso o prossimo al guasto, tali operazioni potrebbero accelerare un cedimento già in corso. Il Licenziante <strong>declina ogni responsabilità</strong> per crash di sistema, perdita di dati, o danni hardware verificatisi durante o dopo l'esecuzione di tali funzionalità su apparecchiature in stato critico.</p>
+    </div>
+    <p>Si raccomanda di informare sempre il cliente prima di eseguire stress test e di eseguire un backup dei dati del cliente prima di avviare qualsiasi diagnosi invasiva.</p>
+  </div>
 
-  <h2>11. Contatti</h2>
-  <p>Per qualsiasi domanda:<br>
-  Email: <a href="mailto:pcfacilevarese@gmail.com">pcfacilevarese@gmail.com</a><br>
-  WhatsApp: +39 389 780 4599<br>
-  PC Facile Varese · Via Monte Generoso 19, 21100 Varese · P.IVA 03000980122</p>
+  <!-- 9 -->
+  <div class="doc-section" id="s9">
+    <div class="section-label">Sezione 9</div>
+    <h2>9. Limitazione di Responsabilità</h2>
+    <p>Nei limiti massimi consentiti dalla legge applicabile, il Licenziante non sarà responsabile per:</p>
+    <ul>
+      <li>Danni indiretti, incidentali, speciali, consequenziali o punitivi derivanti dall'uso o dall'impossibilità di usare il Software.</li>
+      <li>Perdita di dati, interruzione dell'attività, perdita di profitti o danni alla reputazione.</li>
+      <li>Danni a hardware del cliente verificatisi durante l'utilizzo del Software su apparecchiature già in stato di guasto o compromesse.</li>
+      <li>Malfunzionamenti causati da configurazioni hardware non standard, aggiornamenti di Windows non compatibili, o interferenze con altri software presenti sul PC analizzato.</li>
+    </ul>
+    <p>In ogni caso, la responsabilità massima del Licenziante nei confronti del Licenziatario non potrà eccedere il prezzo pagato per la Licenza.</p>
+  </div>
+
+  <!-- 10 -->
+  <div class="doc-section" id="s10">
+    <div class="section-label">Sezione 10</div>
+    <h2>10. Proprietà Intellettuale</h2>
+    <p>WinCurePro, inclusi il codice sorgente compilato, l'interfaccia grafica, la documentazione, i loghi e tutti i contenuti correlati, sono di <strong>esclusiva proprietà intellettuale di Nicola Marco Bongiovanni</strong> e sono protetti dalle leggi sul diritto d'autore (L. 633/1941 e successive modifiche) e dalla normativa comunitaria.</p>
+    <p>La Licenza concessa ai sensi del presente EULA non trasferisce alcun diritto di proprietà intellettuale al Licenziatario. Qualsiasi uso non autorizzato costituisce violazione del diritto d'autore e potrà essere perseguito nelle sedi competenti.</p>
+  </div>
+
+  <!-- 11 -->
+  <div class="doc-section" id="s11">
+    <div class="section-label">Sezione 11</div>
+    <h2>11. Legge Applicabile e Foro Competente</h2>
+    <p>I presenti Termini sono regolati dalla <strong>legge italiana</strong>. Per qualsiasi controversia relativa all'interpretazione, all'esecuzione o alla risoluzione dei presenti Termini, le parti si sottomettono alla competenza esclusiva del <strong>Foro di Varese</strong>.</p>
+    <p>Per controversie di importo non superiore a €5.000, le parti si impegnano a tentare una risoluzione amichevole prima di adire le vie legali, attraverso comunicazione scritta a <a href="mailto:pcfacilevarese@gmail.com">pcfacilevarese@gmail.com</a>.</p>
+  </div>
+
+  <!-- 12 -->
+  <div class="doc-section" id="s12">
+    <div class="section-label">Sezione 12</div>
+    <h2>12. Modifiche ai Termini</h2>
+    <p>Il Licenziante si riserva il diritto di modificare i presenti Termini in qualsiasi momento. Le modifiche entreranno in vigore dalla data di pubblicazione su questa pagina. L'utilizzo continuato del Software dopo la pubblicazione delle modifiche costituisce accettazione dei nuovi Termini.</p>
+    <p>Per modifiche sostanziali che incidono sui diritti dei Licenziatari esistenti, sarà inviata comunicazione via email con almeno 30 giorni di preavviso.</p>
+  </div>
+
 </div>
+
+<footer>
+  <div class="footer-inner">
+    <span class="footer-copy">© 2026 WinCurePro · Nicola Marco Bongiovanni · P.IVA 03000980122</span>
+    <div class="footer-links">
+      <a href="/">Home</a>
+      <a href="/privacy.html">Privacy Policy</a>
+      <a href="/termini.html">Termini e Condizioni</a>
+    </div>
+  </div>
+</footer>
+
 </body>
 </html>
