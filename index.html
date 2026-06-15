@@ -72,7 +72,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);line-height:
 .lang-sep{color:var(--border2);font-size:12px;}
 
 /* NAV */
-nav{position:sticky;top:36px;z-index:100;background:rgba(255,255,255,.88);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid var(--border);}
+nav{position:sticky;top:36px;z-index:100;background:rgba(255,255,255,.88);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid var(--border);position:relative;}
 .nav-inner{max-width:1080px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:0 24px;height:52px;}
 .logo{display:flex;align-items:center;gap:10px;text-decoration:none;}
 .logo-icon{width:30px;height:30px;border-radius:8px;background:var(--text);display:flex;align-items:center;justify-content:center;}
@@ -224,19 +224,93 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:24px;}
 .footer-links a{font-size:12px;color:var(--text3);text-decoration:none;}
 .footer-links a:hover{color:var(--text2);}
 
-/* RESPONSIVE */
+/* ── HAMBURGER ── */
+.nav-hamburger{
+  display:none;flex-direction:column;justify-content:center;gap:5px;
+  background:none;border:none;cursor:pointer;padding:6px;margin-left:8px;
+  border-radius:8px;transition:background .15s;
+}
+.nav-hamburger:hover{background:rgba(0,0,0,.06);}
+.nav-hamburger span{
+  display:block;width:22px;height:2px;
+  background:var(--text);border-radius:2px;
+  transition:transform .25s ease, opacity .2s ease;
+  transform-origin:center;
+}
+.nav-hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+.nav-hamburger.open span:nth-child(2){opacity:0;transform:scaleX(0);}
+.nav-hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+
+/* ── RESPONSIVE 768 ── */
 @media(max-width:768px){
+  /* layout */
   .plans{grid-template-columns:1fr 1fr;}
   .trust-inner{grid-template-columns:1fr;}
   .demo-grid{grid-template-columns:1fr;}
-  .social-proof{gap:24px;flex-wrap:wrap;}
+  .social-proof{gap:20px 32px;flex-wrap:wrap;justify-content:center;}
   .form-grid{grid-template-columns:1fr;}
-  .form-plan-select{grid-template-columns:1fr;}
+  .form-plan-select{grid-template-columns:1fr 1fr;}
+  /* hero */
+  .hero{padding:64px 20px 48px;}
+  .hero-chips{gap:6px;}
+  .chip{font-size:11px;padding:5px 11px;}
+  /* sections */
+  .demo-section{padding:48px 20px 40px;}
+  .plans-wrap{padding:0 16px 56px;}
+  .section-head{padding:48px 0 32px;}
+  .payment-section{padding:40px 20px 48px;}
+  .contact-section{padding:48px 20px 64px;}
+  .faq-wrap{padding:48px 20px;}
+  /* footer */
+  .footer-inner{flex-direction:column;align-items:flex-start;gap:16px;}
+  .footer-links{flex-wrap:wrap;gap:14px;}
+  /* direct contact */
+  .direct-contact{flex-direction:column;align-items:stretch;padding:0 20px 48px;}
+  .dc-card{min-width:unset;}
 }
+
+/* ── RESPONSIVE 480 ── */
 @media(max-width:480px){
+  /* hamburger on, links off by default */
+  .nav-hamburger{display:flex;}
+  .nav-links{
+    display:none;
+    flex-direction:column;
+    position:absolute;top:100%;left:0;right:0;
+    background:rgba(255,255,255,.97);
+    backdrop-filter:saturate(180%) blur(20px);
+    -webkit-backdrop-filter:saturate(180%) blur(20px);
+    border-bottom:1px solid var(--border);
+    padding:8px 16px 16px;
+    box-shadow:0 12px 32px rgba(0,0,0,.1);
+    z-index:99;
+  }
+  .nav-links.open{display:flex;}
+  .nav-links a{
+    padding:12px 8px;
+    font-size:15px;
+    border-bottom:1px solid var(--border);
+  }
+  .nav-links a:last-child{border-bottom:none;}
+  /* lang bar */
+  .lang-bar{padding:0 16px;gap:2px;}
+  /* hero */
+  .hero{padding:52px 16px 40px;}
+  h1{letter-spacing:-.03em;}
+  /* plans: 1 col */
   .plans{grid-template-columns:1fr;}
-  .nav-links{display:none;}
-  .lang-bar{padding:0 16px;}
+  .plans-wrap{padding:0 12px 48px;}
+  /* social proof */
+  .social-proof{gap:16px 28px;}
+  .sp-num{font-size:26px;}
+  /* trust */
+  .t-card{flex-direction:column;gap:10px;}
+  /* form */
+  .form-plan-select{grid-template-columns:1fr;}
+  /* payment methods */
+  .payment-methods{grid-template-columns:1fr 1fr;}
+  /* nav buy btn: shrink text */
+  .nav-buy{font-size:12px;padding:6px 14px;}
 }
 </style>
 </head>
@@ -269,10 +343,12 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:24px;}
       <a href="#piani" data-it="Piani" data-en="Plans" data-de="Pläne" data-fr="Plans" data-es="Planes">Piani</a>
       <a href="#pagamenti" data-it="Pagamenti" data-en="Payments" data-de="Zahlung" data-fr="Paiements" data-es="Pagos">Pagamenti</a>
       <a href="#faq" data-it="FAQ" data-en="FAQ" data-de="FAQ" data-fr="FAQ" data-es="FAQ">FAQ</a>
-      <a href="#chi-siamo" data-it="Chi siamo" data-en="About" data-de="Über uns" data-fr="À propos" data-es="Quiénes somos">Chi siamo</a>
       <a href="/confronto.html" data-it="Confronto" data-en="Compare" data-de="Vergleich" data-fr="Comparatif" data-es="Comparativa">Confronto</a>
     </div>
     <a href="#contatti" class="nav-buy" data-it="Acquista ora" data-en="Buy now" data-de="Jetzt kaufen" data-fr="Acheter" data-es="Comprar">Acquista ora</a>
+    <button class="nav-hamburger" id="hamburger" aria-label="Menu" aria-expanded="false" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </nav>
 
@@ -528,56 +604,6 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:24px;}
   </div>
 </div>
 
-<!-- CHI SIAMO -->
-<div id="chi-siamo" style="background:var(--bg);border-top:1px solid var(--border);padding:72px 24px 80px;">
-  <div style="max-width:1080px;margin:0 auto;">
-    <div style="text-align:center;margin-bottom:56px;">
-      <div style="font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:12px;">Chi siamo</div>
-      <h2 style="font-size:clamp(28px,4vw,44px);font-weight:800;letter-spacing:-.03em;margin-bottom:12px;">Nati da un problema reale.<br>Costruiti da un tecnico, per i tecnici.</h2>
-      <p style="font-size:15px;color:var(--text2);max-width:600px;margin:0 auto;line-height:1.7;">PC Facile Varese è il progetto di Nicola Marco Bongiovanni, tecnico informatico con 10 anni di esperienza sul campo a Varese e provincia.</p>
-    </div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start;margin-bottom:64px;">
-      <div>
-        <h3 style="font-size:20px;font-weight:800;letter-spacing:-.02em;margin-bottom:16px;">Il problema che tutti i tecnici conoscono</h3>
-        <p style="font-size:14px;color:var(--text2);line-height:1.8;margin-bottom:14px;">Dopo anni di lavoro sul campo, mi ritrovavo ogni giorno con la stessa situazione frustrante: per fare una diagnosi completa su un PC cliente dovevo aprire 5 o 6 applicazioni diverse. CrystalDiskInfo per i dischi, HWiNFO per i sensori, uno strumento per i driver, uno per la rete, i tool nativi di Windows per il resto, e infine un foglio Excel per tenere traccia dei clienti.</p>
-        <p style="font-size:14px;color:var(--text2);line-height:1.8;margin-bottom:14px;">Alcune di queste applicazioni erano ad abbonamento. Facendo la somma, il costo mensile di tutti gli strumenti necessari per lavorare professionalmente diventava insostenibile per un tecnico indipendente o un piccolo studio. E nonostante la spesa, nessun software faceva tutto: mancava sempre qualcosa.</p>
-        <p style="font-size:14px;color:var(--text2);line-height:1.8;">Mi sono chiesto: <strong style="color:var(--text);">questo problema ce l'ho solo io, o è comune a tutti i tecnici?</strong> La risposta, parlando con colleghi in tutta Italia, era ovvia: è un problema condiviso. Così ho deciso di risolverlo.</p>
-      </div>
-      <div>
-        <h3 style="font-size:20px;font-weight:800;letter-spacing:-.02em;margin-bottom:16px;">La soluzione: tutto su una chiavetta USB</h3>
-        <p style="font-size:14px;color:var(--text2);line-height:1.8;margin-bottom:14px;">Ho sviluppato WinCurePro con un obiettivo preciso: creare il software diagnostica PC professionale che avrei voluto avere io stesso. Uno strumento portatile da USB che contenesse tutto il necessario — diagnostica hardware, analisi SMART disco, verifica driver, monitoraggio sensori, benchmark, CRM clienti, PDF certificato — senza dover fare affidamento su altri strumenti o connessioni internet.</p>
-        <p style="font-size:14px;color:var(--text2);line-height:1.8;margin-bottom:14px;">La chiavetta USB non è un dettaglio: è la filosofia del progetto. Inserisci la chiavetta nel PC del cliente e in 10 secondi sei operativo, con tutto quello che ti serve, senza installare nulla sul PC di chi assisti. Alla fine del lavoro, stacchi la chiavetta e non lasci nessuna traccia.</p>
-        <p style="font-size:14px;color:var(--text2);line-height:1.8;">Dopo 10 anni di esperienza come tecnico informatico a Varese, WinCurePro è il distillato di tutto quello che ho imparato sul campo. Ogni funzione è stata pensata per risolvere un problema reale che ho incontrato nel mio lavoro quotidiano.</p>
-      </div>
-    </div>
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:56px;">
-      <div style="background:var(--bg2);border-radius:var(--r2);padding:24px 20px;">
-        <div style="font-size:28px;margin-bottom:12px;">🎯</div>
-        <div style="font-size:14px;font-weight:700;margin-bottom:6px;">Fatto da un tecnico</div>
-        <div style="font-size:13px;color:var(--text2);line-height:1.6;">WinCurePro non è stato progettato da un team di marketing. Ogni funzione nasce da un'esigenza reale vissuta in prima persona sul campo.</div>
-      </div>
-      <div style="background:var(--bg2);border-radius:var(--r2);padding:24px 20px;">
-        <div style="font-size:28px;margin-bottom:12px;">💰</div>
-        <div style="font-size:14px;font-weight:700;margin-bottom:6px;">Prezzo onesto, una volta sola</div>
-        <div style="font-size:13px;color:var(--text2);line-height:1.6;">Nessun abbonamento mensile. Paghi una volta e il software è tuo per sempre, aggiornamenti inclusi. Come dovrebbe essere.</div>
-      </div>
-      <div style="background:var(--bg2);border-radius:var(--r2);padding:24px 20px;">
-        <div style="font-size:28px;margin-bottom:12px;">🔒</div>
-        <div style="font-size:14px;font-weight:700;margin-bottom:6px;">Privacy totale</div>
-        <div style="font-size:13px;color:var(--text2);line-height:1.6;">I dati dei tuoi clienti restano sulla tua chiavetta USB. Nessun server esterno, nessuna sincronizzazione cloud obbligatoria. I dati sono tuoi.</div>
-      </div>
-    </div>
-    <div style="background:var(--bg2);border-radius:var(--r2);padding:36px 40px;border:1px solid var(--border);">
-      <h3 style="font-size:18px;font-weight:800;letter-spacing:-.02em;margin-bottom:20px;">WinCurePro: il software diagnostica PC professionale per tecnici informatici</h3>
-      <p style="font-size:14px;color:var(--text2);line-height:1.8;margin-bottom:14px;">WinCurePro è un <strong style="color:var(--text);">software diagnostica PC professionale</strong> progettato specificamente per tecnici informatici, studi di riparazione PC e officine di assistenza tecnica. A differenza dei tool tradizionali che richiedono installazione sul PC del cliente, WinCurePro funziona completamente <strong style="color:var(--text);">da chiavetta USB portatile</strong>, senza lasciare tracce sul sistema analizzato.</p>
-      <p style="font-size:14px;color:var(--text2);line-height:1.8;margin-bottom:14px;">Il software integra in un'unica interfaccia tutte le funzionalità necessarie per una diagnosi hardware completa su Windows 10 e Windows 11: analisi CPU, RAM, dischi rigidi e SSD con tecnologia <strong style="color:var(--text);">SMART</strong>, verifica automatica dei driver obsoleti o mancanti, monitoraggio in tempo reale di temperature, ventole e voltaggi, stress test per CPU, RAM e GPU, speed test della connessione internet e analisi della rete locale.</p>
-      <p style="font-size:14px;color:var(--text2);line-height:1.8;margin-bottom:14px;">A queste funzionalità di diagnostica hardware si aggiungono strumenti esclusivi pensati per la gestione professionale dell'officina: un <strong style="color:var(--text);">CRM clienti integrato</strong> con gestione ticket riparazioni e magazzino ricambi, la generazione di <strong style="color:var(--text);">PDF certificati</strong> con firma digitale e logo personalizzato da consegnare al cliente, e un modulo di analisi AI basato su Groq che interpreta i risultati diagnostici e suggerisce le azioni correttive.</p>
-      <p style="font-size:14px;color:var(--text2);line-height:1.8;margin-bottom:14px;">WinCurePro è disponibile in 4 piani: <strong style="color:var(--text);">Starter (€99)</strong> con diagnostica completa e monitoraggio live, <strong style="color:var(--text);">Pro (€199)</strong> con AI Groq, PDF certificato, CRM e remote support, <strong style="color:var(--text);">Business Team (€499)</strong> con 5 chiavette USB e AI predittiva offline, e <strong style="color:var(--text);">Business Studio (€899)</strong> con 10 chiavette USB. Tutti i piani includono una <strong style="color:var(--text);">licenza perpetua</strong> con aggiornamenti a vita senza abbonamento.</p>
-      <p style="font-size:14px;color:var(--text2);line-height:1.8;">Sviluppato e supportato da <strong style="color:var(--text);">PC Facile Varese</strong> (Varese, Italia), WinCurePro è disponibile in italiano, inglese, tedesco, francese e spagnolo, ed è compatibile con qualsiasi PC Windows 10/11 a 64 bit. Per informazioni o acquisto: <a href="mailto:pcfacilevarese@gmail.com" style="color:var(--accent);">pcfacilevarese@gmail.com</a> o WhatsApp +39 389 780 4599.</p>
-    </div>
-  </div>
-</div>
-
 <!-- FOOTER -->
 <footer>
   <div class="footer-inner">
@@ -594,6 +620,22 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:24px;}
 </footer>
 
 <script>
+function toggleMenu(){
+  const links=document.querySelector('.nav-links');
+  const btn=document.getElementById('hamburger');
+  const open=links.classList.toggle('open');
+  btn.classList.toggle('open',open);
+  btn.setAttribute('aria-expanded',open);
+}
+// close menu when a nav link is clicked
+document.querySelectorAll('.nav-links a').forEach(a=>{
+  a.addEventListener('click',()=>{
+    document.querySelector('.nav-links').classList.remove('open');
+    const btn=document.getElementById('hamburger');
+    btn.classList.remove('open');
+    btn.setAttribute('aria-expanded','false');
+  });
+});
 function tog(el){const f=el.parentElement;const was=f.classList.contains('open');document.querySelectorAll('.faq.open').forEach(x=>x.classList.remove('open'));if(!was)f.classList.add('open');}
 document.querySelectorAll('.plan-cta[data-plan]').forEach(btn=>{btn.addEventListener('click',e=>{const p=btn.getAttribute('data-plan');const r=document.querySelector(`input[name="piano"][value="${p}"]`);if(r)r.checked=true;});});
 let lang='it';
