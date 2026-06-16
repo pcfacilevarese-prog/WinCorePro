@@ -268,8 +268,9 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:24px;}
   /* direct contact */
   .direct-contact{flex-direction:column;align-items:stretch;padding:0 20px 48px;}
   .dc-card{min-width:unset;}
-  /* chi siamo */
+  /* footer nuovo */
   #chi-siamo > div{grid-template-columns:1fr !important;gap:32px !important;padding:48px 20px !important;}
+  footer > div:first-child{grid-template-columns:1fr 1fr !important;gap:24px !important;padding:32px 20px 20px !important;}
 }
 
 /* ── RESPONSIVE 480 ── */
@@ -362,7 +363,7 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:24px;}
     <span class="hero-dot"></span>
     <span data-it="Tool professionale per tecnici PC" data-en="Professional tool for PC technicians" data-de="Professionelles Tool für PC-Techniker" data-fr="Outil professionnel pour techniciens PC" data-es="Herramienta profesional para técnicos PC">Tool professionale per tecnici PC</span>
   </div>
-  <h1 data-it="Diagnosi PC <span class='hero-accent'>completa</span><br>da chiavetta USB" data-en="Complete PC <span class='hero-accent'>diagnostics</span><br>from USB stick" data-de="Vollständige PC-<span class='hero-accent'>Diagnose</span><br>vom USB-Stick" data-fr="Diagnostic PC <span class='hero-accent'>complet</span><br>depuis clé USB" data-es="Diagnóstico PC <span class='hero-accent'>completo</span><br>desde pendrive USB">Diagnosi PC <span class="hero-accent">completa</span><br>da chiavetta USB</h1>
+  <h1 data-it="Software diagnostica PC <span class='hero-accent'>professionale</span><br>da chiavetta USB" data-en="Complete PC <span class='hero-accent'>diagnostics</span><br>from USB stick" data-de="Vollständige PC-<span class='hero-accent'>Diagnose</span><br>vom USB-Stick" data-fr="Diagnostic PC <span class='hero-accent'>complet</span><br>depuis clé USB" data-es="Diagnóstico PC <span class='hero-accent'>completo</span><br>desde pendrive USB">Software diagnostica PC <span class="hero-accent">professionale</span><br>da chiavetta USB</h1>
   <p class="hero-sub" data-it="Software diagnostica PC portatile da USB: AI, SMART disco, driver check, PDF certificato. Nessuna installazione, funziona su qualsiasi PC Windows 10/11." data-en="Portable PC diagnostic software from USB: AI, SMART, driver check, PDF certificate. No installation, works on any Windows 10/11 PC." data-de="Portable PC-Diagnosesoftware vom USB-Stick: KI, SMART, Treiber, PDF-Zertifikat. Keine Installation." data-fr="Logiciel de diagnostic PC portable sur USB: IA, SMART, Pilotes, PDF certifié. Sans installation." data-es="Software de diagnóstico PC portátil desde USB: IA, SMART, Controladores, PDF certificado. Sin instalación.">Software diagnostica PC portatile da USB: AI, SMART disco, driver check, PDF certificato. Nessuna installazione, funziona su qualsiasi PC Windows 10/11.</p>
   <div class="hero-chips">
     <div class="chip"><span class="chip-dot"></span> AI Groq + Predittiva offline</div>
@@ -654,17 +655,47 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:24px;}
 </div>
 
 <!-- FOOTER -->
-<footer>
-  <div class="footer-inner">
-    <div style="display:flex;flex-direction:column;gap:4px;">
-      <span class="footer-copy">© 2026 WinCurePro · Nicola Marco Bongiovanni · P.IVA 03000980122</span>
-      <span class="footer-copy">Via Monte Generoso, 19 — 21100 Varese (VA) · <a href="mailto:pcfacilevarese@gmail.com" style="color:var(--text2);text-decoration:none;">pcfacilevarese@gmail.com</a></span>
+<footer style="border-top:1px solid var(--border);background:var(--bg2);">
+  <div style="max-width:1080px;margin:0 auto;padding:40px 24px 24px;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:32px;">
+    <!-- Brand -->
+    <div>
+      <div style="font-size:15px;font-weight:700;letter-spacing:-.02em;margin-bottom:8px;">WinCurePro</div>
+      <div style="font-size:12px;color:var(--text2);line-height:1.7;margin-bottom:12px;">Software diagnostica PC professionale per tecnici. Funziona da chiavetta USB su qualsiasi PC Windows 10/11 senza installazione.</div>
+      <div style="font-size:11px;color:var(--text3);">© 2026 PC Facile Varese · P.IVA 03000980122</div>
     </div>
-    <div class="footer-links">
-      <a href="mailto:pcfacilevarese@gmail.com" data-it="Contatti" data-en="Contact" data-de="Kontakt" data-fr="Contact" data-es="Contacto">Contatti</a>
-      <a href="/privacy.html">Privacy Policy</a>
-      <a href="/termini.html">Termini e Condizioni</a>
+    <!-- Prodotto -->
+    <div>
+      <div style="font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--text3);margin-bottom:12px;font-family:var(--mono);">Prodotto</div>
+      <div style="display:flex;flex-direction:column;gap:8px;">
+        <a href="#features" style="font-size:13px;color:var(--text2);text-decoration:none;" onmouseover="this.style.color='var(--text)'" onmouseout="this.style.color='var(--text2)'" data-it="Funzioni" data-en="Features" data-de="Funktionen" data-fr="Fonctions" data-es="Funciones">Funzioni</a>
+        <a href="#piani" style="font-size:13px;color:var(--text2);text-decoration:none;" onmouseover="this.style.color='var(--text)'" onmouseout="this.style.color='var(--text2)'" data-it="Piani e prezzi" data-en="Plans & pricing" data-de="Pläne & Preise" data-fr="Plans & tarifs" data-es="Planes y precios">Piani e prezzi</a>
+        <a href="#pagamenti" style="font-size:13px;color:var(--text2);text-decoration:none;" onmouseover="this.style.color='var(--text)'" onmouseout="this.style.color='var(--text2)'" data-it="Metodi di pagamento" data-en="Payment methods" data-de="Zahlungsmethoden" data-fr="Paiements" data-es="Pagos">Metodi di pagamento</a>
+        <a href="/confronto.html" style="font-size:13px;color:var(--text2);text-decoration:none;" onmouseover="this.style.color='var(--text)'" onmouseout="this.style.color='var(--text2)'" data-it="Confronto competitor" data-en="Compare" data-de="Vergleich" data-fr="Comparatif" data-es="Comparativa">Confronto competitor</a>
+      </div>
     </div>
+    <!-- Azienda -->
+    <div>
+      <div style="font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--text3);margin-bottom:12px;font-family:var(--mono);">Azienda</div>
+      <div style="display:flex;flex-direction:column;gap:8px;">
+        <a href="#chi-siamo" style="font-size:13px;color:var(--text2);text-decoration:none;" onmouseover="this.style.color='var(--text)'" onmouseout="this.style.color='var(--text2)'" data-it="Chi siamo" data-en="About us" data-de="Über uns" data-fr="À propos" data-es="Quiénes somos">Chi siamo</a>
+        <a href="#faq" style="font-size:13px;color:var(--text2);text-decoration:none;" onmouseover="this.style.color='var(--text)'" onmouseout="this.style.color='var(--text2)'">FAQ</a>
+        <a href="mailto:pcfacilevarese@gmail.com" style="font-size:13px;color:var(--text2);text-decoration:none;" onmouseover="this.style.color='var(--text)'" onmouseout="this.style.color='var(--text2)'" data-it="Contatti" data-en="Contact" data-de="Kontakt" data-fr="Contact" data-es="Contacto">Contatti</a>
+        <a href="https://pcfacilevarese.it" target="_blank" style="font-size:13px;color:var(--text2);text-decoration:none;" onmouseover="this.style.color='var(--text)'" onmouseout="this.style.color='var(--text2)'">PC Facile Varese</a>
+      </div>
+    </div>
+    <!-- Legale -->
+    <div>
+      <div style="font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--text3);margin-bottom:12px;font-family:var(--mono);">Legale</div>
+      <div style="display:flex;flex-direction:column;gap:8px;">
+        <a href="/privacy.html" style="font-size:13px;color:var(--text2);text-decoration:none;" onmouseover="this.style.color='var(--text)'" onmouseout="this.style.color='var(--text2)'">Privacy Policy</a>
+        <a href="/termini.html" style="font-size:13px;color:var(--text2);text-decoration:none;" onmouseover="this.style.color='var(--text)'" onmouseout="this.style.color='var(--text2)'">Termini e Condizioni</a>
+        <a href="/sitemap.xml" style="font-size:13px;color:var(--text2);text-decoration:none;" onmouseover="this.style.color='var(--text)'" onmouseout="this.style.color='var(--text2)'">Sitemap</a>
+      </div>
+    </div>
+  </div>
+  <div style="max-width:1080px;margin:0 auto;padding:16px 24px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;">
+    <span style="font-size:11px;color:var(--text3);">Via Monte Generoso, 19 — 21100 Varese (VA) · <a href="mailto:pcfacilevarese@gmail.com" style="color:var(--text3);text-decoration:none;">pcfacilevarese@gmail.com</a></span>
+    <span style="font-size:11px;color:var(--text3);">Software diagnostica PC per tecnici professionisti · Licenza perpetua</span>
   </div>
 </footer>
 
