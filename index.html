@@ -317,6 +317,8 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:24px;}
   .nav-buy{font-size:12px;padding:6px 14px;}
 }
 </style>
+<!-- reCAPTCHA v3 -->
+<script src="https://www.google.com/recaptcha/api.js?render=6LczuyQtAAAAAEGzAIgyjRLHuYAxByNemF6maaLU" async defer></script>
 </head>
 <body>
 
@@ -349,6 +351,7 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:24px;}
       <a href="#chi-siamo" data-it="Chi siamo" data-en="About" data-de="Über uns" data-fr="À propos" data-es="Quiénes somos">Chi siamo</a>
       <a href="#faq" data-it="FAQ" data-en="FAQ" data-de="FAQ" data-fr="FAQ" data-es="FAQ">FAQ</a>
       <a href="/confronto.html" data-it="Confronto" data-en="Compare" data-de="Vergleich" data-fr="Comparatif" data-es="Comparativa">Confronto</a>
+      <a href="/account.html" style="color:var(--accent);font-weight:600;" data-it="Area Clienti" data-en="My Account" data-de="Mein Konto" data-fr="Mon Compte" data-es="Mi Cuenta">Area Clienti</a>
     </div>
     <a href="https://buy.stripe.com/bJe00l4Uo3mp9Fw76l0Ba00" target="_blank" class="nav-buy" data-it="Acquista ora" data-en="Buy now" data-de="Jetzt kaufen" data-fr="Acheter" data-es="Comprar">Acquista ora</a>
     <button class="nav-hamburger" id="hamburger" aria-label="Menu" aria-expanded="false" onclick="toggleMenu()">
@@ -559,6 +562,10 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:24px;}
     <input type="hidden" name="_subject" value="Richiesta WinCurePro">
     <input type="hidden" name="_captcha" value="false">
     <input type="hidden" name="_template" value="table">
+    <!-- Honeypot anti-bot -->
+    <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
+    <!-- reCAPTCHA token -->
+    <input type="hidden" name="g-recaptcha-response" id="g-recaptcha-token">
     <div class="form-grid">
       <div class="form-group"><label data-it="Nome *" data-en="Name *" data-de="Name *" data-fr="Nom *" data-es="Nombre *">Nome *</label><input type="text" name="nome" required placeholder="Mario Rossi"></div>
       <div class="form-group"><label data-it="Email *" data-en="Email *" data-de="E-Mail *" data-fr="E-mail *" data-es="Correo *">Email *</label><input type="email" name="email" required placeholder="mario@esempio.it"></div>
@@ -870,6 +877,50 @@ function ckSavePrefs(){
     setTimeout(ckOpen, 800);
   }
 })();
+</script>
+
+
+<script>
+// ── reCAPTCHA v3 ─────────────────────────────────────
+document.getElementById('contact-form').addEventListener('submit', function(e) {
+  // Blocca se honeypot compilato
+  if (document.querySelector('input[name="_honey"]').value) {
+    e.preventDefault();
+    return false;
+  }
+  // reCAPTCHA v3
+  e.preventDefault();
+  const form = this;
+  const btn = form.querySelector('.btn-submit');
+  btn.disabled = true;
+  btn.textContent = 'Invio in corso...';
+  
+  grecaptcha.ready(function() {
+    grecaptcha.execute('6LczuyQtAAAAAEGzAIgyjRLHuYAxByNemF6maaLU', {action: 'contact'}).then(function(token) {
+      document.getElementById('g-recaptcha-token').value = token;
+      // Invia il form via fetch (AJAX)
+      const data = new FormData(form);
+      fetch(form.action, {
+        method: 'POST',
+        body: data,
+        headers: { 'Accept': 'application/json' }
+      }).then(r => r.json()).then(res => {
+        btn.textContent = '✅ Messaggio inviato!';
+        btn.style.background = '#22c55e';
+        form.reset();
+        setTimeout(() => {
+          btn.textContent = 'Invia richiesta →';
+          btn.style.background = '';
+          btn.disabled = false;
+        }, 4000);
+      }).catch(() => {
+        btn.textContent = 'Invia richiesta →';
+        btn.disabled = false;
+        alert('Errore invio. Riprova o contattaci via email.');
+      });
+    });
+  });
+});
 </script>
 
 </body>
