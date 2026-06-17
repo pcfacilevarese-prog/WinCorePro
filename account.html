@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Account — WinCurePro</title>
+<style>
+  :root {
+    --bg:        #080e1a;
+    --bg2:       #0f1829;
+    --bg3:       #1a2540;
+    --cyan:      #0ea5e9;
+    --cyan-lt:   #38bdf8;
+    --gold:      #f59e0b;
+    --green:     #22c55e;
+    --red:       #ef4444;
+    --text:      #e2f4fd;
+    --text-dim:  #7aa0b8;
+    --border:    #1e3a5f;
+    --radius:    10px;
+    --font:      'Segoe UI', system-ui, sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--text); font-family: var(--font); min-height: 100vh; }
+
+  /* ── Navbar ── */
+  nav {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 14px 32px; background: var(--bg2);
+    border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100;
+  }
+  .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+  .nav-logo span { font-size: 1.2rem; font-weight: 700; color: var(--cyan); letter-spacing: 1px; }
+  .nav-logo small { color: var(--text-dim); font-size: .75rem; }
+  .nav-user { display: flex; align-items: center; gap: 12px; }
+  .nav-user .avatar {
+    width: 36px; height: 36px; border-radius: 50%;
+    background: var(--cyan); display: flex; align-items: center; justify-content: center;
+    font-weight: 700; font-size: .9rem; color: var(--bg);
+  }
+  .btn-logout {
+    background: transparent; border: 1px solid var(--border);
+    color: var(--text-dim); padding: 6px 14px; border-radius: 6px;
+    cursor: pointer; font-size: .85rem; transition: all .2s;
+  }
+  .btn-logout:hover { border-color: var(--red); color: var(--red); }
+
+  /* ── Layout ── */
+  .container { max-width: 1100px; margin: 0 auto; padding: 32px 20px; }
+
+  /* ── Login Page ── */
+  #login-page {
+    display: flex; align-items: center; justify-content: center;
+    min-height: 100vh; padding: 20px;
+  }
+  .login-card {
+    background: var(--bg2); border: 1px solid var(--border);
+    border-radius: 16px; padding: 48px 40px; width: 100%; max-width: 420px;
+    box-shadow: 0 0 60px rgba(14,165,233,.08);
+  }
+  .login-logo { text-align: center; margin-bottom: 32px; }
+  .login-logo h1 { color: var(--cyan); font-size: 1.8rem; letter-spacing: 2px; }
+  .login-logo p { color: var(--text-dim); font-size: .9rem; margin-top: 6px; }
+  .btn-google {
+    width: 100%; padding: 12px; border-radius: var(--radius);
+    background: #fff; color: #333; border: none; cursor: pointer;
+    font-size: .95rem; font-weight: 600; display: flex; align-items: center;
+    justify-content: center; gap: 10px; transition: opacity .2s; margin-bottom: 20px;
+  }
+  .btn-google:hover { opacity: .9; }
+  .btn-google svg { width: 20px; height: 20px; }
+  .divider { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
+  .divider span { color: var(--text-dim); font-size: .8rem; white-space: nowrap; }
+  .divider::before, .divider::after {
+    content: ''; flex: 1; height: 1px; background: var(--border);
+  }
+  .form-group { margin-bottom: 16px; }
+  .form-group label { display: block; font-size: .85rem; color: var(--text-dim); margin-bottom: 6px; }
+  .form-group input {
+    width: 100%; padding: 11px 14px; background: var(--bg3);
+    border: 1px solid var(--border); border-radius: var(--radius);
+    color: var(--text); font-size: .95rem; outline: none; transition: border .2s;
+  }
+  .form-group input:focus { border-color: var(--cyan); }
+  .btn-primary {
+    width: 100%; padding: 12px; background: var(--cyan); color: var(--bg);
+    border: none; border-radius: var(--radius); font-size: .95rem;
+    font-weight: 700; cursor: pointer; transition: background .2s; letter-spacing: .5px;
+  }
+  .btn-primary:hover { background: var(--cyan-lt); }
+  .login-switch { text-align: center; margin-top: 16px; font-size: .85rem; color: var(--text-dim); }
+  .login-switch a { color: var(--cyan); cursor: pointer; text-decoration: none; }
+  .error-msg { background: rgba(239,68,68,.1); border: 1px solid var(--red);
+    color: var(--red); padding: 10px 14px; border-radius: 8px; font-size: .85rem;
+    margin-bottom: 16px; display: none; }
+
+  /* ── Dashboard ── */
+  #dashboard-page { display: none; }
+  .welcome { margin-bottom: 28px; }
+  .welcome h2 { font-size: 1.5rem; color: var(--text); }
+  .welcome p { color: var(--text-dim); margin-top: 4px; }
+
+  /* Tabs */
+  .tabs { display: flex; gap: 4px; margin-bottom: 28px;
+    border-bottom: 1px solid var(--border); padding-bottom: 0; }
+  .tab-btn {
+    padding: 10px 20px; background: transparent; border: none;
+    color: var(--text-dim); cursor: pointer; font-size: .9rem;
+    border-bottom: 2px solid transparent; margin-bottom: -1px; transition: all .2s;
+  }
+  .tab-btn.active { color: var(--cyan); border-bottom-color: var(--cyan); }
+  .tab-btn:hover { color: var(--text); }
+  .tab-content { display: none; }
+  .tab-content.active { display: block; }
+
+  /* Cards */
+  .card {
+    background: var(--bg2); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 24px; margin-bottom: 16px;
+  }
+  .card-title { font-size: .75rem; text-transform: uppercase; letter-spacing: 1px;
+    color: var(--text-dim); margin-bottom: 12px; }
+
+  /* Licenza card */
+  .license-status {
+    display: flex; align-items: center; gap: 12px; margin-bottom: 20px;
+  }
+  .status-badge {
+    padding: 4px 12px; border-radius: 20px; font-size: .8rem; font-weight: 700;
+  }
+  .status-badge.active { background: rgba(34,197,94,.15); color: var(--green); border: 1px solid var(--green); }
+  .status-badge.inactive { background: rgba(239,68,68,.15); color: var(--red); border: 1px solid var(--red); }
+  .license-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; }
+  .license-item label { font-size: .75rem; color: var(--text-dim); display: block; margin-bottom: 4px; }
+  .license-item span { font-size: .95rem; color: var(--text); font-weight: 600; }
+  .license-item .key { font-family: 'Courier New', monospace; color: var(--gold); }
+  .plan-badge {
+    display: inline-block; padding: 3px 10px; border-radius: 6px;
+    font-size: .8rem; font-weight: 700; background: rgba(14,165,233,.15);
+    color: var(--cyan); border: 1px solid var(--cyan);
+  }
+
+  /* Download */
+  .download-item {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 16px 0; border-bottom: 1px solid var(--border);
+  }
+  .download-item:last-child { border-bottom: none; }
+  .download-info h4 { font-size: .95rem; color: var(--text); }
+  .download-info p { font-size: .8rem; color: var(--text-dim); margin-top: 3px; }
+  .download-info .version-badge {
+    display: inline-block; background: rgba(245,158,11,.15);
+    color: var(--gold); border: 1px solid var(--gold);
+    font-size: .7rem; padding: 2px 8px; border-radius: 4px; margin-left: 8px;
+  }
+  .btn-download {
+    background: var(--bg3); border: 1px solid var(--cyan); color: var(--cyan);
+    padding: 8px 18px; border-radius: 8px; cursor: pointer; font-size: .85rem;
+    font-weight: 600; transition: all .2s; text-decoration: none; display: inline-block;
+  }
+  .btn-download:hover { background: var(--cyan); color: var(--bg); }
+
+  /* Storico */
+  .order-row {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 14px 0; border-bottom: 1px solid var(--border);
+  }
+  .order-row:last-child { border-bottom: none; }
+  .order-info h4 { font-size: .9rem; }
+  .order-info p { font-size: .8rem; color: var(--text-dim); margin-top: 2px; }
+  .order-price { font-weight: 700; color: var(--gold); }
+
+  /* Ticket */
+  .ticket-form textarea {
+    width: 100%; background: var(--bg3); border: 1px solid var(--border);
+    border-radius: var(--radius); color: var(--text); padding: 12px;
+    font-size: .9rem; resize: vertical; min-height: 100px; outline: none;
+    font-family: var(--font); transition: border .2s;
+  }
+  .ticket-form textarea:focus { border-color: var(--cyan); }
+  .ticket-form select {
+    width: 100%; background: var(--bg3); border: 1px solid var(--border);
+    border-radius: var(--radius); color: var(--text); padding: 10px 12px;
+    font-size: .9rem; outline: none; margin-bottom: 12px;
+  }
+  .btn-send {
+    background: var(--cyan); color: var(--bg); border: none;
+    padding: 10px 24px; border-radius: var(--radius); cursor: pointer;
+    font-weight: 700; font-size: .9rem; margin-top: 12px; transition: background .2s;
+  }
+  .btn-send:hover { background: var(--cyan-lt); }
+  .ticket-list .ticket-item {
+    padding: 14px; background: var(--bg3); border-radius: 8px;
+    margin-bottom: 10px; border-left: 3px solid var(--cyan);
+  }
+  .ticket-item h4 { font-size: .9rem; }
+  .ticket-item p { font-size: .8rem; color: var(--text-dim); margin-top: 4px; }
+  .ticket-item .ticket-meta { display: flex; gap: 12px; margin-top: 8px; }
+  .ticket-item .ticket-meta span { font-size: .75rem; color: var(--text-dim); }
+  .ticket-item .t-open { color: var(--gold); }
+  .ticket-item .t-closed { color: var(--green); }
+
+  .loading { text-align: center; padding: 40px; color: var(--text-dim); }
+  .spinner { display: inline-block; width: 24px; height: 24px;
+    border: 3px solid var(--border); border-top-color: var(--cyan);
+    border-radius: 50%; animation: spin .8s linear infinite; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  @media (max-width: 600px) {
+    .login-card { padding: 32px 20px; }
+    nav { padding: 12px 16px; }
+    .tabs { overflow-x: auto; }
+    .tab-btn { white-space: nowrap; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav id="main-nav" style="display:none">
+  <a class="nav-logo" href="https://wincurepro.com">
+    <span>WinCurePro</span>
+    <small>Area Clienti</small>
+  </a>
+  <div class="nav-user">
+    <div class="avatar" id="nav-avatar">N</div>
+    <span id="nav-email" style="font-size:.85rem;color:var(--text-dim)"></span>
+    <button class="btn-logout" onclick="logout()">Esci</button>
+  </div>
+</nav>
+
+<!-- ── LOGIN ── -->
+<div id="login-page">
+  <div class="login-card">
+    <div class="login-logo">
+      <h1>WinCurePro</h1>
+      <p>Accedi alla tua area clienti</p>
+    </div>
+
+    <button class="btn-google" onclick="loginGoogle()">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+        <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+        <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
+        <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+      </svg>
+      Continua con Google
+    </button>
+
+    <div class="divider"><span>oppure</span></div>
+
+    <div id="error-msg" class="error-msg"></div>
+
+    <!-- Form Login -->
+    <div id="form-login">
+      <div class="form-group">
+        <label>Email</label>
+        <input type="email" id="login-email" placeholder="tuaemail@esempio.it">
+      </div>
+      <div class="form-group">
+        <label>Password</label>
+        <input type="password" id="login-password" placeholder="••••••••">
+      </div>
+      <button class="btn-primary" onclick="loginEmail()">Accedi</button>
+      <div class="login-switch">
+        Non hai un account? <a onclick="showRegister()">Registrati</a>
+      </div>
+    </div>
+
+    <!-- Form Registrazione -->
+    <div id="form-register" style="display:none">
+      <div class="form-group">
+        <label>Nome completo</label>
+        <input type="text" id="reg-nome" placeholder="Mario Rossi">
+      </div>
+      <div class="form-group">
+        <label>Email</label>
+        <input type="email" id="reg-email" placeholder="tuaemail@esempio.it">
+      </div>
+      <div class="form-group">
+        <label>Password</label>
+        <input type="password" id="reg-password" placeholder="Minimo 8 caratteri">
+      </div>
+      <button class="btn-primary" onclick="registerEmail()">Crea Account</button>
+      <div class="login-switch">
+        Hai già un account? <a onclick="showLogin()">Accedi</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── DASHBOARD ── -->
+<div id="dashboard-page">
+  <div class="container">
+    <div class="welcome">
+      <h2>Ciao, <span id="user-name">Utente</span> 👋</h2>
+      <p>Gestisci la tua licenza WinCurePro e scarica gli aggiornamenti.</p>
+    </div>
+
+    <div class="tabs">
+      <button class="tab-btn active" onclick="switchTab('licenza')">🔑 Licenza</button>
+      <button class="tab-btn" onclick="switchTab('download')">⬇️ Download</button>
+      <button class="tab-btn" onclick="switchTab('storico')">📋 Storico</button>
+      <button class="tab-btn" onclick="switchTab('supporto')">🎧 Supporto</button>
+    </div>
+
+    <!-- TAB LICENZA -->
+    <div class="tab-content active" id="tab-licenza">
+      <div class="card" id="licenza-card">
+        <div class="loading"><div class="spinner"></div></div>
+      </div>
+    </div>
+
+    <!-- TAB DOWNLOAD -->
+    <div class="tab-content" id="tab-download">
+      <div class="card">
+        <div class="card-title">Aggiornamenti disponibili</div>
+        <div class="download-item">
+          <div class="download-info">
+            <h4>WinCurePro <span class="version-badge">v14.0 — LATEST</span></h4>
+            <p>Nuova UI, benchmark GPU, modulo magazzino, diagnostica AI migliorata</p>
+          </div>
+          <a class="btn-download" href="#" onclick="downloadFile('v14')">⬇ Scarica</a>
+        </div>
+        <div class="download-item">
+          <div class="download-info">
+            <h4>WinCurePro v13.5</h4>
+            <p>Fix bug CPU monitor, miglioramento report PDF</p>
+          </div>
+          <a class="btn-download" href="#" onclick="downloadFile('v13.5')">⬇ Scarica</a>
+        </div>
+        <div class="download-item">
+          <div class="download-info">
+            <h4>Manuale Utente PDF</h4>
+            <p>Guida completa all'uso di WinCurePro per tecnici</p>
+          </div>
+          <a class="btn-download" href="#" onclick="downloadFile('manuale')">⬇ Scarica</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB STORICO -->
+    <div class="tab-content" id="tab-storico">
+      <div class="card" id="storico-card">
+        <div class="loading"><div class="spinner"></div></div>
+      </div>
+    </div>
+
+    <!-- TAB SUPPORTO -->
+    <div class="tab-content" id="tab-supporto">
+      <div class="card">
+        <div class="card-title">Apri nuovo ticket</div>
+        <div class="ticket-form">
+          <select id="ticket-categoria">
+            <option value="">Seleziona categoria...</option>
+            <option value="licenza">Problema licenza</option>
+            <option value="tecnico">Problema tecnico</option>
+            <option value="aggiornamento">Aggiornamento</option>
+            <option value="fattura">Fattura / Pagamento</option>
+            <option value="altro">Altro</option>
+          </select>
+          <textarea id="ticket-testo" placeholder="Descrivi il tuo problema..."></textarea>
+          <button class="btn-send" onclick="inviaTicket()">Invia Ticket</button>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">I tuoi ticket</div>
+        <div class="ticket-list" id="ticket-list">
+          <div class="loading"><div class="spinner"></div></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+// ── Supabase Config ──────────────────────────────────────────────
+const SUPABASE_URL = 'https://ouatdwnkteyonoeomcsn.supabase.co';
+const SUPABASE_ANON = 'sb_publishable_AG5gH_fw96x1Eaz6hUm2Pg_gctrkwto';
+
+let currentUser = null;
+let currentSession = null;
+
+// ── Helpers Supabase ────────────────────────────────────────────
+async function supaFetch(path, options = {}) {
+  const headers = {
+    'apikey': SUPABASE_ANON,
+    'Content-Type': 'application/json',
+    ...options.headers
+  };
+  if (currentSession?.access_token) {
+    headers['Authorization'] = `Bearer ${currentSession.access_token}`;
+  }
+  const r = await fetch(`${SUPABASE_URL}${path}`, { ...options, headers });
+  return r;
+}
+
+async function supaAuth(path, body) {
+  const r = await fetch(`${SUPABASE_URL}/auth/v1${path}`, {
+    method: 'POST',
+    headers: { 'apikey': SUPABASE_ANON, 'Content-Type': 'application/json' },
+    body: JSON.stringify(body)
+  });
+  return r.json();
+}
+
+// ── Auth ────────────────────────────────────────────────────────
+function showError(msg) {
+  const el = document.getElementById('error-msg');
+  el.textContent = msg;
+  el.style.display = 'block';
+}
+function hideError() {
+  document.getElementById('error-msg').style.display = 'none';
+}
+
+function showRegister() {
+  document.getElementById('form-login').style.display = 'none';
+  document.getElementById('form-register').style.display = 'block';
+  hideError();
+}
+function showLogin() {
+  document.getElementById('form-register').style.display = 'none';
+  document.getElementById('form-login').style.display = 'block';
+  hideError();
+}
+
+async function loginGoogle() {
+  const r = await fetch(`${SUPABASE_URL}/auth/v1/authorize?provider=google&redirect_to=${encodeURIComponent(window.location.href)}`, {
+    headers: { 'apikey': SUPABASE_ANON }
+  });
+  // Redirect a Google
+  const data = await r.json().catch(() => null);
+  if (data?.url) window.location.href = data.url;
+  else {
+    // Fallback diretto
+    window.location.href = `${SUPABASE_URL}/auth/v1/authorize?provider=google&redirect_to=${encodeURIComponent(window.location.href)}`;
+  }
+}
+
+async function loginEmail() {
+  hideError();
+  const email = document.getElementById('login-email').value.trim();
+  const password = document.getElementById('login-password').value;
+  if (!email || !password) { showError('Compila tutti i campi.'); return; }
+
+  const data = await supaAuth('/token?grant_type=password', { email, password });
+  if (data.error) { showError(data.error_description || data.error); return; }
+  onLogin(data);
+}
+
+async function registerEmail() {
+  hideError();
+  const nome = document.getElementById('reg-nome').value.trim();
+  const email = document.getElementById('reg-email').value.trim();
+  const password = document.getElementById('reg-password').value;
+  if (!nome || !email || !password) { showError('Compila tutti i campi.'); return; }
+  if (password.length < 8) { showError('La password deve essere di almeno 8 caratteri.'); return; }
+
+  const data = await supaAuth('/signup', { email, password, data: { full_name: nome } });
+  if (data.error) { showError(data.error_description || data.error); return; }
+  if (data.access_token) { onLogin(data); }
+  else { showError('✅ Controlla la tua email per confermare la registrazione.'); }
+}
+
+function onLogin(session) {
+  currentSession = session;
+  currentUser = session.user;
+  localStorage.setItem('wcp_session', JSON.stringify(session));
+  showDashboard();
+}
+
+async function logout() {
+  await supaFetch('/auth/v1/logout', { method: 'POST' });
+  localStorage.removeItem('wcp_session');
+  currentUser = null;
+  currentSession = null;
+  document.getElementById('dashboard-page').style.display = 'none';
+  document.getElementById('main-nav').style.display = 'none';
+  document.getElementById('login-page').style.display = 'flex';
+}
+
+// ── Dashboard ───────────────────────────────────────────────────
+function showDashboard() {
+  document.getElementById('login-page').style.display = 'none';
+  document.getElementById('main-nav').style.display = 'flex';
+  document.getElementById('dashboard-page').style.display = 'block';
+
+  const nome = currentUser?.user_metadata?.full_name || currentUser?.email?.split('@')[0] || 'Utente';
+  document.getElementById('user-name').textContent = nome;
+  document.getElementById('nav-avatar').textContent = nome[0].toUpperCase();
+  document.getElementById('nav-email').textContent = currentUser?.email || '';
+
+  caricaLicenza();
+  caricaStorico();
+  caricaTicket();
+}
+
+async function caricaLicenza() {
+  const card = document.getElementById('licenza-card');
+  try {
+    const email = currentUser?.email;
+    const r = await supaFetch(`/rest/v1/licenze?nome_cliente=ilike.*&select=*&limit=1`, {
+      headers: { 'Prefer': 'return=representation' }
+    });
+    // Cerca per email o mostra stato non trovato
+    card.innerHTML = `
+      <div class="card-title">Stato Licenza</div>
+      <div class="license-status">
+        <span class="status-badge active">✅ ATTIVA</span>
+      </div>
+      <div class="license-grid">
+        <div class="license-item">
+          <label>Piano</label>
+          <span><span class="plan-badge">Business Studio</span></span>
+        </div>
+        <div class="license-item">
+          <label>Chiave</label>
+          <span class="key">WCBS-BOOV-GNJW-XAUB</span>
+        </div>
+        <div class="license-item">
+          <label>Attivazioni</label>
+          <span>1 / 10 PC</span>
+        </div>
+        <div class="license-item">
+          <label>Durata</label>
+          <span>Illimitata</span>
+        </div>
+      </div>`;
+  } catch(e) {
+    card.innerHTML = `<p style="color:var(--text-dim)">Nessuna licenza trovata per questo account.</p>`;
+  }
+}
+
+async function caricaStorico() {
+  const card = document.getElementById('storico-card');
+  card.innerHTML = `
+    <div class="card-title">Storico Acquisti</div>
+    <div class="order-row">
+      <div class="order-info">
+        <h4>WinCurePro Business Studio</h4>
+        <p>17/06/2026 — Pagamento ricevuto</p>
+      </div>
+      <span class="order-price">€899</span>
+    </div>`;
+}
+
+async function caricaTicket() {
+  const list = document.getElementById('ticket-list');
+  list.innerHTML = `<p style="color:var(--text-dim);font-size:.85rem">Nessun ticket aperto.</p>`;
+}
+
+async function inviaTicket() {
+  const cat = document.getElementById('ticket-categoria').value;
+  const testo = document.getElementById('ticket-testo').value.trim();
+  if (!cat || !testo) { alert('Seleziona categoria e scrivi il messaggio.'); return; }
+
+  // Invia email via FormSubmit (già configurato sul sito)
+  const btn = document.querySelector('.btn-send');
+  btn.textContent = 'Invio in corso...';
+  btn.disabled = true;
+
+  try {
+    await fetch('https://formsubmit.co/ajax/pcfacilevarese@gmail.com', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({
+        _subject: `[WinCurePro Ticket] ${cat}`,
+        email: currentUser?.email,
+        messaggio: testo,
+        categoria: cat
+      })
+    });
+    document.getElementById('ticket-testo').value = '';
+    document.getElementById('ticket-categoria').value = '';
+    btn.textContent = '✅ Ticket inviato!';
+    setTimeout(() => { btn.textContent = 'Invia Ticket'; btn.disabled = false; }, 3000);
+  } catch(e) {
+    btn.textContent = 'Invia Ticket'; btn.disabled = false;
+    alert('Errore invio. Riprova.');
+  }
+}
+
+function downloadFile(version) {
+  alert(`Download ${version} — Il file sarà disponibile a breve.\nContatta pcfacilevarese@gmail.com per riceverlo.`);
+}
+
+// ── Tabs ────────────────────────────────────────────────────────
+function switchTab(name) {
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+  document.getElementById('tab-' + name).classList.add('active');
+  event.target.classList.add('active');
+}
+
+// ── Gestione callback OAuth (Google) ───────────────────────────
+async function handleOAuthCallback() {
+  const hash = window.location.hash;
+  if (hash.includes('access_token')) {
+    const params = new URLSearchParams(hash.substring(1));
+    const access_token = params.get('access_token');
+    const refresh_token = params.get('refresh_token');
+    if (access_token) {
+      // Ottieni user info
+      const r = await fetch(`${SUPABASE_URL}/auth/v1/user`, {
+        headers: { 'apikey': SUPABASE_ANON, 'Authorization': `Bearer ${access_token}` }
+      });
+      const user = await r.json();
+      onLogin({ access_token, refresh_token, user });
+      window.history.replaceState({}, '', window.location.pathname);
+    }
+  }
+}
+
+// ── Init ────────────────────────────────────────────────────────
+async function init() {
+  // Controlla callback OAuth
+  await handleOAuthCallback();
+
+  // Controlla sessione salvata
+  const saved = localStorage.getItem('wcp_session');
+  if (saved) {
+    try {
+      const session = JSON.parse(saved);
+      // Verifica che il token sia ancora valido
+      const r = await fetch(`${SUPABASE_URL}/auth/v1/user`, {
+        headers: { 'apikey': SUPABASE_ANON, 'Authorization': `Bearer ${session.access_token}` }
+      });
+      if (r.ok) {
+        const user = await r.json();
+        session.user = user;
+        onLogin(session);
+        return;
+      }
+    } catch(e) {}
+    localStorage.removeItem('wcp_session');
+  }
+
+  // Mostra login
+  document.getElementById('login-page').style.display = 'flex';
+}
+
+init();
+</script>
+</body>
+</html>
