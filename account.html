@@ -426,17 +426,9 @@ function showLogin() {
   hideError();
 }
 
-async function loginGoogle() {
-  const r = await fetch(`${SUPABASE_URL}/auth/v1/authorize?provider=google&redirect_to=${encodeURIComponent(window.location.href)}`, {
-    headers: { 'apikey': SUPABASE_ANON }
-  });
-  // Redirect a Google
-  const data = await r.json().catch(() => null);
-  if (data?.url) window.location.href = data.url;
-  else {
-    // Fallback diretto
-    window.location.href = `${SUPABASE_URL}/auth/v1/authorize?provider=google&redirect_to=${encodeURIComponent(window.location.href)}`;
-  }
+function loginGoogle() {
+  const redirectTo = 'https://wincurepro.com/account.html';
+  window.location.href = `${SUPABASE_URL}/auth/v1/authorize?provider=google&redirect_to=${encodeURIComponent(redirectTo)}`;
 }
 
 async function loginEmail() {
