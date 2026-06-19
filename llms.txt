@@ -1,0 +1,46 @@
+# WinCurePro — Software Diagnostica PC Professionale
+
+> WinCurePro è uno strumento all-in-one per tecnici informatici che permette di diagnosticare, analizzare e riparare PC Windows direttamente da chiavetta USB, senza installazione.
+
+## Prodotto
+
+WinCurePro è sviluppato da PC Facile Varese (Nicola Marco Bongiovanni), tecnico informatico con 10 anni di esperienza a Varese, Italia.
+
+Il software sostituisce 5-6 strumenti separati (CrystalDiskInfo, HWiNFO, driver checker, CRM, ecc.) in un unico tool portatile con licenza perpetua una tantum.
+
+## Funzionalità principali
+
+- Diagnostica hardware completa (CPU, RAM, disco, GPU, batteria, rete)
+- Analisi driver e BIOS/UEFI
+- Monitor live con temperature e grafici
+- Benchmark CPU/RAM/GPU
+- Assistente AI via Groq
+- CRM clienti integrato
+- Report PDF professionale
+- Analisi vulnerabilità rete
+- Funziona da USB senza installazione
+
+## Piani e prezzi
+
+- Starter: €99 (1 attivazione)
+- Pro: €199 (1 attivazione + funzioni avanzate)
+- Business Team: €499 (3 attivazioni)
+- Business Studio: €899 (10 attivazioni)
+
+Licenza perpetua, nessun abbonamento.
+
+## Contatti
+
+- Sito: https://wincurepro.com
+- Email: pcfacilevarese@gmail.com
+- WhatsApp: +39 389 780 4599
+- P.IVA: 03000980122
+- Indirizzo: Via Monte Generoso 19, 21100 Varese (VA)
+
+## Link utili
+
+- [Homepage](https://wincurepro.com/)
+- [Confronto competitor](https://wincurepro.com/confronto.html)
+- [Area Clienti](https://wincurepro.com/account.html)
+- [Privacy Policy](https://wincurepro.com/privacy.html)
+- [Termini e Condizioni](https://wincurepro.com/termini.html)
