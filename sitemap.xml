@@ -1,43 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:xhtml="http://www.w3.org/1999/xhtml">
-
-  <!-- Homepage -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://wincurepro.com/</loc>
-    <lastmod>2026-06-13</lastmod>
+    <lastmod>2026-06-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
-    <xhtml:link rel="alternate" hreflang="it" href="https://wincurepro.com/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://wincurepro.com/?lang=en"/>
-    <xhtml:link rel="alternate" hreflang="de" href="https://wincurepro.com/?lang=de"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://wincurepro.com/?lang=fr"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://wincurepro.com/?lang=es"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://wincurepro.com/"/>
   </url>
-
-  <!-- Confronto competitor -->
   <url>
     <loc>https://wincurepro.com/confronto.html</loc>
-    <lastmod>2026-06-13</lastmod>
+    <lastmod>2026-06-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
-
-  <!-- Privacy Policy -->
   <url>
     <loc>https://wincurepro.com/privacy.html</loc>
-    <lastmod>2026-06-01</lastmod>
+    <lastmod>2026-06-19</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
-
-  <!-- Termini e Condizioni -->
   <url>
     <loc>https://wincurepro.com/termini.html</loc>
-    <lastmod>2026-06-01</lastmod>
+    <lastmod>2026-06-19</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
-
+  <url>
+    <loc>https://wincurepro.com/account.html</loc>
+    <lastmod>2026-06-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
 </urlset>
