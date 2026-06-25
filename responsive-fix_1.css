@@ -1,0 +1,218 @@
+/* ============================================================
+   RESPONSIVE COMPLETO — WinCurePro
+   Breakpoints: 1024 | 768 | 600 | 480 | 360
+   ============================================================ */
+
+/* ── 1024px: tablet landscape ── */
+@media(max-width:1024px){
+  .nav-inner{padding:0 16px;}
+  .nav-links a{padding:6px 10px;font-size:12px;}
+  .plans{grid-template-columns:repeat(2,1fr);}
+  .trust-inner{grid-template-columns:repeat(3,1fr);}
+  .demo-grid{grid-template-columns:repeat(3,1fr);}
+  #chi-siamo > div{gap:32px !important;}
+  /* servizi web piani */
+  #servizi-web [style*="grid-template-columns:repeat(3,1fr)"]{
+    grid-template-columns:repeat(3,1fr) !important;
+  }
+  footer > div:first-child{
+    grid-template-columns:1fr 1fr 1fr 1fr !important;
+    gap:20px !important;
+    padding:32px 16px 20px !important;
+  }
+}
+
+/* ── 768px: tablet portrait ── */
+@media(max-width:768px){
+  /* NAV */
+  .nav-hamburger{display:flex;}
+  .nav-links{
+    display:none;
+    flex-direction:column;
+    position:absolute;top:100%;left:0;right:0;
+    background:rgba(255,255,255,.97);
+    backdrop-filter:saturate(180%) blur(20px);
+    border-bottom:1px solid var(--border);
+    padding:8px 16px 16px;
+    box-shadow:0 12px 32px rgba(0,0,0,.1);
+    z-index:99;
+  }
+  .nav-links.open{display:flex;}
+  .nav-links a{padding:12px 8px;font-size:15px;border-bottom:1px solid var(--border);}
+  .nav-links a:last-child{border-bottom:none;}
+  .nav-buy{font-size:12px;padding:6px 14px;}
+
+  /* LANG BAR */
+  .lang-bar{padding:0 12px;gap:2px;}
+  .lang-btn{padding:4px 7px;font-size:12px;}
+
+  /* WEB STRIP */
+  .web-strip{flex-direction:column;gap:4px;padding:8px 16px;text-align:center;}
+  .web-strip .ws-dot{display:none;}
+
+  /* HERO */
+  .hero{padding:56px 16px 40px;}
+  .hero-chips{gap:6px;}
+  .chip{font-size:11px;padding:5px 11px;}
+
+  /* SOCIAL PROOF */
+  .social-proof{gap:20px 28px;flex-wrap:wrap;justify-content:center;padding:28px 16px;}
+  .sp-num{font-size:28px;}
+
+  /* DEMO */
+  .demo-section{padding:48px 16px 40px;}
+  .demo-grid{grid-template-columns:1fr;}
+
+  /* PIANI */
+  .plans-wrap{padding:0 12px 48px;}
+  .section-head{padding:40px 0 28px;}
+  .plans{grid-template-columns:1fr 1fr;gap:10px;}
+
+  /* TRUST */
+  .trust{padding:40px 16px;}
+  .trust-inner{grid-template-columns:1fr;gap:10px;}
+  .t-card{flex-direction:row;}
+
+  /* PAGAMENTI */
+  .payment-section{padding:40px 16px 48px;}
+  .payment-methods{grid-template-columns:1fr 1fr;}
+
+  /* FORM */
+  .contact-section{padding:48px 16px 56px;}
+  .form-grid{grid-template-columns:1fr;}
+  .form-plan-select{grid-template-columns:1fr 1fr;}
+
+  /* CONTATTI DIRETTI */
+  .direct-contact{flex-direction:column;align-items:stretch;padding:0 16px 40px;}
+  .dc-card{min-width:unset;}
+
+  /* FAQ */
+  .faq-wrap{padding:48px 16px;}
+
+  /* CHI SIAMO */
+  #chi-siamo > div{
+    grid-template-columns:1fr !important;
+    gap:32px !important;
+    padding:48px 16px !important;
+  }
+
+  /* SERVIZI WEB */
+  #servizi-web > div{padding:48px 16px 40px !important;}
+  #servizi-web [style*="grid-template-columns:repeat(3,1fr)"]{
+    grid-template-columns:1fr !important;
+    gap:10px !important;
+  }
+  #servizi-web [style*="grid-template-columns:repeat(auto-fit,minmax(220px,1fr))"]{
+    grid-template-columns:1fr 1fr !important;
+  }
+  #servizi-web [style*="grid-template-columns:repeat(auto-fit,minmax(180px,1fr))"]{
+    grid-template-columns:1fr 1fr !important;
+    gap:16px !important;
+  }
+
+  /* FOOTER */
+  footer > div:first-child{
+    grid-template-columns:1fr 1fr !important;
+    gap:20px !important;
+    padding:32px 16px 20px !important;
+  }
+  footer > div:last-child{
+    flex-direction:column !important;
+    gap:6px !important;
+    padding:12px 16px !important;
+  }
+
+  /* WEB BANNER */
+  #web-banner{padding:10px 16px;gap:10px;}
+  #web-banner p{font-size:12px;}
+}
+
+/* ── 600px: grandi smartphone ── */
+@media(max-width:600px){
+  /* piani: 1 colonna */
+  .plans{grid-template-columns:1fr !important;}
+  .plan.featured{margin-top:16px;}
+
+  /* servizi web piani già 1col da 768, ok */
+  #servizi-web [style*="grid-template-columns:repeat(auto-fit,minmax(220px,1fr))"]{
+    grid-template-columns:1fr !important;
+  }
+
+  /* payment: 1 col */
+  .payment-methods{grid-template-columns:1fr !important;}
+
+  /* footer: tutto 1 col */
+  footer > div:first-child{
+    grid-template-columns:1fr !important;
+    gap:24px !important;
+  }
+}
+
+/* ── 480px: smartphone standard ── */
+@media(max-width:480px){
+  /* HERO */
+  .hero{padding:44px 14px 36px;}
+  h1{font-size:clamp(30px,9vw,44px);letter-spacing:-.03em;}
+  .hero-sub{font-size:15px;}
+  .hero-chips{gap:5px;}
+  .chip{font-size:10px;padding:4px 10px;}
+
+  /* SOCIAL PROOF */
+  .social-proof{gap:14px 20px;padding:22px 14px;}
+  .sp-num{font-size:24px;}
+  .sp-label{font-size:11px;}
+
+  /* FORM */
+  .form-plan-select{grid-template-columns:1fr !important;}
+  .plan-opt{padding:8px 10px;}
+
+  /* TRUST */
+  .t-card{flex-direction:column;gap:10px;}
+  .t-icon{width:34px;height:34px;}
+
+  /* FAQ */
+  .faq-q{font-size:13px;padding:12px 14px;}
+
+  /* DIRECT CONTACT */
+  .dc-card{padding:14px 16px;}
+  .dc-value{font-size:13px;}
+
+  /* CHI SIAMO cards */
+  #chi-siamo > div > div > div{
+    padding:16px 14px !important;
+  }
+
+  /* SERVIZI WEB come funziona */
+  #servizi-web [style*="grid-template-columns:repeat(auto-fit,minmax(180px,1fr))"]{
+    grid-template-columns:1fr !important;
+  }
+
+  /* COOKIE BANNER */
+  #ck-banner{border-radius:12px 12px 0 0;}
+  #ck-main{padding:18px 16px 12px;}
+  #ck-actions{padding:0 16px 16px;flex-direction:column;}
+  #ck-actions button{min-width:unset;flex:unset;}
+  #ck-btn-reject{order:3;}
+
+  /* WEB BANNER */
+  #web-banner{flex-direction:column;gap:8px;padding:12px 16px 16px;text-align:center;}
+  #web-banner p{font-size:12px;}
+
+  /* FOOTER */
+  footer > div:last-child span{font-size:10px;}
+}
+
+/* ── 360px: smartphone piccoli ── */
+@media(max-width:360px){
+  .lang-btn{padding:3px 5px;font-size:11px;}
+  .nav-buy{font-size:11px;padding:5px 10px;}
+  .logo-name{font-size:13px;}
+  h1{font-size:28px;}
+  .price-num{font-size:40px;}
+  .hero{padding:36px 12px 28px;}
+  .plans-wrap{padding:0 8px 40px;}
+  .plan{padding:20px 14px 18px;}
+  .faq-wrap{padding:36px 12px;}
+  .contact-section{padding:36px 12px 48px;}
+  #servizi-web > div{padding:36px 12px 32px !important;}
+}
