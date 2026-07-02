@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Come diagnosticare un PC lento: guida pratica per tecnici | WinCurePro</title>
+<meta name="description" content="Checklist tecnica per diagnosticare rapidamente un PC lento: CPU, RAM, dischi, thermal throttling, driver, malware e log di sistema. Guida per tecnici IT.">
+<meta name="keywords" content="diagnosi PC lento, come diagnosticare PC lento, tool diagnostica PC, tecnico informatico PC lento">
+<link rel="canonical" href="https://wincurepro.com/blog/come-diagnosticare-pc-lento.html">
+
+<meta property="og:type" content="article">
+<meta property="og:title" content="Come diagnosticare un PC lento: guida pratica per tecnici">
+<meta property="og:description" content="Checklist tecnica per capire perché un PC è lento: CPU, RAM, dischi, thermal, driver, malware, log di sistema.">
+<meta property="og:url" content="https://wincurepro.com/blog/come-diagnosticare-pc-lento.html">
+<meta property="og:site_name" content="WinCurePro">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Come diagnosticare un PC lento: guida pratica per tecnici",
+  "description": "Checklist tecnica per diagnosticare rapidamente un PC lento: CPU, RAM, dischi, thermal throttling, driver, malware e log di sistema.",
+  "author": { "@type": "Person", "name": "Nicola Bongiovanni" },
+  "publisher": { "@type": "Organization", "name": "PC Facile Varese", "url": "https://wincurepro.com" },
+  "mainEntityOfPage": "https://wincurepro.com/blog/come-diagnosticare-pc-lento.html",
+  "datePublished": "2026-07-02"
+}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --paper: #F6F6F3;
+    --surface: #FFFFFF;
+    --ink: #14151A;
+    --muted: #6B7280;
+    --line: #E3E3DE;
+    --teal: #0F9E96;
+    --teal-dim: #E4F4F3;
+    --amber: #E2A33D;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.6;
+  }
+
+  .topbar { border-bottom: 1px solid var(--line); background: var(--surface); }
+  .topbar-inner {
+    max-width: 720px; margin: 0 auto; padding: 18px 24px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .brand { font-weight: 700; font-size: 15px; text-decoration: none; color: var(--ink); letter-spacing: -0.01em; }
+  .brand span { color: var(--teal); }
+  .topbar a.back {
+    font-family: 'IBM Plex Mono', monospace; font-size: 12px;
+    color: var(--muted); text-decoration: none; letter-spacing: 0.02em;
+  }
+  .topbar a.back:hover { color: var(--teal); }
+
+  .wrap { max-width: 720px; margin: 0 auto; padding: 56px 24px 110px; }
+
+  .tag {
+    display: inline-flex; align-items: center; gap: 7px;
+    font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.06em;
+    text-transform: uppercase; color: var(--teal); background: var(--teal-dim);
+    padding: 4px 10px; border-radius: 5px; margin-bottom: 18px;
+  }
+  .tag::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--teal); }
+
+  h1 { font-size: clamp(28px, 4.5vw, 38px); font-weight: 800; letter-spacing: -0.02em; margin: 0 0 14px; line-height: 1.12; }
+
+  .meta-row {
+    display: flex; gap: 18px; font-family: 'IBM Plex Mono', monospace;
+    font-size: 12.5px; color: var(--muted); margin-bottom: 44px;
+    padding-bottom: 24px; border-bottom: 1px solid var(--line);
+  }
+
+  .lead { font-size: 18px; color: var(--ink); margin-bottom: 8px; }
+
+  .step { display: grid; grid-template-columns: 44px 1fr; gap: 18px; margin-top: 40px; align-items: baseline; }
+  .step-num {
+    font-family: 'IBM Plex Mono', monospace; font-weight: 600; font-size: 20px;
+    color: var(--teal); background: var(--teal-dim); border-radius: 8px;
+    width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;
+    align-self: start;
+  }
+  .step h2 { font-size: 19px; font-weight: 700; margin: 0 0 8px; letter-spacing: -0.01em; }
+  .step p { margin: 0; font-size: 16px; color: var(--ink); }
+
+  .divider { border: none; border-top: 1px solid var(--line); margin: 48px 0; }
+
+  .closing p { font-size: 16px; }
+
+  .panel {
+    margin-top: 48px; padding: 28px 28px 26px; background: var(--surface);
+    border: 1px solid var(--line); border-left: 3px solid var(--teal);
+    border-radius: 10px;
+  }
+  .panel .mono-label {
+    font-family: 'IBM Plex Mono', monospace; font-size: 11.5px; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--teal); margin-bottom: 10px;
+  }
+  .panel h3 { font-size: 20px; margin: 0 0 8px; letter-spacing: -0.01em; }
+  .panel p { margin: 0 0 18px; color: var(--muted); font-size: 15px; }
+  .panel a {
+    display: inline-block; background: var(--ink); color: #fff; text-decoration: none;
+    padding: 11px 22px; border-radius: 7px; font-size: 15px; font-weight: 600;
+    transition: background 0.15s ease;
+  }
+  .panel a:hover { background: var(--teal); }
+
+  .author {
+    margin-top: 40px; font-family: 'IBM Plex Mono', monospace;
+    font-size: 12.5px; color: var(--muted);
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="/index.html">WinCure<span>Pro</span></a>
+    <a class="back" href="/blog/index.html">&larr; TUTTI GLI ARTICOLI</a>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <div class="tag">Guida tecnica</div>
+  <h1>Come diagnosticare un PC lento: guida pratica per tecnici</h1>
+  <div class="meta-row">
+    <span>02 LUG 2026</span>
+    <span>·</span>
+    <span>5 MIN LETTURA</span>
+    <span>·</span>
+    <span>N. BONGIOVANNI</span>
+  </div>
+
+  <p class="lead">"Il PC è lento" è probabilmente la richiesta di assistenza più generica e più frequente che riceviamo. Il problema è che dietro questa frase possono nascondersi almeno una decina di cause diverse, e improvvisare la diagnosi a occhio fa perdere tempo — al tecnico e al cliente.</p>
+  <p>Ecco una checklist ordinata per priorità, pensata per chi lavora sul campo: si parte dai controlli più veloci e più spesso risolutivi, per arrivare a quelli che intercettano i problemi più nascosti.</p>
+
+  <div class="step">
+    <div class="step-num">1</div>
+    <div>
+      <h2>Controlla prima l'ovvio: processi e avvio automatico</h2>
+      <p>Prima di aprire tool avanzati, un passaggio rapido su Task Manager (o Resource Monitor) elimina metà dei casi banali: processi che consumano CPU/RAM in modo anomalo, troppi programmi in avvio automatico, servizi orfani lasciati da software disinstallati male.</p>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">2</div>
+    <div>
+      <h2>Stato del disco: l'origine più comune di lentezza reale</h2>
+      <p>Un HDD meccanico vicino al fine vita, o un SSD con SMART in allarme, spiega la maggior parte dei rallentamenti "misteriosi". Controlla sempre gli attributi SMART — in particolare Reallocated Sectors, Pending Sectors e Wear Leveling sugli SSD — prima di guardare altrove.</p>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">3</div>
+    <div>
+      <h2>RAM: non solo quantità, anche stabilità</h2>
+      <p>Oltre al classico problema di RAM insufficiente, vale la pena un test di stabilità: banchi difettosi causano rallentamenti intermittenti difficili da individuare a occhio, specialmente sotto carico.</p>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">4</div>
+    <div>
+      <h2>Thermal throttling: il colpevole silenzioso</h2>
+      <p>Su molti notebook datati, la CPU riduce automaticamente la frequenza quando le temperature salgono per polvere accumulata o pasta termica esausta. Un monitoraggio delle temperature sotto stress test spesso rivela rallentamenti che nessun altro controllo intercetta.</p>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">5</div>
+    <div>
+      <h2>Driver obsoleti o in conflitto</h2>
+      <p>Driver datati — in particolare chipset, storage (NVMe/AHCI) e GPU — possono introdurre colli di bottiglia non evidenti da Task Manager. Un controllo mirato delle versioni installate rispetto a quelle ufficiali del produttore è un passaggio spesso saltato ma ad alto valore diagnostico.</p>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">6</div>
+    <div>
+      <h2>Malware e software indesiderato</h2>
+      <p>Va da sé, ma va sempre verificato con uno scanner aggiornato — anche su PC "puliti in apparenza", perché alcuni malware moderni sono progettati per restare silenti sotto carico normale e manifestarsi solo in condizioni specifiche.</p>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">7</div>
+    <div>
+      <h2>Event Viewer: la fonte di verità che pochi consultano</h2>
+      <p>Errori ricorrenti nel log di sistema — crash di driver, errori disco, timeout di servizi — spesso anticipano un guasto hardware prima che diventi evidente all'utente. Vale sempre la pena controllare gli ultimi 30 giorni di log Applicazione e Sistema.</p>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <div class="closing">
+    <h2 style="font-size:19px; margin-bottom:10px;">Il problema di fare tutto questo a mano</h2>
+    <p>Ognuno di questi controlli richiede tool diversi, spesso a pagamento separatamente, e tempo per interpretare i risultati. È esattamente il motivo per cui abbiamo costruito <strong>WinCurePro</strong>: un unico eseguibile da USB che esegue diagnosi completa — hardware, SMART, stress test, driver, log di sistema, sicurezza di rete — e genera un report PDF pronto da mostrare al cliente, in pochi minuti invece che in un'ora di controlli manuali.</p>
+  </div>
+
+  <div class="panel">
+    <div class="mono-label">Azione consigliata</div>
+    <h3>Vuoi vedere come funziona su un caso reale?</h3>
+    <p>Diagnostica PC professionale da USB, licenze da €99. Nessuna installazione richiesta.</p>
+    <a href="https://wincurepro.com">Scopri WinCurePro &rarr;</a>
+  </div>
+
+  <div class="author">Scritto da Nicola Bongiovanni — tecnico IT con 10+ anni di esperienza, PC Facile Varese.</div>
+
+</div>
+
+</body>
+</html>
