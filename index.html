@@ -376,7 +376,6 @@ body.wb-closed #web-banner{display:none;}
 }
 </style>
 <!-- reCAPTCHA v3 -->
-<script src="https://www.google.com/recaptcha/api.js?render=6LczuyQtAAAAAEGzAIgyjRLHuYAxByNemF6maaLU" async defer></script>
 </head>
 <body>
 
@@ -1162,7 +1161,31 @@ function ckSavePrefs(){
 
 
 <script>
-// ── reCAPTCHA v3 ─────────────────────────────────────
+// ── reCAPTCHA v3: caricamento lazy (solo quando serve, non al page load) ──
+let recaptchaLoadPromise = null;
+function loadRecaptcha() {
+  if (recaptchaLoadPromise) return recaptchaLoadPromise;
+  recaptchaLoadPromise = new Promise(function(resolve) {
+    const s = document.createElement('script');
+    s.src = 'https://www.google.com/recaptcha/api.js?render=6LczuyQtAAAAAEGzAIgyjRLHuYAxByNemF6maaLU';
+    s.onload = resolve;
+    document.head.appendChild(s);
+  });
+  return recaptchaLoadPromise;
+}
+// Precarica appena l'utente si avvicina al form contatti (scroll), non al primo caricamento pagina
+(function() {
+  const contactSection = document.getElementById('contatti');
+  if (!contactSection) return;
+  const obs = new IntersectionObserver(function(entries) {
+    if (entries[0].isIntersecting) {
+      loadRecaptcha();
+      obs.disconnect();
+    }
+  }, { rootMargin: '400px' });
+  obs.observe(contactSection);
+})();
+
 document.getElementById('contact-form').addEventListener('submit', function(e) {
   // Blocca se honeypot compilato
   if (document.querySelector('input[name="_honey"]').value) {
@@ -1175,7 +1198,8 @@ document.getElementById('contact-form').addEventListener('submit', function(e) {
   const btn = form.querySelector('.btn-submit');
   btn.disabled = true;
   btn.textContent = 'Invio in corso...';
-  
+
+  loadRecaptcha().then(function() {
   grecaptcha.ready(function() {
     grecaptcha.execute('6LczuyQtAAAAAEGzAIgyjRLHuYAxByNemF6maaLU', {action: 'contact'}).then(function(token) {
       document.getElementById('g-recaptcha-token').value = token;
@@ -1200,6 +1224,7 @@ document.getElementById('contact-form').addEventListener('submit', function(e) {
         alert('Errore invio. Riprova o contattaci via email.');
       });
     });
+  });
   });
 });
 </script>
