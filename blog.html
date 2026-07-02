@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blog WinCurePro | Guide tecniche per tecnici IT</title>
+<meta name="description" content="Guide pratiche e tecniche per tecnici IT: diagnosi PC, hardware, stress test, strumenti di lavoro sul campo.">
+<link rel="canonical" href="https://wincurepro.com/blog.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #F6F6F3;
+    --surface: #FFFFFF;
+    --ink: #14151A;
+    --muted: #6B7280;
+    --line: #E3E3DE;
+    --teal: #0F9E96;
+    --teal-dim: #E4F4F3;
+    --amber: #E2A33D;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  .mono { font-family: 'IBM Plex Mono', ui-monospace, monospace; }
+
+  .topbar { border-bottom: 1px solid var(--line); background: var(--surface); }
+  .topbar-inner {
+    max-width: 860px; margin: 0 auto; padding: 18px 24px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .brand { font-weight: 700; font-size: 15px; text-decoration: none; color: var(--ink); letter-spacing: -0.01em; }
+  .brand span { color: var(--teal); }
+  .topbar a.back {
+    font-family: 'IBM Plex Mono', monospace; font-size: 12px;
+    color: var(--muted); text-decoration: none; letter-spacing: 0.02em;
+  }
+  .topbar a.back:hover { color: var(--teal); }
+
+  .wrap { max-width: 860px; margin: 0 auto; padding: 56px 24px 120px; }
+
+  .eyebrow {
+    font-family: 'IBM Plex Mono', monospace; font-size: 12px;
+    letter-spacing: 0.08em; text-transform: uppercase; color: var(--teal);
+    display: flex; align-items: center; gap: 8px; margin-bottom: 14px;
+  }
+  .eyebrow::before {
+    content: ""; width: 7px; height: 7px; border-radius: 50%;
+    background: var(--teal); display: inline-block; box-shadow: 0 0 0 3px var(--teal-dim);
+  }
+
+  h1 { font-size: clamp(32px, 5vw, 44px); font-weight: 800; letter-spacing: -0.02em; margin: 0 0 14px; line-height: 1.05; }
+  .sub { color: var(--muted); font-size: 17px; max-width: 480px; margin: 0 0 56px; line-height: 1.55; }
+
+  .log-header {
+    display: grid; grid-template-columns: 130px 1fr; gap: 24px;
+    padding: 0 0 10px; border-bottom: 1px solid var(--line);
+    font-family: 'IBM Plex Mono', monospace; font-size: 11px;
+    letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted);
+  }
+
+  .post {
+    display: grid; grid-template-columns: 130px 1fr; gap: 24px;
+    text-decoration: none; color: inherit; padding: 26px 0;
+    border-bottom: 1px solid var(--line); border-left: 2px solid transparent;
+    transition: border-left-color 0.15s ease, padding-left 0.15s ease, background 0.15s ease;
+  }
+  .post:hover {
+    border-left-color: var(--teal); padding-left: 14px;
+    background: linear-gradient(90deg, var(--teal-dim), transparent 60%);
+  }
+  .post-meta { font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; color: var(--muted); line-height: 1.7; padding-top: 3px; }
+  .tag {
+    display: inline-block; font-family: 'IBM Plex Mono', monospace; font-size: 11px;
+    font-weight: 500; letter-spacing: 0.03em; color: var(--teal);
+    background: var(--teal-dim); padding: 2px 8px; border-radius: 4px; margin-bottom: 10px;
+  }
+  .post h2 { font-size: 20px; font-weight: 700; margin: 0 0 8px; letter-spacing: -0.01em; }
+  .post p { margin: 0; color: var(--muted); font-size: 15px; line-height: 1.55; }
+
+  .empty-slot { padding: 26px 0; font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: var(--muted); opacity: 0.6; }
+
+  footer { max-width: 860px; margin: 0 auto; padding: 40px 24px 60px; font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: var(--muted); }
+
+  @media (max-width: 560px) {
+    .log-header { display: none; }
+    .post { grid-template-columns: 1fr; gap: 6px; }
+    .post-meta { padding-top: 0; }
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="/index.html">WinCure<span>Pro</span></a>
+    <a class="back" href="/index.html">&larr; TORNA AL SITO</a>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <div class="eyebrow">Log tecnico</div>
+  <h1>Blog</h1>
+  <p class="sub">Guide pratiche per tecnici IT: diagnosi, hardware, strumenti di lavoro sul campo. Scritte da chi ripara PC ogni giorno.</p>
+
+  <div class="log-header">
+    <div>Data</div>
+    <div>Articolo</div>
+  </div>
+
+  <a class="post" href="/come-diagnosticare-pc-lento.html">
+    <div class="post-meta">02 lug 2026<br>5 min lettura</div>
+    <div>
+      <span class="tag">GUIDA</span>
+      <h2>Come diagnosticare un PC lento: guida pratica per tecnici</h2>
+      <p>Checklist ordinata per priorità: CPU, RAM, dischi, thermal throttling, driver, malware, log di sistema.</p>
+    </div>
+  </a>
+
+  <div class="empty-slot">// prossimo articolo in arrivo</div>
+
+</div>
+
+<footer>
+  WinCurePro — PC Facile Varese · wincurepro.com
+</footer>
+
+</body>
+</html>
