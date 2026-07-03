@@ -88,7 +88,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=DM+Mono:ital,wght@0,400;0,500&family=Kalam:wght@700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=DM+Mono:ital,wght@0,400;0,500&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 html{font-size:16px;-webkit-font-smoothing:antialiased;scroll-behavior:smooth}
@@ -140,10 +140,13 @@ nav{position:sticky;top:36px;z-index:100;background:rgba(255,255,255,.88);backdr
 }
 .hero-dot{width:6px;height:6px;border-radius:50%;background:var(--green-lt);animation:blink 2.4s ease-in-out infinite;}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
-h1{font-family:'Kalam',cursive;font-size:clamp(40px,7vw,74px);font-weight:700;letter-spacing:.01em;line-height:1.1;color:#e9e6dd;margin-bottom:10px;text-shadow:1px 2px 1px rgba(20,21,26,.18),-1px -1px 1px rgba(255,255,255,.9);}
+h1{font-size:clamp(36px,6vw,66px);font-weight:800;letter-spacing:-.04em;line-height:1.04;color:var(--text);margin-bottom:18px;text-shadow:0 0 6px rgba(15,158,150,.85),0 0 14px rgba(15,158,150,.55),0 0 30px rgba(15,158,150,.35),0 0 50px rgba(15,158,150,.2);}
+@supports (-webkit-text-stroke:1px black){
+  h1{color:transparent;-webkit-text-stroke:1.5px #0F9E96;}
+}
 .hero-tagline{font-size:clamp(15px,2vw,19px);font-weight:500;color:var(--text2);margin-bottom:18px;line-height:1.4;}
 .hero-tagline strong{color:var(--text);font-weight:700;}
-.hero-accent{color:#bfe3df;text-shadow:1px 2px 1px rgba(11,114,105,.28),-1px -1px 1px rgba(255,255,255,.9);}
+.hero-accent{color:#0F9E96;-webkit-text-stroke:0;text-shadow:0 0 6px rgba(15,158,150,.9),0 0 16px rgba(15,158,150,.7),0 0 34px rgba(15,158,150,.5),0 0 60px rgba(15,158,150,.3);}
 .hero-sub{font-size:clamp(15px,2vw,18px);color:var(--text2);max-width:500px;margin:0 auto 36px;line-height:1.6;}
 .hero-chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:48px;}
 .chip{display:inline-flex;align-items:center;gap:5px;border:1px solid var(--border2);background:rgba(255,255,255,.8);border-radius:100px;padding:6px 14px;font-size:12px;font-weight:500;color:var(--text2);}
