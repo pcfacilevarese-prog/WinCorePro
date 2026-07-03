@@ -131,7 +131,8 @@ nav{position:sticky;top:36px;z-index:100;background:rgba(255,255,255,.88);backdr
 
 /* Effetto scan diagnostico: solo puntino che lampeggia */
 .wcp-scan-label{display:flex;align-items:center;justify-content:center;gap:6px;margin-bottom:14px;font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#0F9E96;}
-.wcp-scan-dot{width:6px;height:6px;border-radius:50%;background:#0F9E96;display:inline-block;animation:wcp-pulse 1.6s ease-in-out infinite;}
+.wcp-scan-dot{position:relative;top:-6px;width:22px;height:22px;border-radius:50%;background:#0F9E96;display:inline-block;animation:wcp-pulse 1.6s ease-in-out infinite;flex-shrink:0;}
+.wcp-scan-dot::after{content:'';position:absolute;top:50%;left:50%;width:9px;height:9px;border-radius:50%;background:#FF2A1A;transform:translate(-50%,-50%);box-shadow:0 0 8px 3px rgba(255,42,26,1),0 0 18px 6px rgba(255,42,26,.7),0 0 30px 10px rgba(255,42,26,.4);}
 @keyframes wcp-pulse{0%,100%{opacity:1}50%{opacity:.25}}
 @media(prefers-reduced-motion:reduce){
   .wcp-scan-dot{animation:none;opacity:1;}
@@ -460,13 +461,16 @@ body.wb-closed #web-banner{display:none;}
 <!-- HERO -->
 <div class="hero">
   <div class="wcp-scan-label">
-    <span class="wcp-scan-dot"></span>Scansione sistema in corso
+    Scansione sistema in corso
   </div>
   <div class="hero-eyebrow">
     <span class="hero-dot"></span>
     <span data-it="Tool professionale per tecnici PC" data-en="Professional tool for PC technicians" data-de="Professionelles Tool für PC-Techniker" data-fr="Outil professionnel pour techniciens PC" data-es="Herramienta profesional para técnicos PC">Tool professionale per tecnici PC</span>
   </div>
-  <h1>WinCure<span class="hero-accent">Pro</span></h1>
+  <div style="display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap;">
+    <span class="wcp-scan-dot"></span>
+    <h1>WinCure<span class="hero-accent">Pro</span></h1>
+  </div>
   <p class="hero-tagline" data-it="Software diagnostica PC <strong>professionale</strong> da chiavetta USB" data-en="Complete PC <strong>diagnostics</strong> from USB stick" data-de="Vollständige PC-<strong>Diagnose</strong> vom USB-Stick" data-fr="Diagnostic PC <strong>complet</strong> depuis clé USB" data-es="Diagnóstico PC <strong>completo</strong> desde pendrive USB">Software diagnostica PC <strong>professionale</strong> da chiavetta USB</p>
   <p class="hero-sub" data-it="Software diagnostica PC portatile da USB: AI, SMART disco, driver check, PDF certificato. Nessuna installazione, funziona su qualsiasi PC Windows 10/11." data-en="Portable PC diagnostic software from USB: AI, SMART, driver check, PDF certificate. No installation, works on any Windows 10/11 PC." data-de="Portable PC-Diagnosesoftware vom USB-Stick: KI, SMART, Treiber, PDF-Zertifikat. Keine Installation." data-fr="Logiciel de diagnostic PC portable sur USB: IA, SMART, Pilotes, PDF certifié. Sans installation." data-es="Software de diagnóstico PC portátil desde USB: IA, SMART, Controladores, PDF certificado. Sin instalación.">Software diagnostica PC portatile da USB: AI, SMART disco, driver check, PDF certificato. Nessuna installazione, funziona su qualsiasi PC Windows 10/11.</p>
   <div class="hero-chips">
