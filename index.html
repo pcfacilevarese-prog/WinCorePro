@@ -147,6 +147,20 @@ h1{font-size:clamp(36px,6vw,66px);font-weight:800;letter-spacing:-.04em;line-hei
 .chip{display:inline-flex;align-items:center;gap:5px;border:1px solid var(--border2);background:rgba(255,255,255,.8);border-radius:100px;padding:6px 14px;font-size:12px;font-weight:500;color:var(--text2);}
 .chip-dot{width:5px;height:5px;border-radius:50%;background:var(--green-lt);}
 
+/* PRODOTTO */
+.product-section{background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
+.product-inner{max-width:1080px;margin:0 auto;padding:64px 24px;display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;}
+.product-photo{border-radius:var(--r2);overflow:hidden;border:1px solid var(--border);}
+.product-photo img{width:100%;height:100%;object-fit:cover;display:block;}
+.product-eyebrow{font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:14px;}
+.product-text h2{font-size:clamp(26px,4vw,38px);font-weight:800;letter-spacing:-.03em;margin-bottom:14px;line-height:1.1;}
+.product-text p{font-size:15px;color:var(--text2);line-height:1.7;margin-bottom:24px;}
+@media(max-width:768px){
+  .product-inner{grid-template-columns:1fr;gap:28px;padding:48px 20px;}
+  .product-text{text-align:center;}
+  .product-eyebrow{text-align:center;}
+}
+
 /* SOCIAL PROOF */
 .social-proof{display:flex;justify-content:center;gap:48px;padding:40px 24px;background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
 .sp-item{text-align:center;}
@@ -160,18 +174,7 @@ h1{font-size:clamp(36px,6vw,66px);font-weight:800;letter-spacing:-.04em;line-hei
 .demo-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;}
 .demo-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r2);overflow:hidden;transition:transform .2s,box-shadow .2s;}
 .demo-card:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(0,0,0,.1);}
-.demo-card-img{aspect-ratio:16/10;background:linear-gradient(135deg,#0b1220 0%,#0e1929 100%);display:flex;align-items:center;justify-content:center;font-size:48px;}
-
-.ekg-svg{width:100%;height:100%;}
-.ekg-line{stroke:#0F9E96;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1400;stroke-dashoffset:1400;animation:ekg-draw 3.2s linear infinite;}
-@keyframes ekg-draw{
-  0%{stroke-dashoffset:1400;}
-  70%{stroke-dashoffset:0;}
-  100%{stroke-dashoffset:-1400;}
-}
-@media(prefers-reduced-motion:reduce){
-  .ekg-line{animation:none;stroke-dashoffset:0;}
-}
+.demo-card-img{aspect-ratio:16/10;background:var(--bg2);display:flex;align-items:center;justify-content:center;overflow:hidden;}
 .demo-card-body{padding:14px 16px;}
 .demo-card-title{font-size:14px;font-weight:700;margin-bottom:4px;}
 .demo-card-desc{font-size:12px;color:var(--text2);line-height:1.5;}
@@ -349,6 +352,7 @@ body.wb-closed #web-banner{display:none;}
   .dc-card{min-width:unset;}
   /* footer nuovo */
   #chi-siamo > div{grid-template-columns:1fr !important;gap:32px !important;padding:48px 20px !important;}
+  #prodotto > div{grid-template-columns:1fr !important;gap:28px !important;padding:48px 20px !important;}
   footer > div:first-child{grid-template-columns:1fr 1fr !important;gap:24px !important;padding:32px 20px 20px !important;}
 }
 
@@ -478,35 +482,61 @@ body.wb-closed #web-banner{display:none;}
   <div class="sp-item"><div class="sp-num">92/100</div><div class="sp-label" data-it="Score vs mercato" data-en="Score vs market" data-de="Score vs Markt" data-fr="Score vs marché" data-es="Score vs mercado">Score vs mercato</div></div>
 </div>
 
+<!-- PRODOTTO -->
+<div class="product-section">
+  <div class="product-inner">
+    <div class="product-photo">
+      <img src="/img/wincurepro-prodotto.webp" alt="Confezione e chiavetta USB WinCurePro" loading="lazy" width="1024" height="559">
+    </div>
+    <div class="product-text">
+      <div class="product-eyebrow">WinCurePro</div>
+      <h2 data-it="La nuova frontiera della diagnostica" data-en="The new frontier of diagnostics" data-de="Die neue Grenze der Diagnose" data-fr="La nouvelle frontière du diagnostic" data-es="La nueva frontera del diagnóstico">La nuova frontiera della diagnostica</h2>
+      <p data-it="Una chiavetta USB, zero installazioni, diagnosi completa in pochi minuti. Progettato da tecnici, per tecnici." data-en="One USB stick, zero installations, complete diagnosis in minutes. Designed by technicians, for technicians." data-de="Ein USB-Stick, keine Installation, komplette Diagnose in Minuten." data-fr="Une clé USB, zéro installation, diagnostic complet en quelques minutes." data-es="Un pendrive USB, cero instalaciones, diagnóstico completo en minutos.">Una chiavetta USB, zero installazioni, diagnosi completa in pochi minuti. Progettato da tecnici, per tecnici.</p>
+      <a href="#piani" class="nav-buy" style="font-size:15px;padding:12px 26px;border-radius:24px;display:inline-block;" data-it="Vedi i piani →" data-en="See plans →" data-de="Pläne ansehen →" data-fr="Voir les plans →" data-es="Ver planes →">Vedi i piani →</a>
+    </div>
+  </div>
+</div>
+
 <!-- DEMO -->
 <div class="demo-section" id="features">
   <h2 data-it="Tutto ciò che serve a un tecnico" data-en="Everything a technician needs" data-de="Alles was ein Techniker braucht" data-fr="Tout ce dont un technicien a besoin" data-es="Todo lo que necesita un técnico">Tutto ciò che serve a un tecnico</h2>
   <p class="sub" data-it="34 funzioni in un solo software portatile da USB. Nessun competitor le ha tutte." data-en="34 features in one portable USB software. No competitor has them all." data-de="34 Funktionen in einer portablen USB-Software. Kein Konkurrent hat alle." data-fr="34 fonctions dans un logiciel USB portable. Aucun concurrent ne les a toutes." data-es="34 funciones en un software USB portátil. Ningún competidor las tiene todas.">34 funzioni in un solo software portatile da USB. Nessun competitor le ha tutte.</p>
   <div class="demo-grid">
     <div class="demo-card">
-      <div class="demo-card-img">🔬</div>
+      <div class="demo-card-img"><img src="/img/diagnostica-ai-hardware.webp" alt="Diagnostica AI e Hardware" loading="lazy" width="600" height="600" style="width:100%;height:100%;object-fit:cover;"></div>
       <div class="demo-card-body">
         <div class="demo-card-title" data-it="Diagnostica AI + Hardware" data-en="AI + Hardware Diagnostics" data-de="KI + Hardware-Diagnose" data-fr="Diagnostic IA + Matériel" data-es="Diagnóstico IA + Hardware">Diagnostica AI + Hardware</div>
         <div class="demo-card-desc" data-it="CPU, RAM, Disco, Driver, Rete in parallelo. AI Groq analizza i risultati e suggerisce soluzioni. Predittiva offline senza API." data-en="CPU, RAM, Disk, Driver, Network in parallel. AI Groq analyzes results and suggests solutions. Offline predictive without API." data-de="CPU, RAM, Festplatte, Treiber, Netzwerk parallel. KI analysiert Ergebnisse und schlägt Lösungen vor." data-fr="CPU, RAM, Disque, Pilotes, Réseau en parallèle. L'IA analyse et suggère des solutions." data-es="CPU, RAM, Disco, Controladores, Red en paralelo. IA analiza resultados y sugiere soluciones.">CPU, RAM, Disco, Driver, Rete in parallelo. AI Groq analizza i risultati e suggerisce soluzioni. Predittiva offline senza API.</div>
       </div>
     </div>
     <div class="demo-card">
-      <div class="demo-card-img">
-        <svg class="ekg-svg" viewBox="0 0 300 100" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
-          <polyline class="ekg-line" points="0,50 40,50 55,50 62,20 70,80 78,50 95,50 130,50 145,50 152,25 160,72 168,50 185,50 220,50 235,50 242,20 250,80 258,50 275,50 300,50" fill="none"/>
-        </svg>
-      </div>
+      <div class="demo-card-img"><img src="/img/monitor-live-benchmark.webp" alt="Monitor Live e Benchmark" loading="lazy" width="600" height="328" style="width:100%;height:100%;object-fit:cover;"></div>
       <div class="demo-card-body">
         <div class="demo-card-title" data-it="Monitor Live + Benchmark" data-en="Live Monitor + Benchmark" data-de="Live-Monitor + Benchmark" data-fr="Monitor Live + Benchmark" data-es="Monitor Live + Benchmark">Monitor Live + Benchmark</div>
         <div class="demo-card-desc" data-it="Temperature, ventole, voltaggi, I/O disco, rete in tempo reale. Benchmark CPU/RAM/GPU con score e storico cloud Supabase." data-en="Temperatures, fans, voltages, disk I/O, network in real time. CPU/RAM/GPU benchmark with score and Supabase cloud history." data-de="Temperaturen, Lüfter, Spannungen, Datenträger-I/O, Netzwerk in Echtzeit." data-fr="Températures, ventilateurs, tensions en temps réel. Benchmark CPU/RAM/GPU." data-es="Temperaturas, ventiladores, voltajes en tiempo real. Benchmark CPU/RAM/GPU.">Temperature, ventole, voltaggi, I/O disco, rete in tempo reale. Benchmark CPU/RAM/GPU con score e storico cloud Supabase.</div>
       </div>
     </div>
     <div class="demo-card">
-      <div class="demo-card-img">📄</div>
+      <div class="demo-card-img"><img src="/img/pdf-certificato-crm.webp" alt="PDF Certificato e CRM" loading="lazy" width="600" height="328" style="width:100%;height:100%;object-fit:cover;"></div>
       <div class="demo-card-body">
         <div class="demo-card-title" data-it="PDF Certificato + CRM" data-en="Certified PDF + CRM" data-de="PDF-Zertifikat + CRM" data-fr="PDF Certifié + CRM" data-es="PDF Certificado + CRM">PDF Certificato + CRM</div>
         <div class="demo-card-desc" data-it="Genera PDF professionale firmato con logo e SMART. CRM clienti, ticket riparazioni, magazzino ricambi integrato." data-en="Generate professional signed PDF with logo and SMART. Customer CRM, repair tickets, integrated parts inventory." data-de="Professionelles PDF mit Logo und SMART. Kunden-CRM, Reparatur-Tickets, integriertes Ersatzteillager." data-fr="PDF professionnel signé avec logo et SMART. CRM clients, tickets de réparation, stock intégré." data-es="PDF profesional firmado con logo y SMART. CRM clientes, tickets reparación, inventario integrado.">Genera PDF professionale firmato con logo e SMART. CRM clienti, ticket riparazioni, magazzino ricambi integrato.</div>
       </div>
+    </div>
+  </div>
+</div>
+
+<!-- PRODOTTO -->
+<div id="prodotto" style="background:var(--bg3);border-top:1px solid var(--border);border-bottom:1px solid var(--border);">
+  <div style="max-width:1080px;margin:0 auto;padding:72px 24px;display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;">
+    <div>
+      <img src="/img/wincurepro-prodotto.webp" alt="Confezione e chiavetta USB WinCurePro" loading="lazy" width="600" height="328" style="width:100%;height:auto;border-radius:var(--r2);border:1px solid var(--border);display:block;">
+    </div>
+    <div>
+      <div style="font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:14px;">Il prodotto</div>
+      <h2 style="font-size:clamp(26px,4vw,38px);font-weight:800;letter-spacing:-.03em;margin-bottom:16px;line-height:1.15;">WinCurePro, la nuova frontiera della diagnostica</h2>
+      <p style="font-size:15px;color:var(--text2);line-height:1.7;margin-bottom:16px;">Una chiavetta USB, zero installazione. La inserisci nel PC del cliente e in pochi secondi hai un tool professionale completo: diagnostica, AI, report certificato — tutto in tasca.</p>
+      <p style="font-size:15px;color:var(--text2);line-height:1.7;">Ogni licenza include l'accesso all'area clienti, aggiornamenti a vita e supporto diretto dal team che l'ha costruita.</p>
     </div>
   </div>
 </div>
