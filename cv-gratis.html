@@ -467,14 +467,14 @@
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <script>
+(function() {
   // ============================================================
-  // CONFIGURAZIONE SUPABASE — sostituisci con la tua anon key reale
-  // (la trovi in Supabase → Project Settings → API → anon/public key)
+  // CONFIGURAZIONE SUPABASE
   // ============================================================
   const SUPABASE_URL = "https://ouatdwnkteyonoeomcsn.supabase.co";
-  const SUPABASE_ANON_KEY = "INCOLLA_QUI_LA_TUA_ANON_KEY";
+  const SUPABASE_ANON_KEY = "sb_publishable_AG5gH_fw96x1Eaz6hUm2Pg_gctrkwto";
 
-  const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+  const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
   let datiEstrattiDaVecchioCV = null;
 
@@ -490,11 +490,11 @@
 
   // ---------- Login Google ----------
   document.getElementById("btn-login-google").addEventListener("click", async () => {
-    await supabase.auth.signInWithOAuth({ provider: "google" });
+    await sb.auth.signInWithOAuth({ provider: "google" });
   });
 
   async function controllaSessione() {
-    const { data: { session } } = await supabase.auth.getSession();
+    const { data: { session } } = await sb.auth.getSession();
     if (session) {
       const puoGenerare = await controllaLimiteSettimanale(session.user.id);
       if (puoGenerare) {
@@ -562,7 +562,7 @@
       formData.append("file", file);
 
       // NOTA: questa Edge Function ("estrai-cv") va creata separatamente su Supabase
-      const { data: { session } } = await supabase.auth.getSession();
+      const { data: { session } } = await sb.auth.getSession();
       const risposta = await fetch(`${SUPABASE_URL}/functions/v1/estrai-cv`, {
         method: "POST",
         headers: { "Authorization": `Bearer ${session.access_token}` },
@@ -628,10 +628,10 @@
 
   // ---------- Genera CV finale ----------
   document.getElementById("btn-genera-cv").addEventListener("click", async () => {
-    const { data: { session } } = await supabase.auth.getSession();
+    const { data: { session } } = await sb.auth.getSession();
 
     // Registra la generazione per il limite settimanale
-    await supabase.from("cv_generazioni").insert({ utente_id: session.user.id });
+    await sb.from("cv_generazioni").insert({ utente_id: session.user.id });
 
     mostraStep("step-completato");
   });
@@ -645,6 +645,7 @@
 
   // Avvio
   controllaSessione();
+})();
 </script>
 
 </body>
