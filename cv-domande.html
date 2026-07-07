@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Compila il tuo CV | WinCurePro</title>
+<style>
+  :root {
+    --teal-dark: #0F3D3A;
+    --teal: #0F9E96;
+    --teal-light: #4FBDB2;
+    --teal-pale: #E8F3F1;
+    --text: #1a2b2a;
+    --text-muted: #5A6B69;
+    --bg: #ffffff;
+    --border: #D8E6E4;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    font-family: 'Archivo', 'Trebuchet MS', sans-serif;
+    background: var(--teal-pale);
+    color: var(--text);
+    margin: 0;
+    padding: 0;
+  }
+
+  header {
+    background: var(--teal-dark);
+    color: white;
+    padding: 16px 24px;
+    text-align: center;
+    position: relative;
+  }
+
+  .torna-home {
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: rgba(255,255,255,0.55);
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 500;
+    padding: 4px 8px;
+    border-radius: 6px;
+    transition: color 0.15s ease;
+  }
+
+  .torna-home:hover { color: rgba(255,255,255,0.9); }
+
+  header h1 { margin: 0 0 4px 0; font-size: 22px; letter-spacing: 0.3px; }
+  header p { margin: 0; font-size: 13px; color: var(--teal-light); }
+
+  .container {
+    max-width: 640px;
+    margin: 32px auto;
+    padding: 0 16px 60px 16px;
+  }
+
+  .card {
+    background: white;
+    border-radius: 12px;
+    padding: 28px;
+    box-shadow: 0 2px 12px rgba(15, 61, 58, 0.08);
+    margin-bottom: 20px;
+  }
+
+  .step { display: none; }
+  .step.active { display: block; }
+
+  .step-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--teal-dark);
+    margin-bottom: 6px;
+  }
+
+  .step-sub {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-bottom: 20px;
+  }
+
+  .scelta-iniziale {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .scelta-btn {
+    flex: 1;
+    min-width: 200px;
+    border: 2px solid var(--border);
+    background: white;
+    border-radius: 10px;
+    padding: 20px;
+    cursor: pointer;
+    text-align: left;
+    font-family: inherit;
+    transition: border-color 0.15s ease;
+  }
+
+  .scelta-btn:hover, .scelta-btn:focus-visible {
+    border-color: var(--teal);
+    outline: none;
+  }
+
+  .scelta-btn strong {
+    display: block;
+    color: var(--teal-dark);
+    font-size: 15px;
+    margin-bottom: 4px;
+  }
+
+  .scelta-btn span {
+    font-size: 12.5px;
+    color: var(--text-muted);
+  }
+
+  .upload-area {
+    border: 2px dashed var(--teal-light);
+    border-radius: 10px;
+    padding: 32px 16px;
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 13.5px;
+    cursor: pointer;
+  }
+
+  .upload-area:hover { background: var(--teal-pale); }
+
+  input[type="file"] { display: none; }
+
+  label.campo {
+    display: block;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--teal-dark);
+    margin: 16px 0 6px 0;
+  }
+
+  input[type="text"], input[type="email"], input[type="tel"], textarea, select {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1.5px solid var(--border);
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 14px;
+    color: var(--text);
+  }
+
+  input:focus, textarea:focus, select:focus {
+    outline: none;
+    border-color: var(--teal);
+  }
+
+  textarea { resize: vertical; min-height: 70px; }
+
+  .riga-doppia {
+    display: flex;
+    gap: 12px;
+  }
+  .riga-doppia > div { flex: 1; }
+
+  .esperienza-blocco {
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px;
+    margin-top: 10px;
+    background: #FAFDFD;
+  }
+
+  .esperienza-blocco .titolo-blocco {
+    font-size: 12.5px;
+    font-weight: 700;
+    color: var(--teal);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+  }
+
+  .nav-bottoni {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 24px;
+  }
+
+  button.btn {
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 700;
+    padding: 11px 22px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+  }
+
+  .btn-primario {
+    background: var(--teal-dark);
+    color: white;
+  }
+  .btn-primario:hover { background: var(--teal); }
+
+  .btn-secondario {
+    background: transparent;
+    color: var(--teal-dark);
+    border: 1.5px solid var(--border);
+  }
+  .btn-secondario:hover { border-color: var(--teal); }
+
+  .progress-bar {
+    height: 4px;
+    background: var(--border);
+    border-radius: 4px;
+    margin-bottom: 24px;
+    overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%;
+    background: var(--teal);
+    transition: width 0.3s ease;
+  }
+
+  .avviso-limite {
+    background: #FFF6E5;
+    border: 1px solid #F0D89B;
+    color: #7A5C10;
+    border-radius: 8px;
+    padding: 12px 16px;
+    font-size: 13px;
+    margin-bottom: 16px;
+  }
+
+  .nota-gratis {
+    font-size: 12px;
+    color: var(--text-muted);
+    text-align: center;
+    margin-top: 8px;
+  }
+
+  #verifica-accesso {
+    text-align: center;
+    padding: 40px 20px;
+    color: var(--text-muted);
+    font-size: 14px;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <a href="index.html" class="torna-home">← Torna al sito</a>
+  <h1>Crea il tuo CV gratis</h1>
+  <p>by WinCurePro — semplice, veloce, professionale</p>
+</header>
+
+<div class="container">
+
+  <!-- Verifica accesso in corso -->
+  <div class="card step active" id="step-verifica">
+    <div id="verifica-accesso">Verifica accesso in corso...</div>
+  </div>
+
+  <!-- STEP 1: Scelta iniziale -->
+  <div class="card step" id="step-scelta">
+    <div class="step-title">Hai già un vecchio CV?</div>
+    <div class="step-sub">Se lo carichi, proviamo a compilare le domande per te. Altrimenti si parte da zero.</div>
+    <div class="scelta-iniziale">
+      <button class="scelta-btn" id="btn-ho-cv">
+        <strong>Sì, ho un vecchio CV</strong>
+        <span>Carico un PDF o Word e pre-compilo i dati</span>
+      </button>
+      <button class="scelta-btn" id="btn-no-cv">
+        <strong>No, parto da zero</strong>
+        <span>Rispondo alle domande da vuoto</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- STEP 1b: Upload CV -->
+  <div class="card step" id="step-upload">
+    <div class="step-title">Carica il tuo vecchio CV</div>
+    <div class="step-sub">Formati supportati: PDF o Word (.docx)</div>
+    <label class="upload-area" id="upload-label" for="input-file-cv">
+      📄 Clicca qui o trascina il file<br>
+      <span id="upload-nome-file" style="color: var(--teal-dark); font-weight: 700;"></span>
+    </label>
+    <input type="file" id="input-file-cv" accept=".pdf,.docx">
+    <div class="nav-bottoni">
+      <button class="btn btn-secondario" data-torna="step-scelta">Indietro</button>
+      <button class="btn btn-primario" id="btn-analizza-cv">Analizza CV e continua</button>
+    </div>
+  </div>
+
+  <!-- STEP 2: Questionario -->
+  <div class="card step" id="step-domande">
+    <div class="progress-bar"><div class="progress-fill" id="progress-fill" style="width: 10%;"></div></div>
+    <div class="step-title">Compila i tuoi dati</div>
+    <div class="step-sub">Rivedi e completa le informazioni — puoi correggere tutto.</div>
+
+    <form id="form-cv">
+
+      <label class="campo">Nome e cognome</label>
+      <input type="text" id="nome_cognome" required>
+
+      <label class="campo">Ruolo desiderato (titolo del CV)</label>
+      <input type="text" id="ruolo_desiderato" placeholder="Es. Tecnico Informatico">
+
+      <div class="riga-doppia">
+        <div>
+          <label class="campo">Città</label>
+          <input type="text" id="citta">
+        </div>
+        <div>
+          <label class="campo">Telefono</label>
+          <input type="tel" id="telefono">
+        </div>
+      </div>
+
+      <label class="campo">Email</label>
+      <input type="email" id="email">
+
+      <label class="campo">Presentazione breve (2-3 righe)</label>
+      <textarea id="presentazione_breve" placeholder="Chi sei, cosa fai, cosa cerchi..."></textarea>
+
+      <div class="esperienza-blocco">
+        <div class="titolo-blocco">Esperienza 1 (più recente)</div>
+        <label class="campo">Ruolo</label>
+        <input type="text" id="esp1_ruolo">
+        <label class="campo">Azienda</label>
+        <input type="text" id="esp1_azienda">
+        <label class="campo">Periodo</label>
+        <input type="text" id="esp1_periodo" placeholder="Es. 2022 - Oggi">
+        <label class="campo">Mansioni</label>
+        <textarea id="esp1_mansioni"></textarea>
+      </div>
+
+      <div class="esperienza-blocco">
+        <div class="titolo-blocco">Esperienza 2</div>
+        <label class="campo">Ruolo</label>
+        <input type="text" id="esp2_ruolo">
+        <label class="campo">Azienda</label>
+        <input type="text" id="esp2_azienda">
+        <label class="campo">Periodo</label>
+        <input type="text" id="esp2_periodo">
+        <label class="campo">Mansioni</label>
+        <textarea id="esp2_mansioni"></textarea>
+      </div>
+
+      <div class="esperienza-blocco">
+        <div class="titolo-blocco">Esperienza 3</div>
+        <label class="campo">Ruolo</label>
+        <input type="text" id="esp3_ruolo">
+        <label class="campo">Azienda</label>
+        <input type="text" id="esp3_azienda">
+        <label class="campo">Periodo</label>
+        <input type="text" id="esp3_periodo">
+        <label class="campo">Mansioni</label>
+        <textarea id="esp3_mansioni"></textarea>
+      </div>
+
+      <label class="campo">Titolo di studio</label>
+      <input type="text" id="titolo_studio">
+
+      <div class="riga-doppia">
+        <div>
+          <label class="campo">Istituto</label>
+          <input type="text" id="istituto">
+        </div>
+        <div>
+          <label class="campo">Anno conseguimento</label>
+          <input type="text" id="anno_conseguimento">
+        </div>
+      </div>
+
+      <label class="campo">Competenza tecnica 1</label>
+      <input type="text" id="skill1_nome">
+      <label class="campo">Competenza tecnica 2</label>
+      <input type="text" id="skill2_nome">
+      <label class="campo">Competenza tecnica 3</label>
+      <input type="text" id="skill3_nome">
+
+      <div class="riga-doppia">
+        <div>
+          <label class="campo">Lingua 1</label>
+          <input type="text" id="lingua1_nome" placeholder="Es. Inglese">
+        </div>
+        <div>
+          <label class="campo">Livello</label>
+          <select id="lingua1_livello">
+            <option value="">Seleziona</option>
+            <option>Base</option>
+            <option>Intermedio</option>
+            <option>Avanzato</option>
+            <option>Madrelingua</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="riga-doppia">
+        <div>
+          <label class="campo">Lingua 2</label>
+          <input type="text" id="lingua2_nome">
+        </div>
+        <div>
+          <label class="campo">Livello</label>
+          <select id="lingua2_livello">
+            <option value="">Seleziona</option>
+            <option>Base</option>
+            <option>Intermedio</option>
+            <option>Avanzato</option>
+            <option>Madrelingua</option>
+          </select>
+        </div>
+      </div>
+
+      <label class="campo">Patente / disponibilità</label>
+      <input type="text" id="patente_disponibilita" placeholder="Es. Patente B, disponibile a trasferte">
+
+    </form>
+
+    <div class="nav-bottoni">
+      <button class="btn btn-secondario" data-torna="step-scelta">Indietro</button>
+      <button class="btn btn-primario" id="btn-genera-cv">Genera il mio CV</button>
+    </div>
+  </div>
+
+  <!-- STEP 3: Limite settimanale raggiunto -->
+  <div class="card step" id="step-limite">
+    <div class="step-title">Hai già generato un CV questa settimana</div>
+    <div class="avviso-limite">
+      Il piano gratuito permette 1 CV a settimana. Potrai generarne uno nuovo tra <strong id="giorni-rimanenti">-</strong> giorni.
+    </div>
+  </div>
+
+  <!-- STEP 4: CV pronto -->
+  <div class="card step" id="step-completato">
+    <div class="step-title">Il tuo CV è pronto! 🎉</div>
+    <div class="step-sub">Scaricalo qui sotto in formato PDF.</div>
+    <button class="btn btn-primario" id="btn-scarica-pdf">Scarica CV (PDF)</button>
+    <div class="nota-gratis">Versione gratuita — include un piccolo watermark WinCurePro</div>
+  </div>
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script>
+(function() {
+  const SUPABASE_URL = "https://ouatdwnkteyonoeomcsn.supabase.co";
+  const SUPABASE_ANON_KEY = "sb_publishable_AG5gH_fw96x1Eaz6hUm2Pg_gctrkwto";
+  const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+  let datiEstrattiDaVecchioCV = null;
+
+  function mostraStep(idStep) {
+    document.querySelectorAll(".step").forEach(el => el.classList.remove("active"));
+    document.getElementById(idStep).classList.add("active");
+  }
+
+  document.querySelectorAll("[data-torna]").forEach(btn => {
+    btn.addEventListener("click", () => mostraStep(btn.dataset.torna));
+  });
+
+  async function controllaSessione() {
+    const { data: { session } } = await sb.auth.getSession();
+    if (!session) {
+      // Non loggato: torna alla pagina di login
+      window.location.href = "cv-gratis.html";
+      return;
+    }
+    const puoGenerare = await controllaLimiteSettimanale(session.user.id);
+    if (puoGenerare) {
+      mostraStep("step-scelta");
+    } else {
+      mostraStep("step-limite");
+    }
+  }
+
+  async function controllaLimiteSettimanale(userId) {
+    const settimanaFa = new Date();
+    settimanaFa.setDate(settimanaFa.getDate() - 7);
+
+    const { data, error } = await sb
+      .from("cv_generazioni")
+      .select("data_generazione")
+      .eq("utente_id", userId)
+      .order("data_generazione", { ascending: false })
+      .limit(1);
+
+    if (error) {
+      console.error("Errore controllo limite:", error);
+      return true;
+    }
+
+    if (data.length === 0) return true;
+
+    const ultimaGenerazione = new Date(data[0].data_generazione);
+    if (ultimaGenerazione < settimanaFa) return true;
+
+    const giorniRimanenti = 7 - Math.floor((Date.now() - ultimaGenerazione) / 86400000);
+    document.getElementById("giorni-rimanenti").textContent = giorniRimanenti;
+    return false;
+  }
+
+  document.getElementById("btn-ho-cv").addEventListener("click", () => mostraStep("step-upload"));
+  document.getElementById("btn-no-cv").addEventListener("click", () => mostraStep("step-domande"));
+
+  document.getElementById("input-file-cv").addEventListener("change", (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      document.getElementById("upload-nome-file").textContent = file.name;
+    }
+  });
+
+  document.getElementById("btn-analizza-cv").addEventListener("click", async () => {
+    const file = document.getElementById("input-file-cv").files[0];
+    if (!file) {
+      alert("Carica prima un file.");
+      return;
+    }
+
+    const btn = document.getElementById("btn-analizza-cv");
+    btn.textContent = "Analisi in corso...";
+    btn.disabled = true;
+
+    try {
+      const formData = new FormData();
+      formData.append("file", file);
+
+      const { data: { session } } = await sb.auth.getSession();
+      const risposta = await fetch(`${SUPABASE_URL}/functions/v1/estrai-cv`, {
+        method: "POST",
+        headers: { "Authorization": `Bearer ${session.access_token}` },
+        body: formData
+      });
+
+      datiEstrattiDaVecchioCV = await risposta.json();
+      precompilaForm(datiEstrattiDaVecchioCV);
+      mostraStep("step-domande");
+    } catch (err) {
+      console.error(err);
+      alert("Non sono riuscito ad analizzare il CV. Puoi comunque compilare i dati manualmente.");
+      mostraStep("step-domande");
+    } finally {
+      btn.textContent = "Analizza CV e continua";
+      btn.disabled = false;
+    }
+  });
+
+  function precompilaForm(dati) {
+    if (!dati) return;
+    const mappa = {
+      nome_cognome: dati.nome_cognome,
+      ruolo_desiderato: dati.ruolo_desiderato,
+      citta: dati.citta,
+      email: dati.email,
+      telefono: dati.telefono,
+      presentazione_breve: dati.presentazione_breve,
+      titolo_studio: dati.titolo_studio,
+      istituto: dati.istituto,
+      anno_conseguimento: dati.anno_conseguimento,
+      patente_disponibilita: dati.patente_disponibilita
+    };
+    for (const [id, valore] of Object.entries(mappa)) {
+      const campo = document.getElementById(id);
+      if (campo && valore) campo.value = valore;
+    }
+
+    (dati.esperienze || []).slice(0, 3).forEach((esp, i) => {
+      const n = i + 1;
+      if (document.getElementById(`esp${n}_ruolo`)) {
+        document.getElementById(`esp${n}_ruolo`).value = esp.ruolo || "";
+        document.getElementById(`esp${n}_azienda`).value = esp.azienda || "";
+        document.getElementById(`esp${n}_periodo`).value = esp.periodo || "";
+        document.getElementById(`esp${n}_mansioni`).value = esp.mansioni || "";
+      }
+    });
+
+    (dati.competenze || []).slice(0, 3).forEach((skill, i) => {
+      const campo = document.getElementById(`skill${i + 1}_nome`);
+      if (campo) campo.value = skill;
+    });
+
+    (dati.lingue || []).slice(0, 2).forEach((lingua, i) => {
+      const n = i + 1;
+      if (document.getElementById(`lingua${n}_nome`)) {
+        document.getElementById(`lingua${n}_nome`).value = lingua.nome || "";
+        document.getElementById(`lingua${n}_livello`).value = lingua.livello || "";
+      }
+    });
+  }
+
+  document.getElementById("btn-genera-cv").addEventListener("click", async () => {
+    const { data: { session } } = await sb.auth.getSession();
+    await sb.from("cv_generazioni").insert({ utente_id: session.user.id });
+    mostraStep("step-completato");
+  });
+
+  document.getElementById("btn-scarica-pdf").addEventListener("click", () => {
+    alert("Collegamento al template PDF da completare nel prossimo step.");
+  });
+
+  controllaSessione();
+})();
+</script>
+
+</body>
+</html>
