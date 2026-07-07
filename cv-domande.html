@@ -294,6 +294,23 @@
     </div>
   </div>
 
+  <!-- STEP 1c: Upload foto -->
+  <div class="card step" id="step-foto">
+    <div class="step-title">Carica la tua foto (opzionale)</div>
+    <div class="step-sub">Una foto professionale rende il CV più personale. Puoi saltare questo passaggio.</div>
+    <div style="display:flex;justify-content:center;margin-bottom:16px;">
+      <div id="anteprima-foto-wrap" style="width:120px;height:120px;border-radius:50%;overflow:hidden;background:var(--teal-pale);border:2px dashed var(--teal-light);display:flex;align-items:center;justify-content:center;cursor:pointer;" onclick="document.getElementById('input-foto').click()">
+        <span id="anteprima-foto-testo" style="font-size:12px;color:var(--text-muted);text-align:center;padding:8px;">Clicca per<br>caricare</span>
+        <img id="anteprima-foto-img" style="display:none;width:100%;height:100%;object-fit:cover;">
+      </div>
+    </div>
+    <input type="file" id="input-foto" accept="image/png,image/jpeg,image/webp" style="display:none;">
+    <div class="nav-bottoni">
+      <button class="btn btn-secondario" id="btn-salta-foto">Salta questo passaggio</button>
+      <button class="btn btn-primario" id="btn-conferma-foto">Continua</button>
+    </div>
+  </div>
+
   <!-- STEP 2: Questionario -->
   <div class="card step" id="step-domande">
     <div class="progress-bar"><div class="progress-fill" id="progress-fill" style="width: 10%;"></div></div>
@@ -422,7 +439,7 @@
     </form>
 
     <div class="nav-bottoni">
-      <button class="btn btn-secondario" data-torna="step-scelta">Indietro</button>
+      <button class="btn btn-secondario" data-torna="step-foto">Indietro</button>
       <button class="btn btn-primario" id="btn-genera-cv">Genera il mio CV</button>
     </div>
   </div>
@@ -507,7 +524,33 @@
   }
 
   document.getElementById("btn-ho-cv").addEventListener("click", () => mostraStep("step-upload"));
-  document.getElementById("btn-no-cv").addEventListener("click", () => mostraStep("step-domande"));
+  document.getElementById("btn-no-cv").addEventListener("click", () => mostraStep("step-foto"));
+
+  // ---------- Upload foto ----------
+  let fotoBase64 = null;
+
+  document.getElementById("input-foto").addEventListener("change", (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = (ev) => {
+      fotoBase64 = ev.target.result;
+      const img = document.getElementById("anteprima-foto-img");
+      img.src = fotoBase64;
+      img.style.display = "block";
+      document.getElementById("anteprima-foto-testo").style.display = "none";
+    };
+    reader.readAsDataURL(file);
+  });
+
+  document.getElementById("btn-salta-foto").addEventListener("click", () => {
+    fotoBase64 = null;
+    mostraStep("step-domande");
+  });
+
+  document.getElementById("btn-conferma-foto").addEventListener("click", () => {
+    mostraStep("step-domande");
+  });
 
   document.getElementById("input-file-cv").addEventListener("change", (e) => {
     const file = e.target.files[0];
@@ -540,11 +583,11 @@
 
       datiEstrattiDaVecchioCV = await risposta.json();
       precompilaForm(datiEstrattiDaVecchioCV);
-      mostraStep("step-domande");
+      mostraStep("step-foto");
     } catch (err) {
       console.error(err);
       alert("Non sono riuscito ad analizzare il CV. Puoi comunque compilare i dati manualmente.");
-      mostraStep("step-domande");
+      mostraStep("step-foto");
     } finally {
       btn.textContent = "Analizza CV e continua";
       btn.disabled = false;
@@ -600,8 +643,155 @@
     mostraStep("step-completato");
   });
 
+  // ---------- Template CV (HTML con placeholder {{CAMPO}}) ----------
+  const TEMPLATE_CV = `<!DOCTYPE html><html lang="it"><head><meta charset="UTF-8"><style>
+@page { margin: 0; } * { margin:0;padding:0;box-sizing:border-box; }
+body{font-family:'Georgia','Times New Roman',serif;color:#1a2b2a;background:#fff;width:210mm;min-height:297mm;margin:0 auto;}
+.layout{display:grid;grid-template-columns:68mm 1fr;min-height:297mm;}
+.sidebar{background:#3E5359;color:#E8EEEE;padding:0 0 14mm 0;}
+.foto-wrap{width:100%;aspect-ratio:1/1;overflow:hidden;margin-bottom:8mm;}
+.foto-wrap img{width:100%;height:100%;object-fit:cover;display:block;}
+.foto-placeholder{width:100%;aspect-ratio:1/1;background:#4A6167;margin-bottom:8mm;}
+.sidebar-inner{padding:0 8mm;}
+.sidebar-section{margin-bottom:8mm;}
+.sidebar-section h2{font-family:'Trebuchet MS',sans-serif;font-size:10.5pt;font-weight:700;letter-spacing:.5px;color:#E8EEEE;margin-bottom:4mm;padding-bottom:1.5mm;border-bottom:2px solid #6B8288;}
+.contatto-riga{font-size:8.6pt;margin-bottom:2.8mm;line-height:1.4;word-break:break-word;display:flex;gap:5px;align-items:flex-start;}
+.skill-riga{font-size:8.6pt;margin-bottom:2.5mm;line-height:1.4;}
+.lingua-blocco{margin-bottom:4mm;}
+.lingua-nome{font-size:8.8pt;font-weight:700;margin-bottom:1mm;}
+.lingua-barra-sfondo{background:#4A6167;height:2mm;border-radius:2mm;overflow:hidden;margin-bottom:1mm;}
+.lingua-barra{background:#E8EEEE;height:100%;}
+.lingua-livello-testo{font-size:7.6pt;color:#B8C8CA;}
+.main{padding:14mm 12mm;}
+.nome-header{margin-bottom:10mm;}
+.nome-header h1{font-family:'Trebuchet MS',sans-serif;font-size:22pt;font-weight:700;color:#1a2b2a;letter-spacing:.5px;line-height:1.1;}
+.main-section{margin-bottom:7mm;}
+.main-section h2{font-family:'Trebuchet MS',sans-serif;font-size:11pt;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:#3E5359;margin-bottom:4mm;padding-bottom:1.5mm;border-bottom:2px solid #3E5359;}
+.profilo-testo{font-size:9.6pt;line-height:1.55;color:#2E3E3D;text-align:justify;}
+.esperienza{margin-bottom:5.5mm;}
+.esperienza-header{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:.5mm;}
+.esperienza-ruolo-azienda{font-weight:700;font-size:10pt;color:#1a2b2a;}
+.esperienza-periodo{font-family:'Trebuchet MS',sans-serif;font-size:8.3pt;color:#3E5359;font-weight:700;white-space:nowrap;}
+.esperienza-luogo{font-size:9pt;font-style:italic;color:#5A6B69;margin-bottom:1.5mm;}
+.esperienza-desc{font-size:9pt;line-height:1.55;color:#2E3E3D;padding-left:3mm;}
+.esperienza-desc div{position:relative;margin-bottom:1mm;}
+.esperienza-desc div:before{content:"•";position:absolute;left:-3mm;color:#3E5359;}
+.formazione-item{margin-bottom:3.5mm;}
+.formazione-titolo{font-weight:700;font-size:9.6pt;color:#1a2b2a;}
+.formazione-dettaglio{font-size:8.8pt;color:#5A6B69;}
+</style></head><body>
+<div class="layout">
+<aside class="sidebar">
+{{FOTO_HTML}}
+<div class="sidebar-inner">
+<div class="sidebar-section"><h2>Contatti</h2>
+<div class="contatto-riga">📍 {{CITTA}}</div>
+<div class="contatto-riga">☎ {{TELEFONO}}</div>
+<div class="contatto-riga">✉ {{EMAIL}}</div>
+</div>
+<div class="sidebar-section"><h2>Capacità e competenze</h2>
+<div class="skill-riga">{{SKILL1}}</div>
+<div class="skill-riga">{{SKILL2}}</div>
+<div class="skill-riga">{{SKILL3}}</div>
+</div>
+<div class="sidebar-section"><h2>Competenze linguistiche</h2>
+<div class="lingua-blocco"><div class="lingua-nome">{{LINGUA1_NOME}}</div><div class="lingua-livello-testo">{{LINGUA1_LIVELLO}}</div></div>
+<div class="lingua-blocco"><div class="lingua-nome">{{LINGUA2_NOME}}</div><div class="lingua-livello-testo">{{LINGUA2_LIVELLO}}</div></div>
+</div>
+<div class="sidebar-section"><h2>Altro</h2><div class="contatto-riga">{{PATENTE}}</div></div>
+</div>
+</aside>
+<main class="main">
+<div class="nome-header"><h1>{{NOME}}</h1></div>
+<section class="main-section"><h2>Profilo professionale</h2><p class="profilo-testo">{{PRESENTAZIONE}}</p></section>
+<section class="main-section"><h2>Esperienze lavorative e professionali</h2>
+{{ESPERIENZE_HTML}}
+</section>
+<section class="main-section"><h2>Istruzione e formazione</h2>
+<div class="formazione-item"><div class="formazione-titolo">{{TITOLO_STUDIO}}</div><div class="formazione-dettaglio">{{ISTITUTO}} — {{ANNO}}</div></div>
+</section>
+</main>
+</div>
+<div style="position:fixed;bottom:4mm;right:8mm;font-family:'Trebuchet MS',sans-serif;font-size:7pt;color:#B8C4C2;">Creato con WinCurePro CV Generator · wincurepro.com</div>
+</body></html>`;
+
+  function escapeHtml(str) {
+    if (!str) return "";
+    const div = document.createElement("div");
+    div.textContent = str;
+    return div.innerHTML;
+  }
+
+  function generaHtmlEsperienza(ruolo, azienda, periodo, mansioni) {
+    if (!ruolo && !azienda) return "";
+    return `<div class="esperienza">
+      <div class="esperienza-header">
+        <span class="esperienza-ruolo-azienda">${escapeHtml(ruolo)}</span>
+        <span class="esperienza-periodo">${escapeHtml(periodo)}</span>
+      </div>
+      <div class="esperienza-luogo">${escapeHtml(azienda)}</div>
+      <div class="esperienza-desc"><div>${escapeHtml(mansioni)}</div></div>
+    </div>`;
+  }
+
+  function costruisciCvHtml() {
+    const v = (id) => document.getElementById(id).value.trim();
+
+    const esperienzeHtml = [
+      generaHtmlEsperienza(v("esp1_ruolo"), v("esp1_azienda"), v("esp1_periodo"), v("esp1_mansioni")),
+      generaHtmlEsperienza(v("esp2_ruolo"), v("esp2_azienda"), v("esp2_periodo"), v("esp2_mansioni")),
+      generaHtmlEsperienza(v("esp3_ruolo"), v("esp3_azienda"), v("esp3_periodo"), v("esp3_mansioni"))
+    ].join("");
+
+    const fotoHtml = fotoBase64
+      ? `<div class="foto-wrap"><img src="${fotoBase64}"></div>`
+      : `<div class="foto-placeholder"></div>`;
+
+    let html = TEMPLATE_CV;
+    html = html.replace("{{FOTO_HTML}}", fotoHtml);
+    html = html.replace("{{NOME}}", escapeHtml(v("nome_cognome")));
+    html = html.replace("{{CITTA}}", escapeHtml(v("citta")));
+    html = html.replace("{{TELEFONO}}", escapeHtml(v("telefono")));
+    html = html.replace("{{EMAIL}}", escapeHtml(v("email")));
+    html = html.replace("{{PRESENTAZIONE}}", escapeHtml(v("presentazione_breve")));
+    html = html.replace("{{SKILL1}}", escapeHtml(v("skill1_nome")));
+    html = html.replace("{{SKILL2}}", escapeHtml(v("skill2_nome")));
+    html = html.replace("{{SKILL3}}", escapeHtml(v("skill3_nome")));
+    html = html.replace("{{LINGUA1_NOME}}", escapeHtml(v("lingua1_nome")));
+    html = html.replace("{{LINGUA1_LIVELLO}}", escapeHtml(document.getElementById("lingua1_livello").value));
+    html = html.replace("{{LINGUA2_NOME}}", escapeHtml(v("lingua2_nome")));
+    html = html.replace("{{LINGUA2_LIVELLO}}", escapeHtml(document.getElementById("lingua2_livello").value));
+    html = html.replace("{{PATENTE}}", escapeHtml(v("patente_disponibilita")));
+    html = html.replace("{{ESPERIENZE_HTML}}", esperienzeHtml);
+    html = html.replace("{{TITOLO_STUDIO}}", escapeHtml(v("titolo_studio")));
+    html = html.replace("{{ISTITUTO}}", escapeHtml(v("istituto")));
+    html = html.replace("{{ANNO}}", escapeHtml(v("anno_conseguimento")));
+
+    return html;
+  }
+
   document.getElementById("btn-scarica-pdf").addEventListener("click", () => {
-    alert("Collegamento al template PDF da completare nel prossimo step.");
+    const htmlFinale = costruisciCvHtml();
+
+    const contenitore = document.createElement("div");
+    contenitore.innerHTML = htmlFinale;
+    document.body.appendChild(contenitore);
+
+    const nomeFile = (document.getElementById("nome_cognome").value.trim() || "CV").replace(/\s+/g, "_") + ".pdf";
+
+    html2pdf()
+      .set({
+        margin: 0,
+        filename: nomeFile,
+        image: { type: "jpeg", quality: 0.98 },
+        html2canvas: { scale: 2, useCORS: true },
+        jsPDF: { unit: "mm", format: "a4", orientation: "portrait" }
+      })
+      .from(contenitore)
+      .save()
+      .then(() => {
+        document.body.removeChild(contenitore);
+      });
   });
 
   controllaSessione();
