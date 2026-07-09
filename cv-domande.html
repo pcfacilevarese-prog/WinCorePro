@@ -498,6 +498,7 @@
   }
 
   async function controllaLimiteSettimanale(userId) {
+    const LIMITE_SETTIMANALE = 5; // CV generabili ogni 7 giorni
     const settimanaFa = new Date();
     settimanaFa.setDate(settimanaFa.getDate() - 7);
 
@@ -505,20 +506,20 @@
       .from("cv_generazioni")
       .select("data_generazione")
       .eq("utente_id", userId)
-      .order("data_generazione", { ascending: false })
-      .limit(1);
+      .gte("data_generazione", settimanaFa.toISOString())
+      .order("data_generazione", { ascending: false });
 
     if (error) {
       console.error("Errore controllo limite:", error);
       return true;
     }
 
-    if (data.length === 0) return true;
+    if (data.length < LIMITE_SETTIMANALE) return true;
 
-    const ultimaGenerazione = new Date(data[0].data_generazione);
-    if (ultimaGenerazione < settimanaFa) return true;
-
-    const giorniRimanenti = 7 - Math.floor((Date.now() - ultimaGenerazione) / 86400000);
+    // Ha raggiunto il limite: calcola tra quanti giorni la generazione
+    // più vecchia (tra quelle conteggiate) uscirà dalla finestra dei 7 giorni.
+    const generazioneCheEsce = new Date(data[LIMITE_SETTIMANALE - 1].data_generazione);
+    const giorniRimanenti = 7 - Math.floor((Date.now() - generazioneCheEsce) / 86400000);
     document.getElementById("giorni-rimanenti").textContent = giorniRimanenti;
     return false;
   }
