@@ -119,6 +119,68 @@
     color: var(--text-muted);
   }
 
+  .galleria-modelli {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+  }
+
+  .modello-card {
+    position: relative;
+    width: 160px;
+    border: 2px solid var(--border);
+    background: white;
+    border-radius: 10px;
+    padding: 10px;
+    cursor: pointer;
+    font-family: inherit;
+    text-align: center;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  }
+
+  .modello-card:hover, .modello-card:focus-visible {
+    border-color: var(--teal-light);
+    outline: none;
+  }
+
+  .modello-card.modello-selezionato {
+    border-color: var(--teal);
+    box-shadow: 0 0 0 3px rgba(15, 158, 150, 0.15);
+  }
+
+  .modello-anteprima {
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
+    display: block;
+    margin-bottom: 8px;
+  }
+
+  .modello-nome {
+    display: block;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--teal-dark);
+  }
+
+  .modello-badge {
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    background: var(--teal);
+    color: white;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 20px;
+    display: none;
+  }
+
+  .modello-card.modello-selezionato .modello-badge {
+    display: inline-block;
+  }
+
   .upload-area {
     border: 2px dashed var(--teal-light);
     border-radius: 10px;
@@ -263,7 +325,42 @@
     <div id="verifica-accesso">Verifica accesso in corso...</div>
   </div>
 
-  <!-- STEP 1: Scelta iniziale -->
+  <!-- STEP MODELLO: Scelta del template CV -->
+  <div class="card step" id="step-modello">
+    <div class="step-title">Scegli il modello</div>
+    <div class="step-sub">Seleziona il layout del tuo CV. Presto ne aggiungeremo altri.</div>
+    <div class="galleria-modelli">
+      <button type="button" class="modello-card modello-selezionato" data-modello="classico">
+        <span class="modello-badge">Selezionato</span>
+        <svg class="modello-anteprima" viewBox="0 0 160 210" xmlns="http://www.w3.org/2000/svg">
+          <rect x="0" y="0" width="160" height="210" rx="4" fill="#ffffff" stroke="#D8E6E4"/>
+          <rect x="0" y="0" width="56" height="210" fill="#0F3D3A"/>
+          <circle cx="28" cy="34" r="16" fill="#4FBDB2"/>
+          <rect x="10" y="60" width="36" height="4" fill="#4FBDB2"/>
+          <rect x="10" y="72" width="36" height="3" fill="#8fb6b2"/>
+          <rect x="10" y="80" width="30" height="3" fill="#8fb6b2"/>
+          <rect x="10" y="100" width="36" height="4" fill="#4FBDB2"/>
+          <rect x="10" y="112" width="36" height="3" fill="#8fb6b2"/>
+          <rect x="10" y="120" width="26" height="3" fill="#8fb6b2"/>
+          <rect x="70" y="20" width="70" height="10" fill="#1a2b2a"/>
+          <rect x="70" y="40" width="50" height="5" fill="#0F9E96"/>
+          <rect x="70" y="58" width="76" height="4" fill="#5A6B69"/>
+          <rect x="70" y="66" width="76" height="3" fill="#c3d3d1"/>
+          <rect x="70" y="74" width="76" height="3" fill="#c3d3d1"/>
+          <rect x="70" y="82" width="60" height="3" fill="#c3d3d1"/>
+          <rect x="70" y="100" width="50" height="5" fill="#0F9E96"/>
+          <rect x="70" y="118" width="76" height="3" fill="#c3d3d1"/>
+          <rect x="70" y="126" width="76" height="3" fill="#c3d3d1"/>
+        </svg>
+        <span class="modello-nome">Classico Teal</span>
+      </button>
+    </div>
+    <div class="nav-bottoni">
+      <button class="btn btn-primario" id="btn-conferma-modello">Continua</button>
+    </div>
+  </div>
+
+  <!-- STEP 1: Scelta iniziale (non più mostrato in UI, percorso automatico disattivato) -->
   <div class="card step" id="step-scelta">
     <div class="step-title">Hai già un vecchio CV?</div>
     <div class="step-sub">Se lo carichi, proviamo a compilare le domande per te. Altrimenti si parte da zero.</div>
@@ -448,7 +545,7 @@
   <div class="card step" id="step-limite">
     <div class="step-title">Hai già generato un CV questa settimana</div>
     <div class="avviso-limite">
-      Il piano gratuito permette 1 CV a settimana. Potrai generarne uno nuovo tra <strong id="giorni-rimanenti">-</strong> giorni.
+      Il piano gratuito permette 5 CV a settimana. Potrai generarne uno nuovo tra <strong id="giorni-rimanenti">-</strong> giorni.
     </div>
   </div>
 
@@ -491,7 +588,7 @@
     }
     const puoGenerare = await controllaLimiteSettimanale(session.user.id);
     if (puoGenerare) {
-      mostraStep("step-scelta");
+      mostraStep("step-modello");
     } else {
       mostraStep("step-limite");
     }
@@ -526,6 +623,21 @@
 
   document.getElementById("btn-ho-cv").addEventListener("click", () => mostraStep("step-upload"));
   document.getElementById("btn-no-cv").addEventListener("click", () => mostraStep("step-foto"));
+
+  // ---------- Galleria modelli ----------
+  let modelloScelto = "classico"; // per ora l'unico modello disponibile
+
+  document.querySelectorAll(".modello-card").forEach((card) => {
+    card.addEventListener("click", () => {
+      document.querySelectorAll(".modello-card").forEach((c) => c.classList.remove("modello-selezionato"));
+      card.classList.add("modello-selezionato");
+      modelloScelto = card.dataset.modello;
+    });
+  });
+
+  document.getElementById("btn-conferma-modello").addEventListener("click", () => {
+    mostraStep("step-foto");
+  });
 
   // ---------- Upload foto ----------
   let fotoBase64 = null;
