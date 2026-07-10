@@ -423,7 +423,7 @@
     </div>
   </div>
 
-  <!-- STEP 1: Scelta iniziale (non più mostrato in UI, percorso automatico disattivato) -->
+  <!-- STEP 1: Scelta iniziale (percorso automatico riattivato) -->
   <div class="card step" id="step-scelta">
     <div class="step-title">Hai già un vecchio CV?</div>
     <div class="step-sub">Se lo carichi, proviamo a compilare le domande per te. Altrimenti si parte da zero.</div>
@@ -691,7 +691,7 @@
   const modelloScelto = "elegante"; // per ora l'unico modello disponibile
 
   document.getElementById("btn-conferma-modello").addEventListener("click", () => {
-    mostraStep("step-foto");
+    mostraStep("step-scelta");
   });
 
   // ---------- Upload foto ----------
