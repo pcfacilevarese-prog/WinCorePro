@@ -393,141 +393,33 @@
 
   <!-- STEP MODELLO: Scelta del template CV -->
   <div class="card step" id="step-modello">
-    <div class="step-title">Scegli il modello</div>
-    <div class="step-sub">Questo è il modello selezionato. Puoi cambiarlo quando vuoi.</div>
+    <div class="step-title">Il tuo modello di CV</div>
+    <div class="step-sub">Questo è il modello che verrà usato per il tuo CV.</div>
     <div class="anteprima-selezionata">
       <svg class="modello-anteprima-grande" id="anteprima-modello-corrente" viewBox="0 0 160 210" xmlns="http://www.w3.org/2000/svg">
         <rect x="0" y="0" width="160" height="210" rx="4" fill="#ffffff" stroke="#D8E6E4"/>
-        <rect x="0" y="0" width="56" height="210" fill="#0F3D3A"/>
-        <circle cx="28" cy="34" r="16" fill="#4FBDB2"/>
-        <rect x="10" y="60" width="36" height="4" fill="#4FBDB2"/>
-        <rect x="10" y="72" width="36" height="3" fill="#8fb6b2"/>
-        <rect x="10" y="80" width="30" height="3" fill="#8fb6b2"/>
-        <rect x="10" y="100" width="36" height="4" fill="#4FBDB2"/>
-        <rect x="10" y="112" width="36" height="3" fill="#8fb6b2"/>
-        <rect x="10" y="120" width="26" height="3" fill="#8fb6b2"/>
-        <rect x="70" y="20" width="70" height="10" fill="#1a2b2a"/>
-        <rect x="70" y="40" width="50" height="5" fill="#0F9E96"/>
-        <rect x="70" y="58" width="76" height="4" fill="#5A6B69"/>
-        <rect x="70" y="66" width="76" height="3" fill="#c3d3d1"/>
-        <rect x="70" y="74" width="76" height="3" fill="#c3d3d1"/>
-        <rect x="70" y="82" width="60" height="3" fill="#c3d3d1"/>
-        <rect x="70" y="100" width="50" height="5" fill="#0F9E96"/>
-        <rect x="70" y="118" width="76" height="3" fill="#c3d3d1"/>
-        <rect x="70" y="126" width="76" height="3" fill="#c3d3d1"/>
+        <rect x="0" y="0" width="14" height="210" fill="#0F3D3A"/>
+        <circle cx="42" cy="34" r="15" fill="#E8F3F1" stroke="#0F9E96" stroke-width="1.5"/>
+        <rect x="66" y="22" width="70" height="9" fill="#0F3D3A"/>
+        <rect x="66" y="35" width="50" height="4" fill="#0F9E96"/>
+        <rect x="66" y="44" width="76" height="3" fill="#c3d3d1"/>
+        <rect x="24" y="60" width="112" height="1" fill="#0F9E96"/>
+        <rect x="24" y="70" width="112" height="3" fill="#c3d3d1" opacity="0.6"/>
+        <rect x="24" y="77" width="90" height="3" fill="#c3d3d1" opacity="0.6"/>
+        <rect x="24" y="95" width="40" height="4" fill="#0F3D3A"/>
+        <circle cx="26" cy="110" r="1.5" fill="#0F9E96"/>
+        <rect x="30" y="106" width="106" height="3" fill="#1a2b2a" opacity="0.7"/>
+        <rect x="30" y="112" width="80" height="3" fill="#c3d3d1"/>
+        <circle cx="26" cy="126" r="1.5" fill="#0F9E96"/>
+        <rect x="30" y="122" width="100" height="3" fill="#1a2b2a" opacity="0.7"/>
+        <rect x="30" y="128" width="80" height="3" fill="#c3d3d1"/>
+        <rect x="24" y="150" width="40" height="4" fill="#0F3D3A"/>
+        <rect x="90" y="150" width="40" height="4" fill="#0F3D3A"/>
       </svg>
-      <div class="modello-nome-corrente" id="nome-modello-corrente">Classico Teal</div>
-      <button type="button" class="btn btn-secondario" id="btn-apri-galleria">Scegli modello</button>
+      <div class="modello-nome-corrente" id="nome-modello-corrente">Elegante</div>
     </div>
     <div class="nav-bottoni">
       <button class="btn btn-primario" id="btn-conferma-modello">Continua</button>
-    </div>
-  </div>
-
-  <!-- Popup galleria modelli -->
-  <div class="overlay-popup" id="overlay-galleria">
-    <div class="popup-galleria">
-      <div class="popup-galleria-header">
-        <span class="step-title" style="margin:0;">Scegli il modello</span>
-        <button type="button" class="btn-chiudi-popup" id="btn-chiudi-galleria" aria-label="Chiudi">✕</button>
-      </div>
-      <div class="galleria-modelli">
-        <button type="button" class="modello-card modello-selezionato" data-modello="classico" data-nome="Classico Teal">
-          <span class="modello-badge">Selezionato</span>
-          <svg class="modello-anteprima" viewBox="0 0 160 210" xmlns="http://www.w3.org/2000/svg">
-            <rect x="0" y="0" width="160" height="210" rx="4" fill="#ffffff" stroke="#D8E6E4"/>
-            <rect x="0" y="0" width="56" height="210" fill="#0F3D3A"/>
-            <circle cx="28" cy="34" r="16" fill="#4FBDB2"/>
-            <rect x="10" y="60" width="36" height="4" fill="#4FBDB2"/>
-            <rect x="10" y="72" width="36" height="3" fill="#8fb6b2"/>
-            <rect x="10" y="80" width="30" height="3" fill="#8fb6b2"/>
-            <rect x="10" y="100" width="36" height="4" fill="#4FBDB2"/>
-            <rect x="10" y="112" width="36" height="3" fill="#8fb6b2"/>
-            <rect x="10" y="120" width="26" height="3" fill="#8fb6b2"/>
-            <rect x="70" y="20" width="70" height="10" fill="#1a2b2a"/>
-            <rect x="70" y="40" width="50" height="5" fill="#0F9E96"/>
-            <rect x="70" y="58" width="76" height="4" fill="#5A6B69"/>
-            <rect x="70" y="66" width="76" height="3" fill="#c3d3d1"/>
-            <rect x="70" y="74" width="76" height="3" fill="#c3d3d1"/>
-            <rect x="70" y="82" width="60" height="3" fill="#c3d3d1"/>
-            <rect x="70" y="100" width="50" height="5" fill="#0F9E96"/>
-            <rect x="70" y="118" width="76" height="3" fill="#c3d3d1"/>
-            <rect x="70" y="126" width="76" height="3" fill="#c3d3d1"/>
-          </svg>
-          <span class="modello-nome">Classico Teal</span>
-        </button>
-        <button type="button" class="modello-card" data-modello="moderno" data-nome="Moderno Chiaro">
-          <svg class="modello-anteprima" viewBox="0 0 160 210" xmlns="http://www.w3.org/2000/svg">
-            <rect x="0" y="0" width="160" height="210" rx="4" fill="#ffffff" stroke="#D8E6E4"/>
-            <rect x="0" y="0" width="54" height="210" fill="#E8F3F1"/>
-            <rect x="8" y="10" width="38" height="38" rx="3" fill="#0F9E96"/>
-            <rect x="8" y="58" width="38" height="4" fill="#0F3D3A"/>
-            <rect x="8" y="68" width="38" height="3" fill="#7fb3ac"/>
-            <rect x="8" y="75" width="30" height="3" fill="#7fb3ac"/>
-            <rect x="8" y="95" width="38" height="4" fill="#0F3D3A"/>
-            <rect x="8" y="105" width="34" height="3" fill="#7fb3ac"/>
-            <rect x="8" y="112" width="24" height="3" fill="#7fb3ac"/>
-            <rect x="66" y="18" width="70" height="9" fill="#0F3D3A"/>
-            <rect x="66" y="30" width="45" height="5" fill="#0F9E96"/>
-            <rect x="66" y="46" width="80" height="2" fill="#0F9E96"/>
-            <rect x="66" y="56" width="80" height="3" fill="#c3d3d1"/>
-            <rect x="66" y="63" width="80" height="3" fill="#c3d3d1"/>
-            <rect x="66" y="80" width="50" height="5" fill="#0F3D3A"/>
-            <rect x="66" y="92" width="80" height="3" fill="#c3d3d1"/>
-            <rect x="66" y="99" width="80" height="3" fill="#c3d3d1"/>
-            <rect x="66" y="106" width="60" height="3" fill="#c3d3d1"/>
-            <rect x="66" y="126" width="50" height="5" fill="#0F3D3A"/>
-            <rect x="66" y="140" width="26" height="9" rx="4" fill="#E8F3F1" stroke="#0F9E96"/>
-            <rect x="96" y="140" width="26" height="9" rx="4" fill="#E8F3F1" stroke="#0F9E96"/>
-          </svg>
-          <span class="modello-nome">Moderno Chiaro</span>
-        </button>
-        <button type="button" class="modello-card" data-modello="corporate" data-nome="Corporate Blu">
-          <svg class="modello-anteprima" viewBox="0 0 160 210" xmlns="http://www.w3.org/2000/svg">
-            <rect x="0" y="0" width="160" height="210" rx="4" fill="#ffffff" stroke="#D8E6E4"/>
-            <rect x="0" y="0" width="160" height="46" fill="#1F4E8C"/>
-            <circle cx="26" cy="23" r="13" fill="#ffffff" opacity="0.85"/>
-            <rect x="48" y="14" width="65" height="8" fill="#ffffff"/>
-            <rect x="48" y="26" width="45" height="5" fill="#BBD3F0"/>
-            <rect x="48" y="36" width="80" height="3" fill="#DCE9F8"/>
-            <rect x="10" y="58" width="50" height="5" fill="#1F4E8C"/>
-            <rect x="10" y="68" width="140" height="3" fill="#c3d3d1"/>
-            <rect x="10" y="75" width="140" height="3" fill="#c3d3d1"/>
-            <rect x="10" y="92" width="50" height="5" fill="#1F4E8C"/>
-            <rect x="10" y="102" width="120" height="3" fill="#c3d3d1"/>
-            <rect x="10" y="109" width="120" height="3" fill="#c3d3d1"/>
-            <rect x="10" y="130" width="60" height="5" fill="#1F4E8C"/>
-            <rect x="10" y="140" width="60" height="3" fill="#c3d3d1"/>
-            <rect x="85" y="130" width="60" height="5" fill="#1F4E8C"/>
-            <rect x="85" y="140" width="60" height="3" fill="#c3d3d1"/>
-          </svg>
-          <span class="modello-nome">Corporate Blu</span>
-        </button>
-        <button type="button" class="modello-card" data-modello="monocromo" data-nome="Monocromo Sidebar">
-          <svg class="modello-anteprima" viewBox="0 0 160 210" xmlns="http://www.w3.org/2000/svg">
-            <rect x="0" y="0" width="160" height="210" rx="4" fill="#ffffff" stroke="#D8E6E4"/>
-            <rect x="56" y="0" width="1" height="210" fill="#dddddd"/>
-            <circle cx="30" cy="34" r="16" fill="#e0e0e0"/>
-            <rect x="10" y="62" width="20" height="4" fill="#1a2b2a"/>
-            <rect x="10" y="72" width="36" height="3" fill="#999"/>
-            <rect x="10" y="79" width="30" height="3" fill="#999"/>
-            <rect x="10" y="95" width="24" height="4" fill="#1a2b2a"/>
-            <rect x="10" y="105" width="6" height="3" fill="#1a2b2a"/><rect x="18" y="105" width="6" height="3" fill="#1a2b2a"/><rect x="26" y="105" width="6" height="3" fill="#ccc"/>
-            <rect x="10" y="112" width="6" height="3" fill="#1a2b2a"/><rect x="18" y="112" width="6" height="3" fill="#1a2b2a"/><rect x="26" y="112" width="6" height="3" fill="#1a2b2a"/>
-            <rect x="10" y="130" width="20" height="4" fill="#1a2b2a"/>
-            <rect x="10" y="140" width="34" height="3" fill="#999"/>
-            <rect x="70" y="20" width="70" height="12" fill="#1a2b2a"/>
-            <rect x="70" y="36" width="45" height="4" fill="#999"/>
-            <rect x="70" y="54" width="30" height="4" fill="#1a2b2a"/>
-            <rect x="70" y="64" width="76" height="3" fill="#c3d3d1"/>
-            <rect x="70" y="71" width="76" height="3" fill="#c3d3d1"/>
-            <rect x="70" y="90" width="50" height="4" fill="#1a2b2a"/>
-            <rect x="70" y="100" width="76" height="3" fill="#c3d3d1"/>
-            <rect x="70" y="107" width="76" height="3" fill="#c3d3d1"/>
-          </svg>
-          <span class="modello-nome">Monocromo Sidebar</span>
-        </button>
-      </div>
     </div>
   </div>
 
@@ -795,34 +687,8 @@
   document.getElementById("btn-ho-cv").addEventListener("click", () => mostraStep("step-upload"));
   document.getElementById("btn-no-cv").addEventListener("click", () => mostraStep("step-foto"));
 
-  // ---------- Galleria modelli (popup) ----------
-  let modelloScelto = "classico"; // per ora l'unico modello disponibile
-
-  const overlayGalleria = document.getElementById("overlay-galleria");
-
-  document.getElementById("btn-apri-galleria").addEventListener("click", () => {
-    overlayGalleria.classList.add("aperto");
-  });
-
-  document.getElementById("btn-chiudi-galleria").addEventListener("click", () => {
-    overlayGalleria.classList.remove("aperto");
-  });
-
-  overlayGalleria.addEventListener("click", (e) => {
-    if (e.target === overlayGalleria) overlayGalleria.classList.remove("aperto");
-  });
-
-  document.querySelectorAll(".modello-card").forEach((card) => {
-    card.addEventListener("click", () => {
-      document.querySelectorAll(".modello-card").forEach((c) => c.classList.remove("modello-selezionato"));
-      card.classList.add("modello-selezionato");
-      modelloScelto = card.dataset.modello;
-      document.getElementById("nome-modello-corrente").textContent = card.dataset.nome;
-      document.getElementById("anteprima-modello-corrente").innerHTML =
-        card.querySelector(".modello-anteprima").innerHTML;
-      overlayGalleria.classList.remove("aperto");
-    });
-  });
+  // ---------- Modello CV ----------
+  const modelloScelto = "elegante"; // per ora l'unico modello disponibile
 
   document.getElementById("btn-conferma-modello").addEventListener("click", () => {
     mostraStep("step-foto");
@@ -946,284 +812,80 @@
   });
 
   // ---------- Template CV (HTML con placeholder {{CAMPO}}) ----------
-  const TEMPLATE_CLASSICO = `<!DOCTYPE html><html lang="it"><head><meta charset="UTF-8"><style>
+  const TEMPLATE_ELEGANTE = `<!DOCTYPE html><html lang="it"><head><meta charset="UTF-8"><style>
 @page { margin: 0; } * { margin:0;padding:0;box-sizing:border-box; }
-body{font-family:'Georgia','Times New Roman',serif;color:#1a2b2a;background:#fff;width:210mm;min-height:297mm;margin:0 auto;}
-.layout{display:grid;grid-template-columns:68mm 1fr;min-height:297mm;}
-.sidebar{background:#3E5359;color:#E8EEEE;padding:0 0 14mm 0;}
-.foto-wrap{width:100%;aspect-ratio:1/1;overflow:hidden;margin-bottom:8mm;}
+body{font-family:'Georgia','Times New Roman',serif;color:#20302E;background:#fff;width:210mm;min-height:297mm;margin:0 auto;position:relative;}
+.fascia{position:absolute;top:0;left:0;width:16mm;height:100%;background:#0F3D3A;}
+.contenuto{padding:20mm 18mm 20mm 32mm;}
+.header{display:flex;align-items:center;gap:8mm;margin-bottom:10mm;}
+.foto-wrap{width:30mm;height:30mm;border-radius:50%;overflow:hidden;flex-shrink:0;box-shadow:0 0 0 4px #E8F3F1, 0 0 0 5px #0F9E96;}
 .foto-wrap img{width:100%;height:100%;object-fit:cover;display:block;}
-.foto-placeholder{width:100%;aspect-ratio:1/1;background:#4A6167;margin-bottom:8mm;}
-.sidebar-inner{padding:0 8mm;}
-.sidebar-section{margin-bottom:8mm;}
-.sidebar-section h2{font-family:'Trebuchet MS',sans-serif;font-size:10.5pt;font-weight:700;letter-spacing:.5px;color:#E8EEEE;margin-bottom:4mm;padding-bottom:1.5mm;border-bottom:2px solid #6B8288;}
-.contatto-riga{font-size:8.6pt;margin-bottom:2.8mm;line-height:1.4;word-break:break-word;display:flex;gap:5px;align-items:flex-start;}
-.skill-riga{font-size:8.6pt;margin-bottom:2.5mm;line-height:1.4;}
-.lingua-blocco{margin-bottom:4mm;}
-.lingua-nome{font-size:8.8pt;font-weight:700;margin-bottom:1mm;}
-.lingua-barra-sfondo{background:#4A6167;height:2mm;border-radius:2mm;overflow:hidden;margin-bottom:1mm;}
-.lingua-barra{background:#E8EEEE;height:100%;}
-.lingua-livello-testo{font-size:7.6pt;color:#B8C8CA;}
-.main{padding:14mm 12mm;}
-.nome-header{margin-bottom:10mm;}
-.nome-header h1{font-family:'Trebuchet MS',sans-serif;font-size:22pt;font-weight:700;color:#1a2b2a;letter-spacing:.5px;line-height:1.1;}
-.main-section{margin-bottom:7mm;}
-.main-section h2{font-family:'Trebuchet MS',sans-serif;font-size:11pt;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:#3E5359;margin-bottom:4mm;padding-bottom:1.5mm;border-bottom:2px solid #3E5359;}
-.profilo-testo{font-size:9.6pt;line-height:1.55;color:#2E3E3D;text-align:justify;}
-.esperienza{margin-bottom:5.5mm;}
+.foto-placeholder{width:30mm;height:30mm;border-radius:50%;background:#E8F3F1;flex-shrink:0;box-shadow:0 0 0 4px #E8F3F1, 0 0 0 5px #0F9E96;}
+.header-testo h1{font-size:24pt;font-weight:400;letter-spacing:.5px;color:#0F3D3A;line-height:1.1;}
+.header-testo .ruolo{font-family:'Trebuchet MS',sans-serif;font-size:9.5pt;letter-spacing:2.5px;text-transform:uppercase;color:#0F9E96;font-weight:700;margin-top:2mm;}
+.contatti-riga{font-family:'Trebuchet MS',sans-serif;font-size:8.4pt;color:#5A6B69;margin-top:3mm;display:flex;gap:6mm;flex-wrap:wrap;}
+.divider-oro{height:1px;background:linear-gradient(to right,#0F9E96,transparent);margin-bottom:9mm;}
+.profilo-testo{font-size:10pt;line-height:1.7;color:#2E3E3D;margin-bottom:9mm;font-style:italic;border-left:2px solid #0F9E96;padding-left:5mm;}
+.main-section{margin-bottom:8.5mm;}
+.main-section h2{font-family:'Trebuchet MS',sans-serif;font-size:9.5pt;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:#0F3D3A;margin-bottom:5mm;}
+.timeline{position:relative;padding-left:6mm;}
+.timeline:before{content:"";position:absolute;left:1.3mm;top:2mm;bottom:2mm;width:1px;background:#D8E6E4;}
+.esperienza{position:relative;margin-bottom:6mm;}
+.esperienza:before{content:"";position:absolute;left:-6mm;top:1.5mm;width:3mm;height:3mm;border-radius:50%;background:#0F9E96;}
 .esperienza-header{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:.5mm;}
-.esperienza-ruolo-azienda{font-weight:700;font-size:10pt;color:#1a2b2a;}
-.esperienza-periodo{font-family:'Trebuchet MS',sans-serif;font-size:8.3pt;color:#3E5359;font-weight:700;white-space:nowrap;}
+.esperienza-ruolo-azienda{font-weight:700;font-size:10.2pt;color:#1a2b2a;}
+.esperienza-periodo{font-family:'Trebuchet MS',sans-serif;font-size:8pt;color:#0F9E96;font-weight:700;letter-spacing:.5px;white-space:nowrap;}
 .esperienza-luogo{font-size:9pt;font-style:italic;color:#5A6B69;margin-bottom:1.5mm;}
-.esperienza-desc{font-size:9pt;line-height:1.55;color:#2E3E3D;padding-left:3mm;}
-.esperienza-desc div{position:relative;margin-bottom:1mm;}
-.esperienza-desc div:before{content:"•";position:absolute;left:-3mm;color:#3E5359;}
+.esperienza-desc{font-size:9pt;line-height:1.6;color:#2E3E3D;}
+.esperienza-desc div{margin-bottom:1mm;}
 .formazione-item{margin-bottom:3.5mm;}
-.formazione-titolo{font-weight:700;font-size:9.6pt;color:#1a2b2a;}
-.formazione-dettaglio{font-size:8.8pt;color:#5A6B69;}
+.formazione-titolo{font-weight:700;font-size:9.8pt;color:#1a2b2a;}
+.formazione-dettaglio{font-family:'Trebuchet MS',sans-serif;font-size:8.4pt;color:#5A6B69;margin-top:0.5mm;}
+.riga-2col{display:grid;grid-template-columns:1fr 1fr;gap:10mm;}
+.tag-riga{font-family:'Trebuchet MS',sans-serif;font-size:8.6pt;color:#2E3E3D;margin-bottom:2.2mm;padding-left:4mm;position:relative;}
+.tag-riga:before{content:"◆";position:absolute;left:0;color:#0F9E96;font-size:6pt;top:1.5pt;}
+.lingua-riga{font-family:'Trebuchet MS',sans-serif;font-size:8.6pt;color:#2E3E3D;margin-bottom:2.2mm;display:flex;justify-content:space-between;}
+.lingua-riga span:last-child{color:#0F9E96;font-weight:700;}
+.altro-testo{font-family:'Trebuchet MS',sans-serif;font-size:8.6pt;color:#5A6B69;}
 </style></head><body>
-<div class="layout">
-<aside class="sidebar">
-{{FOTO_HTML}}
-<div class="sidebar-inner">
-<div class="sidebar-section"><h2>Contatti</h2>
-<div class="contatto-riga">📍 {{CITTA}}</div>
-<div class="contatto-riga">☎ {{TELEFONO}}</div>
-<div class="contatto-riga">✉ {{EMAIL}}</div>
-</div>
-<div class="sidebar-section"><h2>Capacità e competenze</h2>
-<div class="skill-riga">{{SKILL1}}</div>
-<div class="skill-riga">{{SKILL2}}</div>
-<div class="skill-riga">{{SKILL3}}</div>
-</div>
-<div class="sidebar-section"><h2>Competenze linguistiche</h2>
-<div class="lingua-blocco"><div class="lingua-nome">{{LINGUA1_NOME}}</div><div class="lingua-livello-testo">{{LINGUA1_LIVELLO}}</div></div>
-<div class="lingua-blocco"><div class="lingua-nome">{{LINGUA2_NOME}}</div><div class="lingua-livello-testo">{{LINGUA2_LIVELLO}}</div></div>
-</div>
-<div class="sidebar-section"><h2>Altro</h2><div class="contatto-riga">{{PATENTE}}</div></div>
-</div>
-</aside>
-<main class="main">
-<div class="nome-header"><h1>{{NOME}}</h1></div>
-<section class="main-section"><h2>Profilo professionale</h2><p class="profilo-testo">{{PRESENTAZIONE}}</p></section>
-<section class="main-section"><h2>Esperienze lavorative e professionali</h2>
-{{ESPERIENZE_HTML}}
-</section>
-<section class="main-section"><h2>Istruzione e formazione</h2>
-<div class="formazione-item"><div class="formazione-titolo">{{TITOLO_STUDIO}}</div><div class="formazione-dettaglio">{{ISTITUTO}} — {{ANNO}}</div></div>
-</section>
-</main>
-</div>
-<div style="position:fixed;bottom:4mm;right:8mm;font-family:'Trebuchet MS',sans-serif;font-size:7pt;color:#B8C4C2;">Creato con WinCurePro CV Generator · wincurepro.com</div>
-</body></html>`;
-
-  const TEMPLATE_MODERNO = `<!DOCTYPE html><html lang="it"><head><meta charset="UTF-8"><style>
-@page { margin: 0; } * { margin:0;padding:0;box-sizing:border-box; }
-body{font-family:'Archivo','Trebuchet MS',sans-serif;color:#1a2b2a;background:#fff;width:210mm;min-height:297mm;margin:0 auto;}
-.layout{display:grid;grid-template-columns:65mm 1fr;min-height:297mm;}
-.sidebar{background:#E8F3F1;padding:14mm 8mm;}
-.foto-wrap{width:100%;aspect-ratio:1/1;overflow:hidden;border-radius:6px;margin-bottom:8mm;border:3px solid #0F9E96;}
-.foto-wrap img{width:100%;height:100%;object-fit:cover;display:block;}
-.foto-placeholder{width:100%;aspect-ratio:1/1;background:#BFDEDA;border-radius:6px;margin-bottom:8mm;border:3px solid #0F9E96;}
-.sidebar-section{margin-bottom:8mm;}
-.sidebar-section h2{font-size:10pt;font-weight:700;letter-spacing:.5px;color:#0F3D3A;margin-bottom:4mm;padding-bottom:1.5mm;border-bottom:2px solid #0F9E96;}
-.contatto-riga{font-size:8.6pt;margin-bottom:2.8mm;line-height:1.4;word-break:break-word;color:#2E3E3D;}
-.lingua-blocco{margin-bottom:3.5mm;}
-.lingua-nome{font-size:8.8pt;font-weight:700;color:#0F3D3A;}
-.lingua-livello-testo{font-size:7.8pt;color:#5A6B69;}
-.main{padding:14mm 12mm 14mm 10mm;}
-.nome-header{margin-bottom:3mm;}
-.nome-header h1{font-size:21pt;font-weight:700;color:#0F3D3A;letter-spacing:.3px;line-height:1.1;}
-.nome-header .ruolo{font-size:11pt;color:#0F9E96;font-weight:700;margin-top:1mm;}
-.divider{height:2px;background:#0F9E96;margin:6mm 0 8mm 0;}
-.main-section{margin-bottom:7mm;}
-.main-section h2{font-size:10.5pt;font-weight:700;letter-spacing:.6px;text-transform:uppercase;color:#0F3D3A;margin-bottom:4mm;}
-.profilo-testo{font-size:9.4pt;line-height:1.55;color:#2E3E3D;}
-.esperienza{margin-bottom:5.5mm;}
-.esperienza-header{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:.5mm;}
-.esperienza-ruolo-azienda{font-weight:700;font-size:9.8pt;color:#1a2b2a;}
-.esperienza-periodo{font-size:8.2pt;color:#0F9E96;font-weight:700;white-space:nowrap;}
-.esperienza-luogo{font-size:8.8pt;color:#5A6B69;margin-bottom:1.5mm;}
-.esperienza-desc{font-size:8.8pt;line-height:1.5;color:#2E3E3D;padding-left:3mm;}
-.esperienza-desc div{position:relative;margin-bottom:1mm;}
-.esperienza-desc div:before{content:"—";position:absolute;left:-3mm;color:#0F9E96;}
-.formazione-item{margin-bottom:3.5mm;}
-.formazione-titolo{font-weight:700;font-size:9.4pt;color:#1a2b2a;}
-.formazione-dettaglio{font-size:8.6pt;color:#5A6B69;}
-.skill-pills{display:flex;flex-wrap:wrap;gap:2mm;}
-.skill-pill{background:#E8F3F1;border:1px solid #0F9E96;color:#0F3D3A;font-size:8pt;font-weight:700;padding:1.5mm 3mm;border-radius:20px;}
-</style></head><body>
-<div class="layout">
-<aside class="sidebar">
-{{FOTO_HTML}}
-<div class="sidebar-section"><h2>Contatti</h2>
-<div class="contatto-riga">📍 {{CITTA}}</div>
-<div class="contatto-riga">☎ {{TELEFONO}}</div>
-<div class="contatto-riga">✉ {{EMAIL}}</div>
-</div>
-<div class="sidebar-section"><h2>Lingue</h2>
-<div class="lingua-blocco"><div class="lingua-nome">{{LINGUA1_NOME}}</div><div class="lingua-livello-testo">{{LINGUA1_LIVELLO}}</div></div>
-<div class="lingua-blocco"><div class="lingua-nome">{{LINGUA2_NOME}}</div><div class="lingua-livello-testo">{{LINGUA2_LIVELLO}}</div></div>
-</div>
-<div class="sidebar-section"><h2>Altro</h2><div class="contatto-riga">{{PATENTE}}</div></div>
-</aside>
-<main class="main">
-<div class="nome-header"><h1>{{NOME}}</h1><div class="ruolo">{{RUOLO}}</div></div>
-<div class="divider"></div>
-<section class="main-section"><p class="profilo-testo">{{PRESENTAZIONE}}</p></section>
-<section class="main-section"><h2>Esperienza lavorativa</h2>
-{{ESPERIENZE_HTML}}
-</section>
-<section class="main-section"><h2>Istruzione</h2>
-<div class="formazione-item"><div class="formazione-titolo">{{TITOLO_STUDIO}}</div><div class="formazione-dettaglio">{{ISTITUTO}} — {{ANNO}}</div></div>
-</section>
-<section class="main-section"><h2>Competenze</h2>
-<div class="skill-pills">
-<span class="skill-pill">{{SKILL1}}</span>
-<span class="skill-pill">{{SKILL2}}</span>
-<span class="skill-pill">{{SKILL3}}</span>
-</div>
-</section>
-</main>
-</div>
-<div style="position:fixed;bottom:4mm;right:8mm;font-family:'Trebuchet MS',sans-serif;font-size:7pt;color:#8fb6b2;">Creato con WinCurePro CV Generator · wincurepro.com</div>
-</body></html>`;
-
-  const TEMPLATE_CORPORATE = `<!DOCTYPE html><html lang="it"><head><meta charset="UTF-8"><style>
-@page { margin: 0; } * { margin:0;padding:0;box-sizing:border-box; }
-body{font-family:'Archivo','Trebuchet MS',sans-serif;color:#1a2b2a;background:#fff;width:210mm;min-height:297mm;margin:0 auto;}
-.header{background:#1F4E8C;color:#fff;padding:12mm 14mm;display:flex;align-items:center;gap:10mm;}
-.foto-wrap{width:28mm;height:28mm;border-radius:50%;overflow:hidden;flex-shrink:0;border:3px solid #ffffff;}
-.foto-wrap img{width:100%;height:100%;object-fit:cover;display:block;}
-.foto-placeholder{width:28mm;height:28mm;border-radius:50%;background:#3E6BAA;flex-shrink:0;border:3px solid #ffffff;}
-.header-testo h1{font-size:19pt;font-weight:700;letter-spacing:.3px;}
-.header-testo .ruolo{font-size:10.5pt;color:#BBD3F0;font-weight:600;margin-top:1mm;}
-.header-contatti{margin-top:3mm;font-size:8.4pt;color:#DCE9F8;display:flex;gap:6mm;flex-wrap:wrap;}
-.main{padding:10mm 14mm;}
-.profilo-testo{font-size:9.4pt;line-height:1.55;color:#2E3E3D;text-align:justify;margin-bottom:7mm;}
-.main-section{margin-bottom:7mm;}
-.main-section h2{font-size:11pt;font-weight:700;letter-spacing:.5px;color:#1F4E8C;margin-bottom:4mm;padding-bottom:1.5mm;border-bottom:2px solid #1F4E8C;}
-.esperienza{margin-bottom:5.5mm;}
-.esperienza-header{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:.5mm;}
-.esperienza-ruolo-azienda{font-weight:700;font-size:10pt;color:#1a2b2a;}
-.esperienza-periodo{font-size:8.3pt;color:#1F4E8C;font-weight:700;white-space:nowrap;}
-.esperienza-luogo{font-size:9pt;color:#5A6B69;margin-bottom:1.5mm;}
-.esperienza-desc{font-size:9pt;line-height:1.55;color:#2E3E3D;padding-left:3mm;}
-.esperienza-desc div{position:relative;margin-bottom:1mm;}
-.esperienza-desc div:before{content:"•";position:absolute;left:-3mm;color:#1F4E8C;}
-.formazione-item{margin-bottom:3.5mm;}
-.formazione-titolo{font-weight:700;font-size:9.6pt;color:#1a2b2a;}
-.formazione-dettaglio{font-size:8.8pt;color:#5A6B69;}
-.riga-2col{display:grid;grid-template-columns:1fr 1fr;gap:8mm;}
-.mini-titolo{font-size:9pt;font-weight:700;color:#1a2b2a;margin-bottom:1mm;}
-.mini-testo{font-size:8.6pt;color:#5A6B69;}
-</style></head><body>
+<div class="fascia"></div>
+<div class="contenuto">
 <div class="header">
 {{FOTO_HTML}}
 <div class="header-testo">
 <h1>{{NOME}}</h1>
 <div class="ruolo">{{RUOLO}}</div>
-<div class="header-contatti"><span>📍 {{CITTA}}</span><span>☎ {{TELEFONO}}</span><span>✉ {{EMAIL}}</span></div>
+<div class="contatti-riga"><span>{{CITTA}}</span><span>{{TELEFONO}}</span><span>{{EMAIL}}</span></div>
 </div>
 </div>
-<main class="main">
+<div class="divider-oro"></div>
 <p class="profilo-testo">{{PRESENTAZIONE}}</p>
-<section class="main-section"><h2>Esperienza Lavorativa</h2>
+<section class="main-section"><h2>Esperienza professionale</h2>
+<div class="timeline">
 {{ESPERIENZE_HTML}}
+</div>
 </section>
-<section class="main-section"><h2>Istruzione</h2>
+<section class="main-section"><h2>Istruzione e formazione</h2>
 <div class="formazione-item"><div class="formazione-titolo">{{TITOLO_STUDIO}}</div><div class="formazione-dettaglio">{{ISTITUTO}} — {{ANNO}}</div></div>
 </section>
 <div class="riga-2col">
 <section class="main-section"><h2>Competenze</h2>
-<div class="mini-titolo">{{SKILL1}}</div>
-<div class="mini-titolo">{{SKILL2}}</div>
-<div class="mini-titolo">{{SKILL3}}</div>
+<div class="tag-riga">{{SKILL1}}</div>
+<div class="tag-riga">{{SKILL2}}</div>
+<div class="tag-riga">{{SKILL3}}</div>
 </section>
 <section class="main-section"><h2>Lingue</h2>
-<div class="mini-titolo">{{LINGUA1_NOME}} <span class="mini-testo">— {{LINGUA1_LIVELLO}}</span></div>
-<div class="mini-titolo">{{LINGUA2_NOME}} <span class="mini-testo">— {{LINGUA2_LIVELLO}}</span></div>
-<div class="mini-testo" style="margin-top:2mm;">{{PATENTE}}</div>
+<div class="lingua-riga"><span>{{LINGUA1_NOME}}</span><span>{{LINGUA1_LIVELLO}}</span></div>
+<div class="lingua-riga"><span>{{LINGUA2_NOME}}</span><span>{{LINGUA2_LIVELLO}}</span></div>
+<div class="altro-testo" style="margin-top:3mm;">{{PATENTE}}</div>
 </section>
 </div>
-</main>
+</div>
 <div style="position:fixed;bottom:4mm;right:8mm;font-family:'Trebuchet MS',sans-serif;font-size:7pt;color:#B8C4C2;">Creato con WinCurePro CV Generator · wincurepro.com</div>
 </body></html>`;
 
-  const TEMPLATE_MONOCROMO = `<!DOCTYPE html><html lang="it"><head><meta charset="UTF-8"><style>
-@page { margin: 0; } * { margin:0;padding:0;box-sizing:border-box; }
-body{font-family:'Archivo','Trebuchet MS',sans-serif;color:#1a2b2a;background:#fff;width:210mm;min-height:297mm;margin:0 auto;}
-.layout{display:grid;grid-template-columns:60mm 1fr;min-height:297mm;}
-.sidebar{padding:14mm 8mm;border-right:1px solid #ddd;}
-.foto-wrap{width:32mm;height:32mm;border-radius:50%;overflow:hidden;margin-bottom:8mm;}
-.foto-wrap img{width:100%;height:100%;object-fit:cover;display:block;}
-.foto-placeholder{width:32mm;height:32mm;border-radius:50%;background:#e0e0e0;margin-bottom:8mm;}
-.sidebar-section{margin-bottom:8mm;}
-.sidebar-section h2{font-size:9.5pt;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#1a2b2a;margin-bottom:3.5mm;}
-.contatto-riga{font-size:8.4pt;margin-bottom:2.6mm;line-height:1.4;color:#333;}
-.skill-riga{font-size:8.4pt;margin-bottom:2.2mm;display:flex;justify-content:space-between;align-items:center;}
-.stelle{color:#1a2b2a;font-size:8pt;letter-spacing:1px;}
-.stelle .vuota{color:#ccc;}
-.lingua-riga{font-size:8.4pt;margin-bottom:2.2mm;}
-.lingua-riga:before{content:"✓ ";color:#1a2b2a;font-weight:700;}
-.main{padding:14mm 12mm;}
-.nome-header{margin-bottom:2mm;}
-.nome-header h1{font-size:24pt;font-weight:700;letter-spacing:1px;color:#1a2b2a;}
-.nome-header .ruolo{font-size:10.5pt;color:#666;letter-spacing:1.5px;text-transform:uppercase;margin-top:1mm;}
-.divider{height:1px;background:#ddd;margin:6mm 0 8mm 0;}
-.main-section{margin-bottom:7mm;}
-.main-section h2{font-size:10.5pt;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#1a2b2a;margin-bottom:4mm;}
-.esperienza{margin-bottom:5.5mm;}
-.esperienza-header{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:.5mm;}
-.esperienza-ruolo-azienda{font-weight:700;font-size:9.8pt;color:#1a2b2a;}
-.esperienza-periodo{font-size:8pt;color:#666;white-space:nowrap;}
-.esperienza-luogo{font-size:8.8pt;font-style:italic;color:#666;margin-bottom:1.5mm;}
-.esperienza-desc{font-size:8.8pt;line-height:1.5;color:#333;padding-left:3mm;}
-.esperienza-desc div{position:relative;margin-bottom:1mm;}
-.esperienza-desc div:before{content:"—";position:absolute;left:-3mm;color:#999;}
-.formazione-item{margin-bottom:3.5mm;}
-.formazione-titolo{font-weight:700;font-size:9.4pt;color:#1a2b2a;}
-.formazione-dettaglio{font-size:8.6pt;color:#666;}
-</style></head><body>
-<div class="layout">
-<aside class="sidebar">
-{{FOTO_HTML}}
-<div class="sidebar-section"><h2>Contatti</h2>
-<div class="contatto-riga">✉ {{EMAIL}}</div>
-<div class="contatto-riga">☎ {{TELEFONO}}</div>
-<div class="contatto-riga">📍 {{CITTA}}</div>
-</div>
-<div class="sidebar-section"><h2>Competenze</h2>
-<div class="skill-riga">{{SKILL1}}</div>
-<div class="skill-riga">{{SKILL2}}</div>
-<div class="skill-riga">{{SKILL3}}</div>
-</div>
-<div class="sidebar-section"><h2>Lingue</h2>
-<div class="lingua-riga">{{LINGUA1_NOME}} — {{LINGUA1_LIVELLO}}</div>
-<div class="lingua-riga">{{LINGUA2_NOME}} — {{LINGUA2_LIVELLO}}</div>
-</div>
-<div class="sidebar-section"><h2>Altro</h2><div class="contatto-riga">{{PATENTE}}</div></div>
-</aside>
-<main class="main">
-<div class="nome-header"><h1>{{NOME}}</h1><div class="ruolo">{{RUOLO}}</div></div>
-<div class="divider"></div>
-<section class="main-section"><h2>Chi sono</h2><p class="esperienza-desc" style="padding-left:0;">{{PRESENTAZIONE}}</p></section>
-<section class="main-section"><h2>Esperienza professionale</h2>
-{{ESPERIENZE_HTML}}
-</section>
-<section class="main-section"><h2>Formazione</h2>
-<div class="formazione-item"><div class="formazione-titolo">{{TITOLO_STUDIO}}</div><div class="formazione-dettaglio">{{ISTITUTO}} — {{ANNO}}</div></div>
-</section>
-</main>
-</div>
-<div style="position:fixed;bottom:4mm;right:8mm;font-family:'Trebuchet MS',sans-serif;font-size:7pt;color:#ccc;">Creato con WinCurePro CV Generator · wincurepro.com</div>
-</body></html>`;
-
   const TEMPLATES_CV = {
-    classico: TEMPLATE_CLASSICO,
-    moderno: TEMPLATE_MODERNO,
-    corporate: TEMPLATE_CORPORATE,
-    monocromo: TEMPLATE_MONOCROMO
+    elegante: TEMPLATE_ELEGANTE
   };
 
   function escapeHtml(str) {
@@ -1258,7 +920,7 @@ body{font-family:'Archivo','Trebuchet MS',sans-serif;color:#1a2b2a;background:#f
       ? `<div class="foto-wrap"><img src="${fotoBase64}"></div>`
       : `<div class="foto-placeholder"></div>`;
 
-    let html = TEMPLATES_CV[modelloScelto] || TEMPLATES_CV.classico;
+    let html = TEMPLATES_CV[modelloScelto] || TEMPLATES_CV.elegante;
     html = html.replace("{{FOTO_HTML}}", fotoHtml);
     html = html.replace("{{NOME}}", escapeHtml(v("nome_cognome")));
     html = html.replace("{{RUOLO}}", escapeHtml(v("ruolo_desiderato")));
