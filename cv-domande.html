@@ -119,6 +119,72 @@
     color: var(--text-muted);
   }
 
+  .anteprima-selezionata {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    padding: 20px 0 8px 0;
+  }
+
+  .modello-anteprima-grande {
+    width: 160px;
+    height: auto;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+  }
+
+  .modello-nome-corrente {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--teal-dark);
+    margin-bottom: 4px;
+  }
+
+  .overlay-popup {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 61, 58, 0.55);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+
+  .overlay-popup.aperto {
+    display: flex;
+  }
+
+  .popup-galleria {
+    background: white;
+    border-radius: 12px;
+    padding: 24px;
+    max-width: 720px;
+    width: 100%;
+    max-height: 85vh;
+    overflow-y: auto;
+  }
+
+  .popup-galleria-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
+  }
+
+  .btn-chiudi-popup {
+    background: none;
+    border: none;
+    font-size: 18px;
+    color: var(--text-muted);
+    cursor: pointer;
+    padding: 4px 8px;
+    line-height: 1;
+  }
+
+  .btn-chiudi-popup:hover { color: var(--teal-dark); }
+
   .galleria-modelli {
     display: flex;
     gap: 16px;
@@ -328,35 +394,69 @@
   <!-- STEP MODELLO: Scelta del template CV -->
   <div class="card step" id="step-modello">
     <div class="step-title">Scegli il modello</div>
-    <div class="step-sub">Seleziona il layout del tuo CV. Presto ne aggiungeremo altri.</div>
-    <div class="galleria-modelli">
-      <button type="button" class="modello-card modello-selezionato" data-modello="classico">
-        <span class="modello-badge">Selezionato</span>
-        <svg class="modello-anteprima" viewBox="0 0 160 210" xmlns="http://www.w3.org/2000/svg">
-          <rect x="0" y="0" width="160" height="210" rx="4" fill="#ffffff" stroke="#D8E6E4"/>
-          <rect x="0" y="0" width="56" height="210" fill="#0F3D3A"/>
-          <circle cx="28" cy="34" r="16" fill="#4FBDB2"/>
-          <rect x="10" y="60" width="36" height="4" fill="#4FBDB2"/>
-          <rect x="10" y="72" width="36" height="3" fill="#8fb6b2"/>
-          <rect x="10" y="80" width="30" height="3" fill="#8fb6b2"/>
-          <rect x="10" y="100" width="36" height="4" fill="#4FBDB2"/>
-          <rect x="10" y="112" width="36" height="3" fill="#8fb6b2"/>
-          <rect x="10" y="120" width="26" height="3" fill="#8fb6b2"/>
-          <rect x="70" y="20" width="70" height="10" fill="#1a2b2a"/>
-          <rect x="70" y="40" width="50" height="5" fill="#0F9E96"/>
-          <rect x="70" y="58" width="76" height="4" fill="#5A6B69"/>
-          <rect x="70" y="66" width="76" height="3" fill="#c3d3d1"/>
-          <rect x="70" y="74" width="76" height="3" fill="#c3d3d1"/>
-          <rect x="70" y="82" width="60" height="3" fill="#c3d3d1"/>
-          <rect x="70" y="100" width="50" height="5" fill="#0F9E96"/>
-          <rect x="70" y="118" width="76" height="3" fill="#c3d3d1"/>
-          <rect x="70" y="126" width="76" height="3" fill="#c3d3d1"/>
-        </svg>
-        <span class="modello-nome">Classico Teal</span>
-      </button>
+    <div class="step-sub">Questo è il modello selezionato. Puoi cambiarlo quando vuoi.</div>
+    <div class="anteprima-selezionata">
+      <svg class="modello-anteprima-grande" id="anteprima-modello-corrente" viewBox="0 0 160 210" xmlns="http://www.w3.org/2000/svg">
+        <rect x="0" y="0" width="160" height="210" rx="4" fill="#ffffff" stroke="#D8E6E4"/>
+        <rect x="0" y="0" width="56" height="210" fill="#0F3D3A"/>
+        <circle cx="28" cy="34" r="16" fill="#4FBDB2"/>
+        <rect x="10" y="60" width="36" height="4" fill="#4FBDB2"/>
+        <rect x="10" y="72" width="36" height="3" fill="#8fb6b2"/>
+        <rect x="10" y="80" width="30" height="3" fill="#8fb6b2"/>
+        <rect x="10" y="100" width="36" height="4" fill="#4FBDB2"/>
+        <rect x="10" y="112" width="36" height="3" fill="#8fb6b2"/>
+        <rect x="10" y="120" width="26" height="3" fill="#8fb6b2"/>
+        <rect x="70" y="20" width="70" height="10" fill="#1a2b2a"/>
+        <rect x="70" y="40" width="50" height="5" fill="#0F9E96"/>
+        <rect x="70" y="58" width="76" height="4" fill="#5A6B69"/>
+        <rect x="70" y="66" width="76" height="3" fill="#c3d3d1"/>
+        <rect x="70" y="74" width="76" height="3" fill="#c3d3d1"/>
+        <rect x="70" y="82" width="60" height="3" fill="#c3d3d1"/>
+        <rect x="70" y="100" width="50" height="5" fill="#0F9E96"/>
+        <rect x="70" y="118" width="76" height="3" fill="#c3d3d1"/>
+        <rect x="70" y="126" width="76" height="3" fill="#c3d3d1"/>
+      </svg>
+      <div class="modello-nome-corrente" id="nome-modello-corrente">Classico Teal</div>
+      <button type="button" class="btn btn-secondario" id="btn-apri-galleria">Scegli modello</button>
     </div>
     <div class="nav-bottoni">
       <button class="btn btn-primario" id="btn-conferma-modello">Continua</button>
+    </div>
+  </div>
+
+  <!-- Popup galleria modelli -->
+  <div class="overlay-popup" id="overlay-galleria">
+    <div class="popup-galleria">
+      <div class="popup-galleria-header">
+        <span class="step-title" style="margin:0;">Scegli il modello</span>
+        <button type="button" class="btn-chiudi-popup" id="btn-chiudi-galleria" aria-label="Chiudi">✕</button>
+      </div>
+      <div class="galleria-modelli">
+        <button type="button" class="modello-card modello-selezionato" data-modello="classico" data-nome="Classico Teal">
+          <span class="modello-badge">Selezionato</span>
+          <svg class="modello-anteprima" viewBox="0 0 160 210" xmlns="http://www.w3.org/2000/svg">
+            <rect x="0" y="0" width="160" height="210" rx="4" fill="#ffffff" stroke="#D8E6E4"/>
+            <rect x="0" y="0" width="56" height="210" fill="#0F3D3A"/>
+            <circle cx="28" cy="34" r="16" fill="#4FBDB2"/>
+            <rect x="10" y="60" width="36" height="4" fill="#4FBDB2"/>
+            <rect x="10" y="72" width="36" height="3" fill="#8fb6b2"/>
+            <rect x="10" y="80" width="30" height="3" fill="#8fb6b2"/>
+            <rect x="10" y="100" width="36" height="4" fill="#4FBDB2"/>
+            <rect x="10" y="112" width="36" height="3" fill="#8fb6b2"/>
+            <rect x="10" y="120" width="26" height="3" fill="#8fb6b2"/>
+            <rect x="70" y="20" width="70" height="10" fill="#1a2b2a"/>
+            <rect x="70" y="40" width="50" height="5" fill="#0F9E96"/>
+            <rect x="70" y="58" width="76" height="4" fill="#5A6B69"/>
+            <rect x="70" y="66" width="76" height="3" fill="#c3d3d1"/>
+            <rect x="70" y="74" width="76" height="3" fill="#c3d3d1"/>
+            <rect x="70" y="82" width="60" height="3" fill="#c3d3d1"/>
+            <rect x="70" y="100" width="50" height="5" fill="#0F9E96"/>
+            <rect x="70" y="118" width="76" height="3" fill="#c3d3d1"/>
+            <rect x="70" y="126" width="76" height="3" fill="#c3d3d1"/>
+          </svg>
+          <span class="modello-nome">Classico Teal</span>
+        </button>
+      </div>
     </div>
   </div>
 
@@ -624,14 +724,32 @@
   document.getElementById("btn-ho-cv").addEventListener("click", () => mostraStep("step-upload"));
   document.getElementById("btn-no-cv").addEventListener("click", () => mostraStep("step-foto"));
 
-  // ---------- Galleria modelli ----------
+  // ---------- Galleria modelli (popup) ----------
   let modelloScelto = "classico"; // per ora l'unico modello disponibile
+
+  const overlayGalleria = document.getElementById("overlay-galleria");
+
+  document.getElementById("btn-apri-galleria").addEventListener("click", () => {
+    overlayGalleria.classList.add("aperto");
+  });
+
+  document.getElementById("btn-chiudi-galleria").addEventListener("click", () => {
+    overlayGalleria.classList.remove("aperto");
+  });
+
+  overlayGalleria.addEventListener("click", (e) => {
+    if (e.target === overlayGalleria) overlayGalleria.classList.remove("aperto");
+  });
 
   document.querySelectorAll(".modello-card").forEach((card) => {
     card.addEventListener("click", () => {
       document.querySelectorAll(".modello-card").forEach((c) => c.classList.remove("modello-selezionato"));
       card.classList.add("modello-selezionato");
       modelloScelto = card.dataset.modello;
+      document.getElementById("nome-modello-corrente").textContent = card.dataset.nome;
+      document.getElementById("anteprima-modello-corrente").innerHTML =
+        card.querySelector(".modello-anteprima").innerHTML;
+      overlayGalleria.classList.remove("aperto");
     });
   });
 
